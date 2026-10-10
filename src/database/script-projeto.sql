@@ -6,9 +6,11 @@
 comandos para mysql server
 */
 
-CREATE DATABASE aquatech;
+CREATE DATABASE carpe_diem;
 
-USE aquatech;
+
+USE carpe_diem;
+
 
 CREATE TABLE empresa (
 	id INT PRIMARY KEY AUTO_INCREMENT,
