@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* :root {
+ 
+} */
+
+.container-main {
+    background-color: aqua;
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh; /* Altura total da tela */
+}
+
+/* NAV */
+.container-nav {
+    background-color: brown;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-links{
+    background-color: rgb(104, 84, 60);
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+a{
+    text-decoration: none;
+    color: beige;
+}
+
+/* CONTAINER PRINCIPAL */
+.container-home {
+    background-color: aquamarine;
+    width: 100%;
+}
+
+/* BANNER */
+.banner {
+    height: 80vh;
+}
+
+.banner img{
+    width: 100%;         
+    height: 100%;      
+    object-fit: cover; 
+}
+
+/* CONTAINER POSTAGENS + INFO */
+.container-posts {
+    background-color: pink;
+    margin: 70px 50px;
+    display: flex;
+    justify-content: space-between;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+/* POSTAGENS */
+.container-posts h1{
+    padding: 5px;
+}
+
+.container-noticias {
+    background-color: blueviolet;
+    width: 100%;
+    min-height: 100%;
+    padding: 10px;
+}
+
+.noticias {
+    background-color: rgb(54, 0, 105);
+    display: flex;
+    min-height: 60%;
+    gap: 15px;
+}
+
+.noticia {
+    padding: 10px;
+    border: 2px solid;
+    width: 100%;
+    min-height: 100%;
+}
+
+.noticia img {
+    width: 100%;
+    height: 50%;
+}
+
+.noticia h2 {
+    max-width: 250px;           /* Define o limite de largura do espaço */
+    
+    display: -webkit-box;       /* Ativa o modelo de caixa flexível necessário */
+    -webkit-box-orient: vertical; /* Define que a orientação da caixa é vertical */
+    -webkit-line-clamp: 3; 
+    line-clamp: 3;  /* Limita o texto a exatamente 3 linhas */
+    overflow: hidden; 
+}
+/* INFO */
+.container-especificacoes {
+    width: 35%;
+    height: 100%;
+    padding: 10px;
+}
+
+.container-especificacoes img{
+    width: 100%;
+    height: 100%;
+}
