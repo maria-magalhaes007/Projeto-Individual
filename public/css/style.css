@@ -3,17 +3,22 @@
     padding: 0;
 }
 
-/* :root {
- 
-} */
-
 a{
     text-decoration: none;
     color: beige;
 }
+p{
+    font-size: 14px;
+    color: white;
+}
+
+h2 {
+    color: #43230e;
+    font-size: 20px;
+}
 
 .container-main {
-    background-color: aqua;
+    background-color:#efe1de;
     display: flex;
     justify-content: space-between;
     min-height: 100vh; /* Altura total da tela */
@@ -21,7 +26,7 @@ a{
 
 /* NAV */
 .container-nav {
-    background-color: brown;
+    background-image: linear-gradient(to bottom, #000000, #05090c);
     width: 15%;
     display: flex;
     flex-direction: column;
@@ -29,7 +34,6 @@ a{
 }
 
 .container-links{
-    background-color: rgb(104, 84, 60);
     width: 100%;
     height: 30%;
     display: flex;
@@ -40,35 +44,28 @@ a{
 
 }
 
-.container-sair {
-    background-color: rgb(207, 23, 231);
-    margin: auto 0px 20px 0px;
-    padding: 10px 30px;
-    border-radius: 15px;
-}
-
-.botao-sair {
+.agora {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 5px;
-    font-weight: 500;
 }
 
-.botao-sair img {
-    width: 25px;
-    height: 25px;
+.agora img{
+    width: 20px;
+}
+
+.agora span a{
+    color: #cda06f;
 }
 
 /* CONTAINER PRINCIPAL */
 .container-home {
-    background-color: aquamarine;
     width: 100%;
 }
 
 /* BANNER */
 .banner {
-    background-image: url('/public/assets/imgs/bg-banner.avif');
+    background-image: url('/public/assets/imgs/BannerPrincipalHome.svg');
     background-size: cover;
     background-position: center bottom;
     display: flex;
@@ -78,12 +75,11 @@ a{
     height: 80vh;
 }
 
-.banner img{
+.img-logo{
     width: 200px;         
 }
 
 .banner-topo{
-    background-color: blueviolet;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -106,11 +102,10 @@ a{
 }
 
 .banner-link .lnkCad{
-    background-color: aqua;
+    background-color: #6b533e93;
 }
 
 .banner-titulo {
-    background-color: red;
     width: 100%;
     height: 100%;
     display: flex;
@@ -127,7 +122,6 @@ a{
 
 /* CONTAINER POSTAGENS + INFO */
 .container-posts {
-    background-color: pink;
     margin: 70px 50px;
     display: flex;
     justify-content: space-between;
@@ -141,7 +135,6 @@ a{
 }
 
 .container-noticias {
-    background-color: rgb(32, 145, 9);
     width: 100%;
     min-height: 100%;
     padding: 10px;
@@ -151,7 +144,6 @@ a{
 }
 
 .manchetes {
-    background-color: rgb(54, 0, 105);
     display: flex;
     height: 430px;
     gap: 15px;
@@ -159,7 +151,8 @@ a{
 
 .noticia {
     padding: 10px;
-    border: 2px solid;
+    border: 1px solid;
+    border-color: #7e6753;
     width: 100%;
     max-height: 100%;
 }
@@ -167,6 +160,7 @@ a{
 .noticia img {
     width: 100%;
     height: 50%;
+    object-fit: cover;
 }
 
 .noticia h2 {
@@ -177,12 +171,18 @@ a{
     line-clamp: 3;  /* Limita o texto a exatamente 3 linhas */
     overflow: hidden; 
 }
+
+.noticia p {
+    color: grey
+}
 /* INFO */
 .container-especificacoes {
-    background-color: rgb(25, 90, 68);
     width: 35%;
     min-height: 100%;
     padding: 10px;
+    margin: 2px;
+    border: 1.5px solid;
+    border-color: #7e6753;
 }
 
 .container-especificacoes img{
@@ -191,7 +191,6 @@ a{
 }
 
 .especificacoes{
-    background-color: rgb(187, 13, 71);
     max-height: 100%;
     display: flex;
     flex-direction: column;
@@ -203,7 +202,7 @@ a{
 }
 
 .palavras-chaves{
-    background-color: orange;
+    
     display: flex;
     flex-wrap: wrap;
     padding: 5px 0px;
@@ -211,14 +210,14 @@ a{
 }
 
 .palavras-chaves p {
-    background-color: rgb(243, 183, 183);
     border: 1.5px solid;
     border-radius: 15px;
     padding: 5px 15px;
+    background-color: #886a4b;
 }
 /* BANNER PARA A AVALIAÇÃO */
 .banner-avaliacao {
-    background-image: url('/public/assets/imgs/banner-fundo.jpeg');
+    background-image: url('/public/assets/imgs/BannerAvaliacao.svg');
     background-size: cover;
     background-position: center bottom;
     display: flex;
@@ -229,20 +228,30 @@ a{
     width: 100%;
     gap: 10px;
     height: 300px;
+    color: white;
+}
+
+.banner-avaliacao h3{
+    font-size: 32px;
+}
+
+.banner-avaliacao p{
+    max-width: 60%;
 }
 
 .banner-avaliacao-botao{
+    background-color: #cda06f;
     margin-top: auto;   /* coloca margin-top em todo o espaço disponível */
-    background-color: yellow;
+    padding: 10px 30px;
+    border-radius: 10px;
 }
 
 .banner-avaliacao-botao a{
-    color: brown;
+    color: #43230e;
 }
 
 /* PERSONAGENS */
 .container-personagem {
-    background-color: blue;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -254,13 +263,17 @@ a{
 .moldura-personagem {
     margin: 10px;
     border-radius: 100%;
-    background-image: url('/public/assets/pessoa2.png');
-    background-size: cover;
-    background-position: center bottom; /*centraliza a imagem de acordo com o espaço da moldura*/
-    height: 100px;
-    width: 100px;
+    height: 150px;
+    width: 150px;
+    overflow: hidden /* esconde qualquer parte que ultrapasse p container */
 }
 
+.moldura-personagem img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom; /*centraliza a imagem de acordo com o espaço da moldura*/
+}
 
 .personagem {
     width: 100%;
@@ -268,4 +281,33 @@ a{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.personagem p{
+    color: gray;
+}
+
+/* FOOTER */
+
+.container-footer  {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-image: url('/public/assets/imgs/BannerFooter.svg');
+}
+
+.container-footer p{
+    padding: 10px;
+    font-size: 15px;
+    letter-spacing: 5px;
+}
+
+.container-footer hr{
+    width: 100%;
+}
+
+.container-footer .img-logo{
+    padding: 10px 50px;
 }
