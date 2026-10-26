@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relatório da comunidade | Sociedade dos Poetas Mortos</title>
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
+    <link rel="stylesheet" href="./css/dash.css" />
+  </head>
+  <body>
+    <div class="container-main">
+      <aside class="container-nav">
+        <ul class="container-links">
+          <li class="agora">
+            <img src="./assets/icon/iconHome.svg" alt="" />
+            <span><a href="idx.html">Inicial</a></span>
+          </li>
+          <li class="agora">
+            <img src="./assets/icon/iconPsg.svg" alt="" />
+            <a href="simulador.html">Personagens</a>
+          </li>
+          <li class="agora">
+            <img src="./assets/icon/iconCitacao.svg" alt="" />
+            <a href="login.html">Citações</a>
+          </li>
+          <li class="agora ativo">
+            <img src="./assets/icon/iconAvaliacao.svg" alt="" />
+            <a href="dash.html" aria-current="page">Avaliações</a>
+          </li>
+        </ul>
+        <div class="nav-assinatura" aria-hidden="true">
+          <span class="nav-assinatura-estrela">&#10022;</span>
+          <span>Welton Academy</span>
+          <span>Est. 1959</span>
+        </div>
+      </aside>
+
+      <main class="container-dash">
+        <header class="dash-hero">
+          <div class="dash-hero-texto">
+            <img
+              class="dash-logo"
+              src="./assets/icon/iconLogo.svg"
+              alt="Sociedade dos Poetas Mortos"
+            />
+            <span class="dash-eyebrow">Relatório de avaliações</span>
+            <h1>Cada estrela,<br />uma voz.</h1>
+            <p>
+              Um retrato da comunidade a partir das notas, opiniões e memórias
+              de quem já atravessou os corredores da Welton Academy.
+            </p>
+            <div class="dash-meta">
+              <span>1989</span>
+              <span class="ponto-meta"></span>
+              <span>Drama</span>
+              <span class="ponto-meta"></span>
+              <span>2h 08min</span>
+              <span class="ponto-meta"></span>
+              <span>Peter Weir</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="painel-kpis" aria-label="Indicadores da obra">
+          <article class="kpi">
+            <div class="kpi-icone" aria-hidden="true">&#9733;</div>
+            <div class="kpi-conteudo">
+              <div class="kpi-topo">
+                <span class="kpi-rotulo">Avaliação média</span>
+                <span class="kpi-indice">01</span>
+              </div>
+              <div class="kpi-linha">
+                <strong>4,5</strong>
+                <span>/ 5</span>
+              </div>
+              <p class="kpi-descricao">
+                Média das notas em <strong>1.284 votos</strong> registrados.
+              </p>
+              <div class="kpi-extra">
+                <span class="mini-estrelas" aria-hidden="true"
+                  >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                >
+                <span class="kpi-extra-texto">Excelente</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="kpi">
+            <div class="kpi-icone" aria-hidden="true">&#10003;</div>
+            <div class="kpi-conteudo">
+              <div class="kpi-topo">
+                <span class="kpi-rotulo">Assistido por</span>
+                <span class="kpi-indice">02</span>
+              </div>
+              <div class="kpi-linha">
+                <strong>8.742</strong>
+                <span>membros</span>
+              </div>
+              <p class="kpi-descricao">
+                Pessoas que já marcaram o filme como assistido.
+              </p>
+              <div class="kpi-extra">
+                <span class="kpi-progresso" aria-hidden="true"
+                  ><span style="width: 72%"></span
+                ></span>
+                <span class="kpi-extra-texto">72% da comunidade</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="kpi">
+            <div class="kpi-icone" aria-hidden="true">&#9829;</div>
+            <div class="kpi-conteudo">
+              <div class="kpi-topo">
+                <span class="kpi-rotulo">Curtido por</span>
+                <span class="kpi-indice">03</span>
+              </div>
+              <div class="kpi-linha">
+                <strong>6.215</strong>
+                <span>membros</span>
+              </div>
+              <p class="kpi-descricao">
+                Membros que curtiram a obra e a recomendam.
+              </p>
+              <div class="kpi-extra">
+                <span class="kpi-progresso" aria-hidden="true"
+                  ><span style="width: 51%"></span
+                ></span>
+                <span class="kpi-extra-texto">51% da comunidade</span>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <div class="dash-corpo">
+          <section class="card grafico-card">
+            <div class="card-cabecalho">
+              <div>
+                <span class="card-eyebrow">I · Distribuição das notas</span>
+                <h2>O peso de cada estrela</h2>
+                <p>
+                  Cada barra reúne o total de votos e o percentual sobre as
+                  1.284 avaliações. Passe o cursor para conferir os detalhes.
+                </p>
+              </div>
+              <span class="selo">1.284 votos totais</span>
+            </div>
+
+            <div class="grafico-chart">
+              <canvas
+                id="graficoAvaliacoes"
+                role="img"
+                aria-label="Gráfico de barras da distribuição de votos por estrela: 0 estrelas, 6 votos, 0,5%; 1 estrela, 15 votos, 1,2%; 2 estrelas, 25 votos, 1,9%; 3 estrelas, 68 votos, 5,3%; 4 estrelas, 280 votos, 21,8%; 5 estrelas, 890 votos, 69,3%."
+              >
+                Distribuição dos votos por estrela.
+              </canvas>
+            </div>
+
+            <div class="grafico-rodape">
+              <p class="rodape-total">
+                <span class="rodape-marca"></span>
+                Escala de 0 a 5 estrelas
+              </p>
+              <p>Notas 4 e 5 concentram <strong>91,1%</strong> dos votos.</p>
+              <p class="nota-dados">Dados ilustrativos para fins pedagógicos.</p>
+            </div>
+          </section>
+
+          <aside class="card ficha-card">
+            <div class="poster">
+              <img
+                src="./assets/imgs/post1.jpg"
+                alt="Professor Keating ao lado de um aluno em cena do filme"
+              />
+              <div class="poster-texto">
+                <span>Welton Academy apresenta</span>
+                <h3>Dead Poets<br />Society</h3>
+                <p>1989 · Peter Weir</p>
+              </div>
+            </div>
+
+            <div class="ficha-conteudo">
+              <span class="card-eyebrow">II · Ficha da obra</span>
+              <h2>Uma lição para a vida</h2>
+              <p class="ficha-sinopse">
+                Em 1959, um professor de literatura desperta seus alunos para a
+                poesia, o pensamento próprio e a coragem de viver intensamente.
+              </p>
+
+              <dl class="ficha-dados">
+                <div>
+                  <dt>Direção</dt>
+                  <dd>Peter Weir</dd>
+                </div>
+                <div>
+                  <dt>Roteiro</dt>
+                  <dd>Tom Schulman</dd>
+                </div>
+                <div>
+                  <dt>Duração</dt>
+                  <dd>2h 08min</dd>
+                </div>
+                <div>
+                  <dt>Gênero</dt>
+                  <dd>Drama</dd>
+                </div>
+              </dl>
+
+              <blockquote class="ficha-citacao">
+                "Carpe Diem. Aproveitem o dia, rapazes. Tornem suas vidas
+                extraordinárias."
+              </blockquote>
+            </div>
+          </aside>
+        </div>
+
+        <section class="card comunidade-card">
+          <div class="comunidade-topo">
+            <div>
+              <span class="card-eyebrow">III · Vozes da comunidade</span>
+              <h2>Crônicas de quem já assistiu</h2>
+              <p>
+                Três leituras recentes para inspirar a sua. Todas as
+                publicações carregam uma nota de 0 a 5 estrelas.
+              </p>
+            </div>
+            <span class="selo">3 publicações</span>
+          </div>
+
+          <div class="comunidade-grid">
+            <aside class="form-card">
+              <span class="card-eyebrow">Registro do leitor</span>
+              <h2>Deixe sua avaliação</h2>
+              <p>
+                Escolha suas estrelas e escreva uma impressão para o clube.
+              </p>
+
+              <div class="form-identidade">
+                <span class="avatar avatar-atual" aria-hidden="true">VC</span>
+                <div>
+                  <strong>Você</strong>
+                  <span>Membro cadastrado</span>
+                </div>
+              </div>
+
+              <div class="form-avaliacao">
+                <fieldset class="campo-nota">
+                  <legend>Sua nota</legend>
+                  <div class="estrelas">
+                    <input type="radio" id="nota5" name="nota" value="5" />
+                    <label for="nota5" title="5 estrelas">&#9733;</label>
+
+                    <input type="radio" id="nota4" name="nota" value="4" />
+                    <label for="nota4" title="4 estrelas">&#9733;</label>
+
+                    <input type="radio" id="nota3" name="nota" value="3" />
+                    <label for="nota3" title="3 estrelas">&#9733;</label>
+
+                    <input type="radio" id="nota2" name="nota" value="2" />
+                    <label for="nota2" title="2 estrelas">&#9733;</label>
+
+                    <input type="radio" id="nota1" name="nota" value="1" />
+                    <label for="nota1" title="1 estrela">&#9733;</label>
+                  </div>
+                </fieldset>
+
+                <label class="rotulo-campo" for="comentario">
+                  Comentário <span>(opcional)</span>
+                </label>
+                <textarea
+                  id="comentario"
+                  name="comentario"
+                  rows="3"
+                  placeholder="O que este filme despertou em você?"
+                ></textarea>
+
+                <button class="botao-publicar" type="button">
+                  Publicar avaliação
+                </button>
+              </div>
+
+              <p class="form-aviso">
+                Sua publicação ficará visível para todos os membros da
+                comunidade.
+              </p>
+            </aside>
+
+            <div class="feed">
+              <article class="publicacao">
+                <div class="publicacao-topo">
+                  <span class="avatar" aria-hidden="true">HV</span>
+                  <div class="publicacao-autor">
+                    <strong>Helena Vasconcelos</strong>
+                    <span>24 de outubro de 2026</span>
+                  </div>
+                  <div
+                    class="publicacao-nota"
+                    aria-label="Avaliação: 5 de 5 estrelas"
+                  >
+                    <span class="nota-estrelas" aria-hidden="true"
+                      >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                    >
+                    <span class="nota-valor">5,0</span>
+                  </div>
+                </div>
+                <p>
+                  "Carpe Diem" nunca pareceu tão urgente. O filme me lembrou que
+                  a poesia também pode ser um ato de coragem. Saí da sessão
+                  querendo reler meus versos antigos.
+                </p>
+              </article>
+
+              <article class="publicacao">
+                <div class="publicacao-topo">
+                  <span class="avatar" aria-hidden="true">OM</span>
+                  <div class="publicacao-autor">
+                    <strong>Otávio Mendes</strong>
+                    <span>22 de outubro de 2026</span>
+                  </div>
+                  <div
+                    class="publicacao-nota"
+                    aria-label="Avaliação: 4 de 5 estrelas"
+                  >
+                    <span class="nota-estrelas" aria-hidden="true"
+                      >&#9733;&#9733;&#9733;&#9733;&#9734;</span
+                    >
+                    <span class="nota-valor">4,0</span>
+                  </div>
+                </div>
+                <p>
+                  A fotografia e a trilha criam uma atmosfera que permanece. Só
+                  acho que o ritmo demora um pouco para engrenar, mas quando
+                  engrena, é impossível não se envolver.
+                </p>
+              </article>
+
+              <article class="publicacao">
+                <div class="publicacao-topo">
+                  <span class="avatar" aria-hidden="true">MC</span>
+                  <div class="publicacao-autor">
+                    <strong>Marina Castro</strong>
+                    <span>18 de outubro de 2026</span>
+                  </div>
+                  <div
+                    class="publicacao-nota"
+                    aria-label="Avaliação: 5 de 5 estrelas"
+                  >
+                    <span class="nota-estrelas" aria-hidden="true"
+                      >&#9733;&#9733;&#9733;&#9733;&#9733;</span
+                    >
+                    <span class="nota-valor">5,0</span>
+                  </div>
+                </div>
+                <p class="publicacao-vazia">Publicou apenas a nota.</p>
+              </article>
+
+              <div class="feed-fim" aria-hidden="true">
+                <span></span>
+                &#10022;
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="container-footer">
+      <p>"CARPE DIEM, APROVEITE O DIA"</p>
+      <p>-John Keating-</p>
+      <hr />
+      <div class="banner-topo">
+        <img
+          class="img-logo"
+          src="./assets/icon/iconLogo.svg"
+          alt="Sociedade dos Poetas Mortos"
+        />
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const votos = [6, 15, 25, 68, 280, 890];
+      const percentuais = ["0,5%", "1,2%", "1,9%", "5,3%", "21,8%", "69,3%"];
+
+      new Chart(document.getElementById("graficoAvaliacoes"), {
+        type: "bar",
+        data: {
+          labels: votos.map(function (quantidade, indice) {
+            return [indice + " ★", quantidade + " votos", percentuais[indice]];
+          }),
+          datasets: [
+            {
+              data: votos,
+              backgroundColor: [
+                "#b8a28d",
+                "#aa8a6c",
+                "#9b7756",
+                "#a97d50",
+                "#bd9160",
+                "#cda06f",
+              ],
+              borderRadius: 4,
+              maxBarThickness: 54,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: function (itens) {
+                  return itens[0].label[0];
+                },
+                label: function (item) {
+                  return (
+                    item.raw +
+                    " votos (" +
+                    percentuais[item.dataIndex] +
+                    " do total)"
+                  );
+                },
+              },
+            },
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              border: { color: "#d2bead" },
+              ticks: {
+                color: "#6e5a48",
+                padding: 10,
+                font: {
+                  family: "'Segoe UI', Tahoma, sans-serif",
+                  size: 10,
+                },
+              },
+            },
+            y: {
+              beginAtZero: true,
+              suggestedMax: 1000,
+              grid: { color: "rgba(126, 103, 83, 0.12)", drawTicks: false },
+              border: { display: false },
+              ticks: {
+                color: "#8b7765",
+                padding: 10,
+                stepSize: 250,
+                callback: function (valor) {
+                  return valor.toLocaleString("pt-BR");
+                },
+                font: {
+                  family: "'Segoe UI', Tahoma, sans-serif",
+                  size: 10,
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
