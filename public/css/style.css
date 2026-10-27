@@ -3,6 +3,18 @@
     padding: 0;
 }
 
+:root {
+  --preto: #17120f;
+  --preto-suave: #211812;
+  --marrom: #593b25;
+  --dourado: #c99a62;
+  --creme: #f5f0e8;
+  --creme-escuro: #e7ddd0;
+  --texto: #211a15;
+  --texto-suave: #74685d;
+  --borda: #ded3c5;
+}
+
 a{
     text-decoration: none;
     color: beige;
@@ -25,38 +37,34 @@ h2 {
 }
 
 /* NAV */
-.container-nav {
-    background-image: linear-gradient(to bottom, #000000, #05090c);
-    width: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.topo {
+  background-color: #110a01;
+  min-height: 50px;
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px; 
+  padding: 12px;
+  border-bottom: 1px solid rgba(189, 119, 33, 0.24);
 }
+.marca { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    flex-shrink: 0; 
+    color: #e7c18e; 
+    font-size: 12px; 
+    letter-spacing: 1.5px; 
+    line-height: 1.4; }
 
-.container-links{
-    width: 100%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    list-style: none;
-
-}
-
-.agora {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.agora img{
-    width: 20px;
-}
-
-.agora span a{
-    color: #cda06f;
-}
+.marca img { width: 100%; height: 50px; object-fit: cover; }
+.menu-flex {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 15px; 
+    height: 100%; }
+.menu-flex a { font-size: 13px; padding: 14px 0; color: #e6ddd2; border-bottom: 2px solid transparent; }
 
 /* CONTAINER PRINCIPAL */
 .container-home {
@@ -65,156 +73,247 @@ h2 {
 
 /* BANNER */
 .banner {
-    background-image: url('/public/assets/imgs/BannerPrincipalHome.svg');
-    background-size: cover;
-    background-position: center bottom;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
-    height: 80vh;
+  min-height: 340px; 
+  display: flex; 
+  align-items: center; 
+  padding: 48px 4.5%;
+  color: #fff; 
+  background-image: 
+    linear-gradient(90deg, rgba(18,13,10,.96) 0%, rgba(18,13,10,.77) 42%, rgba(18,13,10,.08) 100%), 
+    url('/public/assets/imgs/BannerPrincipalHome.svg');
+  background-size: cover; 
+  background-position: center 35%;
 }
 
-.img-logo{
-    width: 200px;         
-}
+.banner-conteudo { max-width: 590px; }
 
-.banner-topo{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
+.sobretitulo { 
+    font-size: 11px; 
+    letter-spacing: 4px; 
+    margin-bottom: 12px; 
+    color: #e4c69d; }
+    
+.banner h1 { 
+    font-size: 56px; 
+    line-height: 1.1; 
+    letter-spacing: 2px; 
+    max-width: 600px; }
 
-.banner-link{
-    display: flex;
-    gap: 15px;
-}
+.linha-dourada { 
+    display: block; 
+    width: 40px; 
+    height: 2px; 
+    background: var(--dourado); 
+    margin: 20px 0 14px; }
 
-.banner-link a{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1.5px solid;
-    border-radius: 5px;
-    padding: 5px;
-    width: 80px;
-}
-
-.banner-link .lnkCad{
-    background-color: #6b533e93;
-}
-
-.banner-titulo {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    letter-spacing: 2px;
-    color: white;
-}
-
-.banner-titulo h1{
-    max-width: 50%;
-    font-size: 50px;
-}
+.banner p { color: #e5ddd5; font-size: 14px; line-height: 1.65; max-width: 400px; }
 
 /* CONTAINER POSTAGENS + INFO */
-.container-posts {
-    margin: 70px 50px;
-    display: flex;
-    justify-content: space-between;
-    max-width: 100%;
-    min-height: 100vh; 
+.layout-conteudo { 
+    display: flex; 
+    justify-content: space-between; 
+    gap: 28px; 
+    padding: 28px;
+    max-width: 1600px; 
 }
 
-/* POSTAGENS */
-.container-posts h2{
-    padding: 5px;
+.coluna-flex { 
+    min-width: 70%; 
 }
 
-.container-noticias {
-    width: 100%;
-    min-height: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.secao { margin-bottom: 30px; }
+
+.titulo-secao { 
+    display: flex; 
+    align-items: center; 
+    gap: 12px; 
+    margin-bottom: 14px; 
+}
+.titulo-secao h2 { 
+    font-size: 21px; 
+    font-weight: 600;  
 }
 
-.manchetes {
-    display: flex;
-    height: 430px;
-    gap: 15px;
+/* o simbolo > procura e modifica apenas os filhos
+por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao */
+
+.titulo-secao > span { 
+    height: 1px; 
+    flex: 1; 
+    background: #cfc2b2; 
 }
 
-.noticia {
-    padding: 10px;
-    border: 1px solid;
-    border-color: #7e6753;
-    width: 100%;
-    max-height: 100%;
+.titulo-secao > a { 
+    font-size: 11px; 
+    color: var(--texto-suave); 
 }
 
-.noticia img {
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
+.container-destaques {  
+    display: flex; 
+    gap: 12px; 
+}    
+
+.noticia { 
+    border: 1px solid var(--borda); 
+    border-radius: 5px; 
+    background: rgba(255,255,255,.34); 
 }
 
-.noticia h2 {
-    max-width: 250px;           /* Define o limite de largura do espaço */
-    display: -webkit-box;       /* Ativa o modelo de caixa flexível necessário */
-    -webkit-box-orient: vertical; /* Define que a orientação da caixa é vertical */
-    -webkit-line-clamp: 3; 
-    line-clamp: 3;  /* Limita o texto a exatamente 3 linhas */
-    overflow: hidden; 
+.noticia img { 
+    width: 100%; 
+    object-fit: cover; 
 }
 
-.noticia p {
-    color: grey
-}
-/* INFO */
-.container-especificacoes {
-    width: 35%;
-    min-height: 100%;
-    padding: 10px;
-    margin: 2px;
-    border: 1.5px solid;
-    border-color: #7e6753;
+.noticia-flex { 
+    position: relative; 
+    width: 50%; 
+    min-height: 300px; 
 }
 
-.container-especificacoes img{
-    width: 100%;
-    height: 35%;
+.noticia-flex > img { 
+    position: absolute; 
+    height: 100%; 
 }
 
-.especificacoes{
-    max-height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+/* INSET = top: 0; right: 0; bottom: 0; left: 0; */
+.noticia-flex::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; background: 
+    linear-gradient(0deg, rgba(13,10,8,.94), rgba(13,10,8,.02) 82%); 
 }
 
-.especificacoes span{
-    font-weight: bold;
+.conteudo-noticia {
+    position: relative; 
+    z-index: 1;  /* Fica acima da sombra */
+    padding: 12px; 
 }
 
-.palavras-chaves{
-    
-    display: flex;
-    flex-wrap: wrap;
-    padding: 5px 0px;
-    gap: 5px;
+.noticia-flex .conteudo-noticia {
+    position: absolute; 
+    bottom: 0; 
+    color: #fff; 
+    padding: 16px; 
 }
 
-.palavras-chaves p {
-    border: 1.5px solid;
-    border-radius: 15px;
-    padding: 5px 15px;
-    background-color: #886a4b;
+.noticia-flex h3 {
+    font-size: 20px; 
+    max-width: 440px; 
 }
+
+.noticia p { 
+    font-size: 12px; 
+    line-height: 1.5; 
+    margin-top: 7px; 
+}
+
+.publicado { 
+    display: flex; 
+    gap: 10px; 
+    margin-top: 10px; 
+    font-size: 10px; 
+    color: var(--texto-suave); 
+}
+
+.destaques-secundarios {
+    width: 50%; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px; 
+}
+
+.noticia-column { 
+    position: relative; 
+    min-height: 144px; 
+    color: #fff; 
+}
+
+.noticia-column > img { 
+    position: absolute; 
+    height: 100%; 
+}
+
+.noticia-column::after { 
+    content: ''; 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(0deg, rgba(15,10,7,.92), rgba(15,10,7,.02) 95%); 
+}
+
+.noticia-column .conteudo-noticia { 
+    position: absolute; 
+    bottom: 0; 
+    padding: 12px; 
+}
+
+.noticia-column { margin-bottom: 5px; }
+.noticia-column h3 { font-size: 14px; }
+
+.container-postagens { 
+    display: flex; 
+    justify-content: center; 
+    gap: 12px; 
+}
+
+.card-postagem img { height: 115px; }
+.card-postagem .conteudo-noticia { padding: 9px 10px 11px; }
+
+.card-postagem .categoria { 
+    margin-bottom: 6px; 
+    font-size: 9px; 
+    padding: 3px 8px; 
+}
+
+.card-postagem h3 { 
+    font-size: 12px; 
+    line-height: 1.4; 
+    min-height: 50px; 
+}
+
+.card-postagem .publicado { font-size: 9px; gap: 7px; }
+
+.barra-lateral { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 18px; 
+}
+
+.cartao-citacao { 
+    min-height: 285px; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    border-radius: 5px; 
+    background: linear-gradient(0deg, rgba(20,13,9,.88), rgba(20,13,9,.48)), url('/public/assets/imgs/BannerEspecificacoes.svg') center/cover; 
+}
+
+.cartao-citacao blockquote { font-size: 20px; line-height: 1.45; font-style: italic; }
+.cartao-citacao p { font-family: 'Playfair Display', serif; color: #e5c08e; font-size: 12px; margin-top: 14px; }
+.cartao-lateral { padding: 16px; border: 1px solid var(--borda); border-radius: 5px; }
+.cartao-lateral h2, .redes-sociais h2, .newsletter h2 { font-size: 16px; margin-bottom: 10px; }
+.cartao-lateral > p, .newsletter p { color: #554b42; font-size: 12px; line-height: 1.65; }
+.divisor { height: 1px; background: var(--borda); margin: 15px 0; }
+.especificacoes { display: grid; gap: 11px; }
+.especificacoes div { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 11px; }
+.especificacoes dt { font-weight: 700; }
+.especificacoes dd { color: var(--texto-suave); }
+.cartao-lateral h3 { font: 600 14px 'Playfair Display', serif; margin-bottom: 10px; }
+.palavras-chaves { display: flex; flex-wrap: wrap; gap: 6px; }
+.palavras-chaves span { background: #92704e; color: #fff6eb; border-radius: 20px; padding: 5px 9px; font-size: 10px; }
+
+
+.secao-personagens { margin-top: 6px; }
+.filtros { display: flex; gap: 5px; white-space: nowrap; }
+.filtros span { font-size: 9px; padding: 5px 9px; border-radius: 14px; background: #e9e0d5; }
+.filtros span:first-child { background: var(--preto-suave); color: #fff; }
+.container-personagem { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; text-align: center; }
+.personagem { min-width: 0; }
+.moldura-personagem { width: clamp(78px, 8.2vw, 120px); aspect-ratio: 1; margin: 0 auto 9px; overflow: hidden; border-radius: 50%; border: 2px solid #e0d1bd; }
+.moldura-personagem img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.personagem h3 { font-size: 12px; font-weight: 600; }
+.personagem p { color: var(--texto-suave); font-size: 10px; margin-top: 4px; }
+
+
 /* BANNER PARA A AVALIAÇÃO */
 .banner-avaliacao {
     background-image: url('/public/assets/imgs/BannerAvaliacao.svg');
