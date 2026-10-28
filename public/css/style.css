@@ -47,6 +47,13 @@ h2 {
   padding: 12px;
   border-bottom: 1px solid rgba(189, 119, 33, 0.24);
 }
+
+.menu-principal {
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .marca { 
     display: flex; 
     align-items: center; 
@@ -80,7 +87,7 @@ h2 {
   color: #fff; 
   background-image: 
     linear-gradient(90deg, rgba(18,13,10,.96) 0%, rgba(18,13,10,.77) 42%, rgba(18,13,10,.08) 100%), 
-    url('/public/assets/imgs/BannerPrincipalHome.svg');
+    url('/public/assets/imgs/banner.jpg');
   background-size: cover; 
   background-position: center 35%;
 }
@@ -115,10 +122,6 @@ h2 {
     gap: 28px; 
     padding: 28px;
     max-width: 1600px; 
-}
-
-.coluna-flex { 
-    min-width: 70%; 
 }
 
 .secao { margin-bottom: 30px; }
@@ -275,6 +278,7 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
 .barra-lateral { 
     display: flex; 
     flex-direction: column; 
+    width: 25%;
     gap: 18px; 
 }
 
@@ -284,107 +288,103 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
     flex-direction: column; 
     justify-content: center; 
     border-radius: 5px; 
-    background: linear-gradient(0deg, rgba(20,13,9,.88), rgba(20,13,9,.48)), url('/public/assets/imgs/BannerEspecificacoes.svg') center/cover; 
+    background: url('/public/assets/imgs/BannerEspecificacoes.svg') center/cover; 
 }
 
-.cartao-citacao blockquote { font-size: 20px; line-height: 1.45; font-style: italic; }
-.cartao-citacao p { font-family: 'Playfair Display', serif; color: #e5c08e; font-size: 12px; margin-top: 14px; }
-.cartao-lateral { padding: 16px; border: 1px solid var(--borda); border-radius: 5px; }
-.cartao-lateral h2, .redes-sociais h2, .newsletter h2 { font-size: 16px; margin-bottom: 10px; }
-.cartao-lateral > p, .newsletter p { color: #554b42; font-size: 12px; line-height: 1.65; }
-.divisor { height: 1px; background: var(--borda); margin: 15px 0; }
-.especificacoes { display: grid; gap: 11px; }
-.especificacoes div { display: grid; grid-template-columns: 1fr; gap: 2px; font-size: 11px; }
+.cartao-lateral {
+    padding: 16px; 
+    border: 1px solid var(--borda); 
+    border-radius: 5px; 
+}
+
+.cartao-lateral h2, .redes-sociais h2 { 
+    font-size: 18px; 
+    margin-bottom: 10px; 
+}
+
+.cartao-lateral > p { 
+    color: #554b42; 
+    font-size: 12px; 
+    line-height: 1.65; 
+}
+
+.divisor { /* divisor de linhas dentro do container lateral */
+    height: 1px; 
+    background: var(--borda); 
+    margin: 15px 0; 
+}
+
+.especificacoes { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 11px; 
+}
+
+.especificacoes div { 
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    gap: 2px; 
+    font-size: 11px; 
+}
+
 .especificacoes dt { font-weight: 700; }
 .especificacoes dd { color: var(--texto-suave); }
-.cartao-lateral h3 { font: 600 14px 'Playfair Display', serif; margin-bottom: 10px; }
-.palavras-chaves { display: flex; flex-wrap: wrap; gap: 6px; }
-.palavras-chaves span { background: #92704e; color: #fff6eb; border-radius: 20px; padding: 5px 9px; font-size: 10px; }
+.cartao-lateral h3 { 
+    font: 600 14px 'Playfair Display', serif; 
+    margin-bottom: 10px; 
+}
+
+.palavras-chaves { 
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 6px; 
+}
+
+.palavras-chaves span { 
+    background: #92704e; 
+    color: #fff6eb; 
+    border-radius: 20px; 
+    padding: 5px 9px; 
+    font-size: 10px; 
+}
 
 
 .secao-personagens { margin-top: 6px; }
-.filtros { display: flex; gap: 5px; white-space: nowrap; }
-.filtros span { font-size: 9px; padding: 5px 9px; border-radius: 14px; background: #e9e0d5; }
-.filtros span:first-child { background: var(--preto-suave); color: #fff; }
-.container-personagem { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; text-align: center; }
-.personagem { min-width: 0; }
-.moldura-personagem { width: clamp(78px, 8.2vw, 120px); aspect-ratio: 1; margin: 0 auto 9px; overflow: hidden; border-radius: 50%; border: 2px solid #e0d1bd; }
-.moldura-personagem img { width: 100%; height: 100%; object-fit: cover; object-position: center; }
-.personagem h3 { font-size: 12px; font-weight: 600; }
-.personagem p { color: var(--texto-suave); font-size: 10px; margin-top: 4px; }
 
-
-/* BANNER PARA A AVALIAÇÃO */
-.banner-avaliacao {
-    background-image: url('/public/assets/imgs/BannerAvaliacao.svg');
-    background-size: cover;
-    background-position: center bottom;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px;
-    margin: 25px;
-    width: 100%;
-    gap: 10px;
-    height: 300px;
-    color: white;
-}
-
-.banner-avaliacao h3{
-    font-size: 32px;
-}
-
-.banner-avaliacao p{
-    max-width: 60%;
-}
-
-.banner-avaliacao-botao{
-    background-color: #cda06f;
-    margin-top: auto;   /* coloca margin-top em todo o espaço disponível */
-    padding: 10px 30px;
-    border-radius: 10px;
-}
-
-.banner-avaliacao-botao a{
-    color: #43230e;
-}
-
-/* PERSONAGENS */
 .container-personagem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 200px;
-    width: 100%;
+    display: flex; 
+    justify-content: space-evenly;
+    gap: 12px; 
+    text-align: center; 
 }
 
-.moldura-personagem {
-    margin: 10px;
-    border-radius: 100%;
-    height: 150px;
-    width: 150px;
-    overflow: hidden /* esconde qualquer parte que ultrapasse p container */
+.moldura-personagem { 
+    width: 140px;
+    margin: 0 auto 9px; /* top, left, right, bottom*/
+    overflow: hidden; 
+    border-radius: 50%; 
+    border: 2px solid #e0d1bd; 
 }
 
-.moldura-personagem img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center bottom; /*centraliza a imagem de acordo com o espaço da moldura*/
+.moldura-personagem img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    object-position: center; 
 }
 
-.personagem {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+.personagem h3 { 
+    font-size: 12px; 
+    font-weight: 600; 
 }
 
-.personagem p{
-    color: gray;
+.personagem p { 
+    color: var(--texto-suave); 
+    font-size: 10px; 
+    margin-top: 4px; 
 }
+
 
 /* FOOTER */
 
@@ -397,16 +397,35 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
     background-image: url('/public/assets/imgs/BannerFooter.svg');
 }
 
-.container-footer p{
-    padding: 10px;
+.footer-desc{
+    padding: 20px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     font-size: 15px;
     letter-spacing: 5px;
 }
 
-.container-footer hr{
-    width: 100%;
+.footer-desc span{
+    color: #c99a62;
 }
 
+.container-footer .divisor { 
+    height: 1px; 
+    width: 100%; 
+    max-width: 50px;
+    background: var(--dourado); 
+    margin: 15px 0; 
+}
+
+.container-footer .banner-topo{
+    width: 100%;
+    display: flex;
+    align-items: start;
+}
 .container-footer .img-logo{
     padding: 10px 50px;
+    height: 50px;
+    width: auto;
+    object-fit: contain;
 }
