@@ -8,6 +8,7 @@
   --preto-suave: #211812;
   --marrom: #593b25;
   --dourado: #c99a62;
+  --dourado: #ce9d628c;
   --creme: #f5f0e8;
   --creme-escuro: #e7ddd0;
   --texto: #211a15;
@@ -27,13 +28,6 @@ p{
 h2 {
     color: #43230e;
     font-size: 20px;
-}
-
-.container-main {
-    background-color:#efe1de;
-    display: flex;
-    justify-content: space-between;
-    min-height: 100vh; /* Altura total da tela */
 }
 
 /* NAV */
@@ -154,6 +148,8 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
 .container-destaques {  
     display: flex; 
     gap: 12px; 
+    max-width: 100%;;
+    justify-content: center;
 }    
 
 .noticia { 
@@ -428,4 +424,257 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
     height: 50px;
     width: auto;
     object-fit: contain;
+}
+
+
+/* LOGIN */
+
+
+.login {
+  background-image: url('../assets/imgs/logCadBanner.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vh;
+  margin: 0;
+}
+
+.login .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  min-width: 100vh;
+}
+
+.card {
+  width: 50%;
+  background-color: rgba(99, 80, 61, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px); 
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  min-height: 50vh;
+  padding: 20px 0;
+  border: #c99a62 2px solid;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 30px;
+  color: white;
+}
+
+.formulario {
+  display: flex;
+  height: 90%;
+  width: 80%;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.formulario span {
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+}
+
+.formulario input {
+  border: 2px solid #ca582b;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.formulario select {
+  border: 2px solid #ca582b;
+  background-color: white;
+  color: gray;
+  height: 36px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px 0;
+}
+
+.botao {
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  background-color: #4e1803;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #ED145B;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
+}
+
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+/* DASHBOARD */
+/* DASHBOARD */
+
+.pagina-dashboard .layout-conteudo {
+    display: block;
+    width: 100%;
+    max-width: 1600px;
+    margin: auto;
+    padding: 28px;
+    box-sizing: border-box;
+}
+
+.pagina-dashboard .coluna-principal {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Organização dos cartões */
+
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+}
+
+/* Cartões */
+
+.noticia-dashboard {
+    width: auto;
+    min-width: 0;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+    box-sizing: border-box;
+    background-color: #f5f0e8;
+}
+
+/* Conteúdo */
+
+.noticia-dashboard .conteudo-noticia {
+    position: static;
+    padding: 0;
+}
+
+.noticia-dashboard h3 {
+    color: #43230e;
+    font-size: 16px;
+}
+
+.noticia-dashboard p {
+    color: #74685d;
+    font-size: 12px;
+}
+
+.noticia-dashboard .publicado {
+    margin-top: 15px;
+}
+
+.container-InfoDash{
+    display: flex;
+    justify-content: space-between;
+    height: 50%;
+}
+
+.coluna-grafico {
+    width: 70%;
+    justify-content: space-between;
+}
+
+.secao-favoritoDash {
+    /* background-color: yellow; */
+    text-align: center;
+    width: 30%;
 }

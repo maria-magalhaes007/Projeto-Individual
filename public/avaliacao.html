@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="campo">
+  <span>Personagem:</span>
+  <select id="personagem_input">
+    <option value="1">Personagem A</option>
+    <option value="2">Personagem B</option>
+  </select>
+</div>
+<div class="campo">
+  <span>Nota:</span>
+  <input id="nota_input" type="number" min="0" max="9.9" step="0.1" />
+</div>
+<div class="campo">
+  <span>Descrição:</span>
+  <input id="descricao_input" type="text" placeholder="Sua avaliação" />
+</div>
+<div class="campo">
+  <span>Já assisti:</span>
+  <input id="assistido_input" type="checkbox" />
+</div>
+<button class="botao" onclick="avaliar()">Enviar avaliação</button>
+
+</body>
+</html>
+
+<script>
+  function avaliar() {
+    var fkPersonagemVar = personagem_input.value;
+    var notaVar = nota_input.value;
+    var descricaoVar = descricao_input.value;
+    var assistidoVar = assistido_input.checked;
+
+    if (notaVar == "" || fkPersonagemVar == "") {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Preencha a nota e o personagem.";
+      return false;
+    }
+
+    fetch("/avaliacoes/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nota: notaVar,
+        descricao: descricaoVar,
+        assistido: assistidoVar,
+        fkPersonagem: fkPersonagemVar,
+        fkUsuario: sessionStorage.ID_USUARIO
+      }),
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
+        } else {
+          throw "Houve um erro ao enviar a avaliação!";
+        }
+      })
+      .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+      });
+
+    return false;
+  }
+</script>

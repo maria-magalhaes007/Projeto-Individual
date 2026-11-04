@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AquaTech | Login</title>
+    <title>OhCapitan | Login</title>
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="./assets/icon/favicon2.ico">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -19,26 +19,18 @@
 
     <!--Header-->
 
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    <header class="topo">
+        <a class="marca" href="idx.html" aria-label="Página inicial">
+          <img src="/public/assets/icon/iconLogo.svg" alt="">
+        </a>
+
+        <nav class="menu-principal" aria-label="Navegação principal">
+          <a class="ativo" href="idx.html">Início</a>
+          <a href="#personagens">Personagens</a>
+          <a href="#citacoes">Citações</a>
+          <a class="botao-entrar" href="login.html">Entrar</a>
+       </nav>
+    </header>
 
 
     <div class="login">
@@ -49,7 +41,7 @@
         </div>
         <div class="container">
             <div class="card card-login">
-                <h2>Olá de volta!</h2>
+                <h2>Bem-Vindo de volta!</h2>
                 <div class="formulario">
                     <div class="campo">
                         <span>E-mail:</span>
@@ -59,11 +51,14 @@
                         <span>Senha:</span>
                         <input id="senha_input" type="password" placeholder="******">
                     </div>
+                    <div class="campo">
+                        <span>Não possuí cadastro? <a href="cadastro.html">Clique aqui</a></span>
+                    </div>
                     <button class="botao" onclick="entrar()">Entrar</button>
                 </div>
 
                 <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                    <img src="./assets/icon/circle-loading.gif" id="loading-gif">
                 </div>
 
                 <div id="div_erros_login"></div>
@@ -72,10 +67,15 @@
     </div>
 
     <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-        </div>
+    <div class="container-footer">
+      <div class="footer-desc">
+        <p>“CARPE DIEM, APROVEITE O DIA”</p>
+        <span>-John Keating-</span>
+      </div>
+      <div class="divisor"></div>
+      <div class="banner-topo">
+          <img class="img-logo" src="/public/assets/icon/iconLogo.svg" alt="">
+      </div>
     </div>
     <!--footer fim-->
 
@@ -126,7 +126,7 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                    sessionStorage.AVALIACOES = JSON.stringify(json.avaliacoes)
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
