@@ -34,3 +34,5 @@ CREATE TABLE avaliacao (
   fkUsuario INT NOT NULL,
   	FOREIGN KEY (fkUsuario) REFERENCES usuario(id)
 );
+
+select * from usuario;

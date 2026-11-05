@@ -1,69 +1,69 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>OhCapitan | Login</title>
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-</head>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="icon" href="./assets/icon/favicon2.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+  </head>
 
-<body>
-
+  <body>
     <!--Header-->
 
     <header class="topo">
-        <a class="marca" href="idx.html" aria-label="Página inicial">
-          <img src="/public/assets/icon/iconLogo.svg" alt="">
-        </a>
+      <a class="marca" href="idx.html" aria-label="Página inicial">
+        <img src="/public/assets/icon/iconLogo.svg" alt="" />
+      </a>
 
-        <nav class="menu-principal" aria-label="Navegação principal">
-          <a class="ativo" href="idx.html">Início</a>
-          <a href="#personagens">Personagens</a>
-          <a href="#citacoes">Citações</a>
-          <a class="botao-entrar" href="login.html">Entrar</a>
-       </nav>
+      <nav class="menu-principal" aria-label="Navegação principal">
+        <a class="ativo" href="idx.html">Início</a>
+        <a href="#personagens">Personagens</a>
+        <a href="#citacoes">Citações</a>
+        <a class="botao-entrar" href="login.html">Entrar</a>
+      </nav>
     </header>
 
-
     <div class="login">
-        <div class="alerta_erro">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
         </div>
-        <div class="container">
-            <div class="card card-login">
-                <h2>Bem-Vindo de volta!</h2>
-                <div class="formulario">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="text" placeholder="Login">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <div class="campo">
-                        <span>Não possuí cadastro? <a href="cadastro.html">Clique aqui</a></span>
-                    </div>
-                    <button class="botao" onclick="entrar()">Entrar</button>
-                </div>
-
-                <div id="div_aguardar" class="loading-div">
-                    <img src="./assets/icon/circle-loading.gif" id="loading-gif">
-                </div>
-
-                <div id="div_erros_login"></div>
+      </div>
+      <div class="container">
+        <div class="card card-login">
+          <h2>Bem-Vindo de volta!</h2>
+          <div class="formulario">
+            <div class="campo">
+              <span>E-mail:</span>
+              <input id="email_input" type="text" placeholder="Login" />
             </div>
+            <div class="campo">
+              <span>Senha:</span>
+              <input id="senha_input" type="password" placeholder="******" />
+            </div>
+            <div class="campo">
+              <span
+                >Não possuí cadastro?
+                <a href="cadastro.html">Clique aqui</a></span
+              >
+            </div>
+            <button class="botao" onclick="entrar()">Entrar</button>
+          </div>
+
+          <div id="div_aguardar" class="loading-div">
+            <img src="./assets/icon/circle-loading.gif" id="loading-gif" />
+          </div>
+
+          <div id="div_erros_login"></div>
         </div>
+      </div>
     </div>
 
     <!--footer inicio-->
@@ -74,85 +74,98 @@
       </div>
       <div class="divisor"></div>
       <div class="banner-topo">
-          <img class="img-logo" src="/public/assets/icon/iconLogo.svg" alt="">
+        <img class="img-logo" src="/public/assets/icon/iconLogo.svg" alt="" />
       </div>
     </div>
     <!--footer fim-->
-
-</body>
-
+  </body>
 </html>
 
 <script>
-
+  let tentativas = 3;
 
     function entrar() {
-        aguardar();
-
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
+        if (tentativas <= 0) {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Acesso bloqueado!"
+            setTimeout(sumirMensagem, 5000);
+            return false;  
+        } 
+
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML =
+                "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
-            return false;
-        }
-        else {
-            setInterval(sumirMensagem, 5000)
+            return false; // encerra a função, o fetch não roda
+        } else {
+            setInterval(sumirMensagem, 5000);
         }
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
 
+        aguardar();
+
         fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+            "Content-Type": "application/json",
             },
             body: JSON.stringify({
                 emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+                senhaServer: senhaVar,
+            }),
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!");
+                if (resposta.ok && tentativas > 0) {
+                    console.log(resposta);
 
-            if (resposta.ok) {
-                console.log(resposta);
+                    resposta.json().then((json) => {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+                        sessionStorage.EMAIL_USUARIO = json.email;
+                        sessionStorage.NOME_USUARIO = json.nome;
+                        sessionStorage.ID_USUARIO = json.id;
+                        sessionStorage.AVALIACOES = JSON.stringify(json.avaliacoes);
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AVALIACOES = JSON.stringify(json.avaliacoes)
-
-                    setTimeout(function () {
+                        setTimeout(function () {
                         window.location = "./dashboard/cards.html";
                     }, 1000); // apenas para exibir o loading
-
-                });
-
-            } else {
-
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                    });
+                    } else if (resposta.status == 403) { // email ou senha não estão coerentes com o que está no banco
+                        tentativas--;
+                        finalizarAguardar();
+                        cardErro.style.display = "block";
+                            if (tentativas <= 0) {
+                                mensagem_erro.innerHTML = "Acesso bloqueado!"
+                            } else {
+                                mensagem_erro.innerHTML = "Email ou Senha Incorretos! Você tem: " + tentativas + " tentativa(s)";
+                            }
+                            setTimeout(sumirMensagem, 5000);
+                    
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+    
+                    resposta.text().then((texto) => {
+                        console.error(texto);
+                        finalizarAguardar(texto);
+                    });
             }
-
-        }).catch(function (erro) {
-            console.log(erro);
+            
         })
+        .catch(function (erro) {
+            console.log(erro);
+        });
 
         return false;
-    }
+  }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
-    }
-
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 </script>
