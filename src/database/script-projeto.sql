@@ -35,4 +35,14 @@ CREATE TABLE avaliacao (
   	FOREIGN KEY (fkUsuario) REFERENCES usuario(id)
 );
 
-select * from usuario;
+INSERT INTO personagem (nome, ator) VALUES 
+('John Keating', 'Robin Williams'),
+('Neil Perry', 'Robert Sean Leonard'),
+('Todd Anderson', 'Ethan Hawke'),
+('Knox Overstreet', 'Josh Charles'),
+('Charlie Dalton', 'Gale Hansen'),
+('Richard Cameron', 'Dylan Kussman'),
+('Steven Meeks', 'Allelon Ruggiero'),
+('Gerard Pitts', 'James Waterston');
+
+select * from avaliacao;

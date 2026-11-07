@@ -66,8 +66,8 @@
             <div id="alerta">
             </div>
 
-            <div class="btns-dash" id="btnAquario">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+            <div class="btns-dash" id="btnAvaliacao">
+                <!-- O gráfico é chamado de acordo com o id (fk_Avaliacao) do banco  -->
             </div>
             <div id="graficos">
             </div>
@@ -84,19 +84,19 @@
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = exibirAvaliacoesDoUsuario();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+    function exibirAvaliacoesDoUsuario() {
+        var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
+        avaliacoes.forEach(item => {
+            document.getElementById("btnAvaliacao").innerHTML += `
+            <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.descricao}</button>
             `
 
             document.getElementById("graficos").innerHTML += `
                 <div id="grafico${item.id}" class="display-none">
                     <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
+                        <span id="tituloAvaliacao${item.id}">${item.descricao}</span>
                     </h3>
                     <div class="graph">
                         <canvas id="myChartCanvas${item.id}"></canvas>
@@ -110,23 +110,23 @@
             obterDadosGrafico(item.id)
         });
 
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
+        if (avaliacoes.length > 0) {
+            exibirAvaliacao(avaliacoes[0].id)
         }
     }
 
-    function alterarTitulo(idAquario) {
-        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-        tituloAquario.innerHTML = "Últimas medidas do <span style='color: #e6005a'>" + descricao + "</span>"
+    function alterarTitulo(idAvaliacao) {
+        var tituloAvaliacao = document.getElementById(`tituloAvaliacao${idAvaliacao}`)
+        var descricao = JSON.parse(sessionStorage.AVALIACOES).find(item => item.id == idAvaliacao).descricao;
+        tituloAvaliacao.innerHTML = "Últimas medidas do <span style='color: #e6005a'>" + descricao + "</span>"
     }
 
-    function exibirAquario(idAquario) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+    function exibirAvaliacao(idAvaliacao) {
+        let todosOsGraficos = JSON.parse(sessionStorage.AVALIACOES);
 
         for (i = 0; i < todosOsGraficos.length; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idAquario) {
+            if (todosOsGraficos[i].id != idAvaliacao) {
                 let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
                 if (elementoAtual.classList.contains("display-block")) {
                     elementoAtual.classList.remove("display-block")
@@ -134,7 +134,7 @@
                 elementoAtual.classList.add("display-none")
 
                 // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+                let btnAtual = document.getElementById(`btnAvaliacao${todosOsGraficos[i].id}`)
                 if (btnAtual.classList.contains("btn-pink")) {
                     btnAtual.classList.remove("btn-pink")
                 }
@@ -143,12 +143,12 @@
         }
 
         // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idAquario}`)
+        let graficoExibir = document.getElementById(`grafico${idAvaliacao}`)
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
 
         // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+        let btnExibir = document.getElementById(`btnAvaliacao${idAvaliacao}`)
         btnExibir.classList.remove("btn-white")
         btnExibir.classList.add("btn-pink")
     }
@@ -164,21 +164,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idAquario) {
+    function obterDadosGrafico(idAvaliacao) {
 
-        alterarTitulo(idAquario)
+        alterarTitulo(idAvaliacao)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idAvaliacao}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idAquario);
+                    plotarGrafico(resposta, idAvaliacao);
 
                 });
             } else {
@@ -193,7 +193,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idAquario) {
+    function plotarGrafico(resposta, idAvaliacao) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -240,11 +240,11 @@
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idAquario}`),
+            document.getElementById(`myChartCanvas${idAvaliacao}`),
             config
         );
 
-        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(idAvaliacao, dados, myChart), 2000);
     }
 
 
@@ -253,21 +253,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idAquario, dados, myChart) {
+    function atualizarGrafico(idAvaliacao, dados, myChart) {
 
 
 
-        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-real/${idAvaliacao}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(idAquario);
-                    // alertar(novoRegistro, idAquario);
+                    obterdados(idAvaliacao);
+                    // alertar(novoRegistro, idAvaliacao);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                    let avisoCaptura = document.getElementById(`avisoCaptura${idAvaliacao}`)
                     avisoCaptura.innerHTML = ""
 
 
@@ -292,12 +292,12 @@
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAvaliacao, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAvaliacao, dados, myChart), 2000);
             }
         })
             .catch(function (error) {

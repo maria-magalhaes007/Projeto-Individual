@@ -11,7 +11,7 @@ function buscarAvaliacaoPorUsuario(req, res) {
     }
   }).catch(function (erro) {
     console.log(erro);
-    console.log("Houve um erro ao buscar os aquarios: ", erro.sqlMessage);
+    console.log("Houve um erro ao buscar as avaliações: ", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage);
   });
 }
@@ -36,7 +36,10 @@ function cadastrar(req, res) {
       }
       ).catch((erro) => {
         console.log(erro);
-        console.log("\nHouve um erro ao realizar o cadastro! Erro: ", erro.sqlMessage);
+        console.log(
+          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          erro.sqlMessage
+        );
         res.status(500).json(erro.sqlMessage);
       });
   }

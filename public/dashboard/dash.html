@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OhCapitan | Home</title>
-    <script src="./js/sessao.js"></script>
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/style.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="pagina-dashboard">
@@ -25,6 +27,9 @@
 
     <div class="container-home">
       <div class="layout-conteudo">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
         <main class="coluna-principal">
           <section class="secao" id="destaques">
             <div class="titulo-secao">
@@ -84,14 +89,51 @@
               </div>
             </div>
           </section>
-          <section class="sessao sessao-comentarios" id="comentarios">
-              <div class="container-avaliar">
-                <h2>Avalie</h2>
-              </div>
-              <div class="container-postagens">
-                <h2>Publicações</h2>
-              </div>
-            </div>
+          <section class="sessao sessao-avaliar" id="comentarios">
+                <div class="titulo-secao">
+                  <h2>Gostaria de avaliar sua experiência?</h2>
+                  <p>Gostaria de avaliar sua experiência?</p>
+                </div>
+                <div class="container-avaliar-comentarios" id="comentarios">
+
+                  <div class="avliacao-pessoal" id="avaliacao">
+                    <p>REGISTRO DO USUÁRIO</p>
+                    <div class="titulo-secao">
+                      <h2>Deixe aqui sua avaliação</h2>
+                    </div>
+
+                      <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                        <div class="campo">
+                            <span>Personagem:</span>
+                            <select id="personagem_input">
+                              <option value="1">Personagem A</option>
+                              <option value="2">Personagem B</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <span>Nota:</span>
+                            <input id="nota_input" type="number" min="0" max="9.9" step="0.1" />
+                        </div>
+                        <div class="campo">
+                            <span>Descrição:</span>
+                            <input id="descricao_input" type="text" placeholder="Sua avaliação" />
+                        </div>
+                        <div class="campo">
+                            <span>Já assisti:</span>
+                              <input id="assistido_sim" type="checkbox" />
+                              <label for="">Sim</label>
+
+                              <input id="assistido_nao" type="checkbox" />
+                              <label for="">Não</label>
+                        </div>
+                        <button class="botao" onclick="avaliar()">Enviar avaliação</button>
+                  </div>
+                  <div class="container-comentarios">
+                    <div class="titulo-secao">
+                      <h2>Comentários</h2>
+                    </div>
+                  </div>
+                </div>
           </section>
         </main>
       </div>
@@ -110,6 +152,8 @@
 
     <!-- DASHBOARD -->
     <script>
+      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
       const data = {
         labels: [
           "1 Estrela",
@@ -147,6 +191,55 @@
         document.getElementById("meuGrafico"),
         config,
       );
+
+//  AVALIANDO FILME
+  function avaliar() {
+    var idUsuario = sessionStorage.ID_USUARIO; 
+    var notaVar = nota_input.value;
+    var descricaoVar = descricao_input.value;
+    var assistidoVar = assistido_sim.checked;
+    var fkPersonagemVar = personagem_input.value;
+    var fkUsuario = idUsuario;
+
+    if (notaVar == "" || fkPersonagemVar == "") {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Preencha a nota e o personagem.";
+      return false;
+    }
+
+    fetch("/avaliacoes/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        idUsuario: sessionStorage.ID_USUARIO,
+        nota: notaVar,
+        descricao: descricaoVar,
+        assistido: assistidoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
+        fkPersonagem: fkPersonagemVar,
+        fkUsuario: idUsuario
+      }),
+    })
+      .then(function (resposta) {
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+          mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
+          setTimeout(sumirMensagem, 5000);
+        } else {
+          throw "Houve um erro ao enviar a avaliação!";
+        }
+      })
+      .catch(function (erro) {
+        console.log(`#ERRO: ${erro}`);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
     </script>
   </body>
 </html>
