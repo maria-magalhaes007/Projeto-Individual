@@ -88,6 +88,7 @@
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
 
+        // validando tentativas
         if (tentativas <= 0) {
             cardErro.style.display = "block";
             mensagem_erro.innerHTML = "Acesso bloqueado!"

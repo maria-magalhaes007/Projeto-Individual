@@ -20,7 +20,7 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        avaliacaoModel.buscarAvaliacaoPorUsuario(resultadoAutenticar[0].usuarioId)
+                        avaliacaoModel.buscarNotasParaGrafico(resultadoAutenticar[0].usuarioId)
                             .then((resultadoAquarios) => {
                                 res.json({
                                     id: resultadoAutenticar[0].usuarioId,

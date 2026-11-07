@@ -1,9 +1,9 @@
 var avaliacaoModel = require("../models/avaliacaoModel");
 
-function buscarAvaliacaoPorUsuario(req, res) {
+function buscarNotasParaGrafico(req, res) {
   var idUsuario = req.params.idUsuario;
 
-  avaliacaoModel.buscarAvaliacaoPorUsuario(idUsuario).then((resultado) => {
+  avaliacaoModel.buscarNotasParaGrafico(idUsuario).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -16,11 +16,22 @@ function buscarAvaliacaoPorUsuario(req, res) {
   });
 }
 
+function buscarNotasParaGrafico(req, res) {
+    avaliacaoModel.buscarNotasParaGrafico()
+    .then(function (resultado) {
+      res.status(200).json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function cadastrar(req, res) {
   var nota = req.body.nota;
   var descricao = req.body.descricao;
   var assistido = req.body.assistido;
+  var favorito = req.body.favorito;
   var fkPersonagem = req.body.fkPersonagem;
   var fkUsuario = req.body.fkUsuario;
 
@@ -30,7 +41,7 @@ function cadastrar(req, res) {
     res.status(400).send("fkUsuario está undefined!");
   } else {
 
-    avaliacaoModel.cadastrar(nota, descricao, assistido, fkPersonagem, fkUsuario)
+    avaliacaoModel.cadastrar(nota, descricao, assistido, favorito, fkPersonagem, fkUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -46,6 +57,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-  buscarAvaliacaoPorUsuario,
+  buscarNotasParaGrafico,
   cadastrar
 }

@@ -45,4 +45,26 @@ INSERT INTO personagem (nome, ator) VALUES
 ('Steven Meeks', 'Allelon Ruggiero'),
 ('Gerard Pitts', 'James Waterston');
 
-select * from avaliacao;
+select * from usuario;
+
+INSERT INTO usuario (nome, email, senha) VALUES 
+('Ana Souza', 'ana.souza@email.com', '123456'),
+('Carlos Lima', 'carlos.lima@email.com', '123456'),
+('Beatriz Silva', 'beatriz.silva@email.com', '123456');
+
+INSERT INTO avaliacao (nota, descricao, assistido, favorito, fkPersonagem, fkUsuario) VALUES 
+(5, 'John Keating é simplesmente inspirador. Oh Captain, my Captain!', TRUE, TRUE, 1, 1),
+(4, 'A atuação do Robert Sean Leonard como Neil Perry é emocionante e dolorosa.', TRUE, FALSE, 2, 2),
+(4, 'A evolução do Todd Anderson ao longo do filme me faz chorar todas as vezes.', FALSE, FALSE, 3, 3),
+(3, 'Gosto do Knox, mas o arco romântico dele às vezes quebra o ritmo para mim.', TRUE, TRUE, 4, 4),
+(5, 'Filme espetacular, marcou a minha juventude. Carpe Diem!', TRUE, TRUE, 3, 1);
+
+SELECT nota, COUNT(*) AS 'Total Notas' FROM avaliacao GROUP BY nota ORDER BY nota DESC;
+
+ALTER TABLE avaliacao ADD COLUMN favorito BOOLEAN DEFAULT FALSE;
+
+SELECT TRUNCATE(AVG(nota), 1) AS 'Média' FROM avaliacao; 
+SELECT COUNT(assistido) FROM avaliacao WHERE assistido = TRUE;
+ 
+
+
