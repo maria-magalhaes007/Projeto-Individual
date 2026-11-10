@@ -45,8 +45,6 @@ INSERT INTO personagem (nome, ator) VALUES
 ('Steven Meeks', 'Allelon Ruggiero'),
 ('Gerard Pitts', 'James Waterston');
 
-select * from usuario;
-
 INSERT INTO usuario (nome, email, senha) VALUES 
 ('Ana Souza', 'ana.souza@email.com', '123456'),
 ('Carlos Lima', 'carlos.lima@email.com', '123456'),
@@ -59,12 +57,37 @@ INSERT INTO avaliacao (nota, descricao, assistido, favorito, fkPersonagem, fkUsu
 (3, 'Gosto do Knox, mas o arco romântico dele às vezes quebra o ritmo para mim.', TRUE, TRUE, 4, 4),
 (5, 'Filme espetacular, marcou a minha juventude. Carpe Diem!', TRUE, TRUE, 3, 1);
 
-SELECT nota, COUNT(*) AS 'Total Notas' FROM avaliacao GROUP BY nota ORDER BY nota DESC;
+-- SELECT PARA KPI DE FILME RECOMEDADO OU NÃO
+CREATE VIEW vw_filme_recomendado AS
+SELECT 
+    COUNT(*) AS 'Total avaliações',
 
-ALTER TABLE avaliacao ADD COLUMN favorito BOOLEAN DEFAULT FALSE;
+    TRUNCATE(
+        SUM(
+            CASE
+                WHEN recomendado = 1 THEN 1
+                ELSE 0
+            END) * 100 / COUNT(*), 2
+    ) AS 'Recomendado(%)',
 
+    TRUNCATE(
+        SUM(
+            CASE
+                WHEN recomendado = 1 THEN 0
+                ELSE 1
+            END) * 100 / COUNT(*), 2
+    ) AS 'Não recomendado(%)'
+
+FROM avaliacao;
+
+SELECT * FROM vw_filme_recomendado;
+
+ALTER TABLE avaliacao ADD COLUMN recomendado BOOLEAN DEFAULT FALSE;
+
+-- SELECT PARA A KPI DE NOTA MÉDIA
 SELECT TRUNCATE(AVG(nota), 1) AS 'Média' FROM avaliacao; 
+
+-- SELECT PARA A KPI DE QUANTOS USUARIOS JÁ ASSISTIRAM AO FILME
 SELECT COUNT(assistido) FROM avaliacao WHERE assistido = TRUE;
- 
 
-
+ALTER TABLE avaliacao DROP COLUMN favorito;

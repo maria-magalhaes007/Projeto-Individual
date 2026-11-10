@@ -419,6 +419,7 @@ por exemplo, em span ele só vai alterar spans que estão dentro de titulo-secao
     display: flex;
     align-items: start;
 }
+
 .container-footer .img-logo{
     padding: 10px 50px;
     height: 50px;
@@ -668,9 +669,8 @@ input {
     height: 50%;
 }
 
-.coluna-grafico {
-    width: 70%;
-    justify-content: space-between;
+.graficoNotas {
+    min-width: 100%;
 }
 
 .secao-favoritoDash {

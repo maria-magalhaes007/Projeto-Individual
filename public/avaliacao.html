@@ -26,8 +26,8 @@
   <input id="assistido_input" type="checkbox" />
 </div>
 <div class="campo">
-  <span>Favorito:</span>
-  <input id="favorito_input" type="checkbox" />
+  <span>Recomendaria:</span>
+  <input id="recomendado_input" type="checkbox" />
 </div>
 <button class="botao" onclick="avaliar()">Enviar avaliação</button>
 
@@ -40,7 +40,7 @@
     var notaVar = nota_input.value;
     var descricaoVar = descricao_input.value;
     var assistidoVar = assistido_input.checked;
-    var favoritoVar = favorito_input.checked;
+    var recomendadoVar = recomendado_input.checked;
 
     if (notaVar == "" || fkPersonagemVar == "") {
       cardErro.style.display = "block";
@@ -57,7 +57,7 @@
         nota: notaVar,
         descricao: descricaoVar,
         assistido: assistidoVar,
-        favorito: favoritoVar,
+        recomendado: recomendadoVar,
         fkPersonagem: fkPersonagemVar,
         fkUsuario: sessionStorage.ID_USUARIO
       }),

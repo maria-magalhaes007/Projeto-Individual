@@ -3,7 +3,11 @@ var router = express.Router();
 
 var avaliacaoController = require("../controllers/avaliacaoController");
 
-router.get("/grafico", function (req, res) {
+router.get("/grafico/recomendacao", function (req, res) {
+  avaliacaoController.buscarRecomendadoParaGrafico(req, res);
+});
+
+router.get("/grafico/notas", function (req, res) {
   avaliacaoController.buscarNotasParaGrafico(req, res);
 });
 

@@ -11,325 +11,443 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="pagina-dashboard">
-    <!-- nabar -->
-    <header class="topo">
-      <a class="marca" href="idx.html" aria-label="Página inicial">
-        <img src="/public/assets/icon/iconLogo.svg" alt="" />
-      </a>
 
-      <nav class="menu-principal" aria-label="Navegação principal">
-        <a class="ativo" href="idx.html">Início</a>
-        <a href="#personagens">Personagens</a>
-        <a href="#citacoes">Citações</a>
-        <a class="botao-entrar" href="login.html">Entrar</a>
-      </nav>
-    </header>
+  <!-- nabar -->
+<header class="topo">
+  <a class="marca" href="idx.html" aria-label="Página inicial">
+    <img src="/public/assets/icon/iconLogo.svg" alt="" />
+  </a>
 
-    <div class="container-home">
-      <div class="layout-conteudo">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
+  <nav class="menu-principal" aria-label="Navegação principal">
+    <a class="ativo" href="idx.html">Início</a>
+    <a href="#personagens">Personagens</a>
+    <a href="#citacoes">Citações</a>
+    <a class="botao-entrar" href="login.html">Entrar</a>
+  </nav>
+</header>
+
+  <div class="layout-conteudo">
+
+    <!-- MENSAGENS DE ERRO -->
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+
+      <div class="titulo-secao">
+        <h2>Relatório</h2>
+        <span></span>
+      </div>
+
+<main class="coluna-principal">
+  
+  <!-- LADO ESQUERDO -->
+  <div class="container-lateral-esquerdo">
+    
+    <!-- INDICADORES -->
+    <section class="secao lateral-esquerdo" id="relatorio">
+
+
+      <div class="kpis">
+        <div class="kpi">
+          <p>Nota média</p>
+          <span id="kpiMedia">4.5</span>
         </div>
-        <main class="coluna-principal">
-          <section class="secao" id="destaques">
+
+        <div class="kpi">
+          <p>Total de assistidos</p>
+          <span id="kpiAssistidos">1920</span>
+          <!-- Corrigido: Mudado para class ou outro ID para não duplicar -->
+          <span class="kpi-total">/ 2003 usuarios</span> 
+        </div>
+      </div>
+    </section>
+
+    <!-- GRÁFICOS -->
+    <h2 class="titulo-secao">Notas dos usuários</h2>
+    <section class="container-InfoDash" id="infoDash">
+        <canvas id="graficoNotas"></canvas>
+    </section>
+    
+
+  </div> <!-- Fim do lateral-esquerdo -->
+    
+
+  <!-- LADO DIREITO -->
+  <div class="container-lateral-direito">
+    <section class="secao" id="personagens">
+
+      <div class="kpis lateral-direito">
+        <div class="kpi grafico-recomendado">
+          <p>Total de recomendado</p>
+            <section class="container-InfoDash" id="infoDash">
+                <canvas id="graficoRecomendado"></canvas>
+            </section>
+        </div>
+      
+        <div class="kpi personagem">
+            <h2 class="titulo-secao">Personagem Favorito</h2>
+            <span id="kpiPersonagem">-</span>
+            <p>Personagem favorito</p>
+        </div>
+      </div>
+
+    </section>
+  </div> <!-- Fim do lateral-direito -->
+
+</main>
+    
+      <!-- AVALIAÇÃO DO USUÁRIO -->
+      <section class="sessao sessao-avaliar" id="avaliacao">
+
+        <div class="titulo-secao">
+          <h2>Gostaria de avaliar sua experiência?</h2>
+          <p>Compartilhe sua opinião sobre Sociedade dos Poetas Mortos.</p>
+        </div>
+
+        <div class="container-avaliar-comentarios">
+
+          <!-- FORMULÁRIO -->
+          <div class="avliacao-pessoal">
+
+            <p>REGISTRO DO USUÁRIO</p>
+
             <div class="titulo-secao">
-              <h2>Relatório</h2>
-              <span></span>
+              <h2>Deixe aqui sua avaliação</h2>
             </div>
-            <div class="dashboard-cards">
-              <article class="noticia noticia-dashboard">
-                <div class="conteudo-noticia">
-                  <h3>O que aprendemos com o Professor Keating?</h3>
-                  <p>
-                    Em meio a lições de poesia, ele nos ensinou sobre liberdade,
-                    coragem e a importância de sermos nós mesmos.
-                  </p>
-                  <div class="publicado">
-                    <span>18 de Out de 2026</span>
-                    <span>◷ 6 min de leitura</span>
-                  </div>
-                </div>
-              </article>
-              <article class="noticia noticia-dashboard">
-                <div class="conteudo-noticia">
-                  <h3>John Keating: o professor que mudou tudo</h3>
-                  <div class="publicado">
-                    <span>16 de Out de 2026</span>
-                    <span>◷ 4 min</span>
-                  </div>
-                </div>
-              </article>
 
-              <article class="noticia noticia-dashboard">
-                <div class="conteudo-noticia">
-                  <h3>
-                    As frases mais marcantes de Sociedade dos Poetas Mortos
-                  </h3>
-                  <div class="publicado">
-                    <span>14 de Out de 2026</span>
-                    <span>◷ 5 min</span>
-                  </div>
-                </div>
-              </article>
+            <h3>
+              Olá, <span id="b_usuario">usuário</span>!
+            </h3>
+
+            <div class="campo">
+              <label for="personagem_input">Personagem:</label>
+
+              <select id="personagem_input">
+                <option value="1">Personagem A</option>
+                <option value="2">Personagem B</option>
+              </select>
             </div>
-          </section>
-          <div class="titulo-secao">
-            <h2>Relatório</h2>
-            <span></span>
+
+            <div class="campo">
+              <label for="nota_input">Nota:</label>
+
+              <input
+                id="nota_input"
+                type="number"
+                min="0"
+                max="5"
+                step="1"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="descricao_input">Descrição:</label>
+
+              <input
+                id="descricao_input"
+                type="text"
+                placeholder="Sua avaliação"
+              />
+            </div>
+
+            <div class="campo">
+              <span>Já assisti:</span>
+
+              <input type="checkbox" id="assistido_sim" />
+              <label for="assistido_sim">Sim</label>
+
+              <input type="checkbox" id="assistido_nao" />
+              <label for="assistido_nao">Não</label>
+            </div>
+
+            <div class="campo">
+              <span>Recomendaria:</span>
+
+              <input type="checkbox" id="recomendado_sim" />
+              <label for="recomendado_sim">Sim</label>
+
+              <input type="checkbox" id="recomendado_nao" />
+              <label for="recomendado_nao">Não</label>
+            </div>
+
+            <button class="botao" onclick="avaliar()">
+              Enviar avaliação
+            </button>
+
           </div>
-          <section class="container-InfoDash" id="infoDash">
-            <div class="coluna-grafico">
-              <canvas id="graficoNotas"></canvas>
+
+
+          <!-- COMENTÁRIOS -->
+          <div class="container-comentarios">
+
+            <div class="titulo-secao">
+              <h2>Comentários</h2>
             </div>
 
-            <div class="secao secao-favoritoDash" id="personagens">
-              <div class="titulo-secao">
-                <h2>Personagem Favorito</h2>
-                <span></span>
-              </div>
-            </div>
-          </section>
-          <section class="sessao sessao-avaliar" id="comentarios">
-                <div class="titulo-secao">
-                  <h2>Gostaria de avaliar sua experiência?</h2>
-                  <p>Gostaria de avaliar sua experiência?</p>
-                </div>
-                <div class="container-avaliar-comentarios" id="comentarios">
+          </div>
 
-                  <div class="avliacao-pessoal" id="avaliacao">
-                    <p>REGISTRO DO USUÁRIO</p>
-                    <div class="titulo-secao">
-                      <h2>Deixe aqui sua avaliação</h2>
-                    </div>
-
-                      <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-                        <div class="campo">
-                            <span>Personagem:</span>
-                            <select id="personagem_input">
-                              <option value="1">Personagem A</option>
-                              <option value="2">Personagem B</option>
-                            </select>
-                        </div>
-                        <div class="campo">
-                            <span>Nota:</span>
-                            <input id="nota_input" type="number" min="0" max="9.9" step="0.1" />
-                        </div>
-                        <div class="campo">
-                            <span>Descrição:</span>
-                            <input id="descricao_input" type="text" placeholder="Sua avaliação" />
-                        </div>
-                        <div class="campo">
-                            <span>Já assisti:</span>
-                              <input id="assistido_sim" type="checkbox" />
-                              <label for="">Sim</label>
-
-                              <input id="assistido_nao" type="checkbox" />
-                              <label for="">Não</label>
-                        </div>
-                        <div class="campo">
-                            <span>Favorito:</span>
-                              <input id="favorito_sim" type="checkbox" />
-                              <label for="">Sim</label>
-
-                              <input id="favorito_nao" type="checkbox" />
-                              <label for="">Não</label>
-                        </div>
-                        <button class="botao" onclick="avaliar()">Enviar avaliação</button>
-                  </div>
-                  <div class="container-comentarios">
-                    <div class="titulo-secao">
-                      <h2>Comentários</h2>
-                    </div>
-                  </div>
-                </div>
-          </section>
-        </main>
-      </div>
-    </div>
-
-    <!-- =================================================================== -->
-
-
-            <div class="kpis">
-                <div class="kpi"><span id="kpiPersonagem">-</span><p>Personagem favorito</p></div>
-                <div class="kpi"><span id="kpiMedia">-</span><p>Nota média</p></div>
-                <div class="kpi"><span id="kpiAssistidos">-</span><p>Total assistidos</p></div>
-                <div class="kpi"><span id="kpiFavoritos">-</span><p>Total favoritos</p></div>
-            </div>
         </div>
-    </div>
-    <!-- =================================================================== -->
+      </section>
 
-    <div class="container-footer">
-      <div class="footer-desc">
-        <p>“CARPE DIEM, APROVEITE O DIA”</p>
-        <span>-John Keating-</span>
-      </div>
-      <div class="divisor"></div>
-      <div class="banner-topo">
-        <img class="img-logo" src="/public/assets/icon/iconLogo.svg" alt="" />
-      </div>
-    </div>
+    
+  </div>
+
+
+
+<!-- RODAPÉ -->
+<footer class="container-footer">
+
+  <div class="footer-desc">
+    <p>“CARPE DIEM, APROVEITE O DIA”</p>
+    <span>- John Keating -</span>
+  </div>
+
+  <div class="divisor"></div>
+
+  <div class="banner-topo">
+    <img
+      class="img-logo"
+      src="/public/assets/icon/iconLogo.svg"
+      alt="Logo"
+    />
+  </div>
+
+</footer>
+
 
     <!-- DASHBOARD -->
-    <script>
-      b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-      let proximaAtualizacao;
+  let proximaAtualizacao;
 
-      window.onload = obterDadosGrafico;
+  window.onload = notaMediaGrafico;
+  window.onload = recomendadoGrafico;
 
-      function obterDadosGrafico() {
-        var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
-        avaliacoes.forEach(item => {
-            document.getElementById("btnAvaliacao").innerHTML += `
-            <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.descricao}</button>
-            `
+// function obterDadosGrafico() {
+//   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
+//   avaliacoes.forEach(item => {
+//       document.getElementById("btnAvaliacao").innerHTML += `
+//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.descricao}</button>
+//       `
 
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAvaliacao${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="graficoNotas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
+//       document.getElementById("graficos").innerHTML += `
+//           <div id="grafico${item.id}" class="display-none">
+//               <h3 class="tituloGraficos">
+//                   <span id="tituloAvaliacao${item.id}">${item.descricao}</span>
+//               </h3>
+//               <div class="graph">
+//                   <canvas id="graficoNotas${item.id}"></canvas>
+//               </div>
+//               <div class="label-captura">
+//                   <p id="avisoCaptura${item.id}" style="color: white"></p>
+//               </div>
+//           </div>
+//       `
 
-            obterDadosGrafico(item.id)
+//       obterDadosGrafico(item.id)
+//   });
+
+//   if (avaliacoes.length > 0) {
+//       exibirAvaliacao(avaliacoes[0].id)
+//   }
+// }
+
+function notaMediaGrafico() {
+
+fetch(`/avaliacoes/grafico/notas`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGraficoNota(resposta)
+
         });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
 
-        if (avaliacoes.length > 0) {
-            exibirAvaliacao(avaliacoes[0].id)
-        }
-      }
+function recomendadoGrafico() {
 
-      function obterDadosGrafico() {
+fetch(`/avaliacoes/grafico/recomendacao`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
 
-        fetch(`/avaliacoes/grafico`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+            plotarGraficoRecomendado(resposta)
 
-                    plotarGrafico(resposta)
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
 
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-        }
+// INSERINDO OS DADOS NO GRÁFICO DE NOTAS
+function plotarGraficoNota(resposta) {
+  console.log('iniciando plotagem do gráfico...');
 
-      function plotarGrafico(resposta) {
+  // Criando estrutura para plotar gráfico - labels
+  let labels = [];
 
-          console.log('iniciando plotagem do gráfico...');
+  // Criando estrutura para plotar gráfico - dados
+  let dados = {
+      labels: labels,
+      datasets: [
+      {
+          label: 'Quantidade',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(199, 52, 52)',
+          tension: 0.1
+      }]
+  };
 
-          // Criando estrutura para plotar gráfico - labels
-          let labels = [];
+  console.log('----------------------------------------------')
+  console.log('Estes dados foram recebidos pela funcao "notaMediaGrafico" e passados para "plotarGrafico":')
+  console.log(resposta)
 
-          // Criando estrutura para plotar gráfico - dados
-          let dados = {
-              labels: labels,
-              datasets: [
-              {
-                  label: 'Quantidade',
-                  data: [],
-                  fill: false,
-                  borderColor: 'rgb(199, 52, 52)',
-                  tension: 0.1
-              }]
-          };
+  // Inserindo valores recebidos em estrutura para plotar o gráfico
+  for (let i = resposta.length - 1; i >= 0; i--) {
+      var registro = resposta[i];
+      labels.push(registro.nota);
+      dados.datasets[0].data.push(registro.quantidade);
+  }
 
-          console.log('----------------------------------------------')
-          console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-          console.log(resposta)
+  console.log('----------------------------------------------')
+  console.log('O gráfico será plotado com os respectivos valores:')
+  console.log('Labels:')
+  console.log(labels)
+  console.log('Dados:')
+  console.log(dados.datasets)
+  console.log('----------------------------------------------')
 
-          // Inserindo valores recebidos em estrutura para plotar o gráfico
-          for (let i = 0; i < resposta.length; i++) {
-              var registro = resposta[i];
-              labels.push(registro.nota);
-              dados.datasets[0].data.push(registro.quantidade);
-          }
+  // Criando estrutura para plotar gráfico - config
+  const config = {
+      type: 'bar',
+      data: dados,
+  };
 
-          console.log('----------------------------------------------')
-          console.log('O gráfico será plotado com os respectivos valores:')
-          console.log('Labels:')
-          console.log(labels)
-          console.log('Dados:')
-          console.log(dados.datasets)
-          console.log('----------------------------------------------')
+  // Adicionando gráfico criado em div na tela
+  let myChart = new Chart(
+      document.getElementById(`graficoNotas`),
+      config
+  );
+}
 
-          // Criando estrutura para plotar gráfico - config
-          const config = {
-              type: 'bar',
-              data: dados,
-          };
 
-          // Adicionando gráfico criado em div na tela
-          let myChart = new Chart(
-              document.getElementById(`graficoNotas`),
-              config
-          );
-        }
+// INSERINDO OS DADOS NO GRÁFICO DE RECOMENDAÇÃO
+function plotarGraficoRecomendado(resposta) {
+  console.log('iniciando plotagem do gráfico...');
+
+  // Criando estrutura para plotar gráfico - labels
+  let labels = [];
+
+  // Criando estrutura para plotar gráfico - dados
+  let dados = {
+      labels: labels,
+      datasets: [
+      {
+          label: 'Recomendado',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(199, 52, 52)',
+          tension: 0.1
+      }]
+  };
+
+  console.log('----------------------------------------------')
+  console.log('Estes dados foram recebidos pela funcao "recomendadoMediaGrafico" e passados para "plotarGrafico":')
+  console.log(resposta)
+
+  // Inserindo valores recebidos em estrutura para plotar o gráfico
+  for (let i = resposta.length - 1; i >= 0; i--) {
+      var registro = resposta[i];
+      labels.push(registro.recomendado);
+      dados.datasets[0].data.push(registro.quantidade);
+  }
+
+  console.log('----------------------------------------------')
+  console.log('O gráfico será plotado com os respectivos valores:')
+  console.log('Labels:')
+  console.log(labels)
+  console.log('Dados:')
+  console.log(dados.datasets)
+  console.log('----------------------------------------------')
+
+  // Criando estrutura para plotar gráfico - config
+  const config = {
+      type: 'pie',
+      data: dados,
+  };
+
+  // Adicionando gráfico criado em div na tela
+  let myChart = new Chart(
+      document.getElementById(`graficoRecomendado`),
+      config
+  );
+}
 
 //  AVALIANDO FILME
-  function avaliar() {
-    var idUsuario = sessionStorage.ID_USUARIO; 
-    var notaVar = nota_input.value;
-    var descricaoVar = descricao_input.value;
-    var assistidoVar = assistido_sim.checked;
-    var favoritoVar = favorito_sim.checked;
-    var fkPersonagemVar = personagem_input.value;
-    var fkUsuario = idUsuario;
+function avaliar() {
+  var idUsuario = sessionStorage.ID_USUARIO; 
+  var notaVar = nota_input.value;
+  var descricaoVar = descricao_input.value;
+  var assistidoVar = assistido_sim.checked;
+  var recomendadoVar = recomendado_sim.checked;
+  var fkPersonagemVar = personagem_input.value;
+  var fkUsuario = idUsuario;
 
-    if (notaVar == "" || fkPersonagemVar == "") {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Preencha a nota e o personagem.";
-      return false;
-    }
-
-    fetch("/avaliacoes/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idUsuario: sessionStorage.ID_USUARIO,
-        nota: notaVar,
-        descricao: descricaoVar,
-        assistido: assistidoVar ? 1 : 0,
-        favorito: favoritoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
-        fkPersonagem: fkPersonagemVar,
-        fkUsuario: idUsuario
-      }),
-    })
-      .then(function (resposta) {
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-          mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
-          setTimeout(sumirMensagem, 5000);
-        } else {
-          throw "Houve um erro ao enviar a avaliação!";
-        }
-      })
-      .catch(function (erro) {
-        console.log(`#ERRO: ${erro}`);
-      });
-
+  if (notaVar == "" || fkPersonagemVar == "") {
+    cardErro.style.display = "block";
+    mensagem_erro.innerHTML = "Preencha a nota e o personagem.";
     return false;
-  }
+}
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-    </script>
+fetch("/avaliacoes/cadastrar", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    idUsuario: sessionStorage.ID_USUARIO,
+    nota: notaVar,
+    descricao: descricaoVar,
+    assistido: assistidoVar ? 1 : 0,
+    recomendado: recomendadoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
+    fkPersonagem: fkPersonagemVar,
+    fkUsuario: idUsuario
+  }),
+})
+  .then(function (resposta) {
+    if (resposta.ok) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
+      setTimeout(sumirMensagem, 5000);
+    } else {
+      throw "Houve um erro ao enviar a avaliação!";
+    }
+  })
+  .catch(function (erro) {
+    console.log(`#ERRO: ${erro}`);
+  });
+
+return false;
+}
+
+function sumirMensagem() {
+  cardErro.style.display = "none";  
+}
+</script>
   </body>
 </html>

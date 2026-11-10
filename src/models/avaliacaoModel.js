@@ -17,16 +17,24 @@ function buscarNotasParaGrafico() {
       SELECT nota, COUNT(*) AS quantidade
       FROM avaliacao
       GROUP BY nota
-      ORDER BY nota;`;
+      ORDER BY nota DESC;`;
+
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
+function buscarRecomendadoParaGrafico() {
+    var instrucaoSql = `
+      SELECT * FROM vw_filme_recomendaria`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 // usada no cadastro
-function cadastrar(nota, descricao, assistido, favorito, fkPersonagem, fkUsuario) {
+function cadastrar(nota, descricao, assistido, recomendado, fkPersonagem, fkUsuario) {
 
-  var instrucaoSql = `INSERT INTO avaliacao (nota, descricao, assistido, favorito, fkPersonagem, fkUsuario) VALUES (${nota}, '${descricao}', ${assistido}, ${favorito},${fkPersonagem}, ${fkUsuario})`;
+  var instrucaoSql = `INSERT INTO avaliacao (nota, descricao, assistido, recomendado, fkPersonagem, fkUsuario) VALUES (${nota}, '${descricao}', ${assistido}, ${recomendado},${fkPersonagem}, ${fkUsuario})`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -35,5 +43,6 @@ function cadastrar(nota, descricao, assistido, favorito, fkPersonagem, fkUsuario
 
 module.exports = {
   buscarNotasParaGrafico,
+  buscarRecomendadoParaGrafico,
   cadastrar
 }

@@ -1,14 +1,26 @@
 var avaliacaoModel = require("../models/avaliacaoModel");
 
+function buscarRecomendadoParaGrafico(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  avaliacaoModel.buscarRecomendadoParaGrafico(idUsuario).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as avaliações de Recomendados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 function buscarNotasParaGrafico(req, res) {
   var idUsuario = req.params.idUsuario;
 
   avaliacaoModel.buscarNotasParaGrafico(idUsuario).then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
-    } else {
-      res.status(204).json([]);
-    }
+    } 
   }).catch(function (erro) {
     console.log(erro);
     console.log("Houve um erro ao buscar as avaliações: ", erro.sqlMessage);
@@ -16,22 +28,11 @@ function buscarNotasParaGrafico(req, res) {
   });
 }
 
-function buscarNotasParaGrafico(req, res) {
-    avaliacaoModel.buscarNotasParaGrafico()
-    .then(function (resultado) {
-      res.status(200).json(resultado);
-    })
-    .catch(function (erro) {
-      console.log(erro);
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function cadastrar(req, res) {
   var nota = req.body.nota;
   var descricao = req.body.descricao;
   var assistido = req.body.assistido;
-  var favorito = req.body.favorito;
+  var recomendado = req.body.recomendado;
   var fkPersonagem = req.body.fkPersonagem;
   var fkUsuario = req.body.fkUsuario;
 
@@ -41,7 +42,7 @@ function cadastrar(req, res) {
     res.status(400).send("fkUsuario está undefined!");
   } else {
 
-    avaliacaoModel.cadastrar(nota, descricao, assistido, favorito, fkPersonagem, fkUsuario)
+    avaliacaoModel.cadastrar(nota, descricao, assistido, recomendado, fkPersonagem, fkUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -58,5 +59,6 @@ function cadastrar(req, res) {
 
 module.exports = {
   buscarNotasParaGrafico,
+  buscarRecomendadoParaGrafico,
   cadastrar
 }
