@@ -6,7 +6,7 @@
 :root {
   --preto: #17120f;
   --preto-suave: #211812;
-  --marrom: #593b25;
+  --marrom: rgba(89, 59, 37, 0.432);
   --dourado: #c99a62;
   --dourado: #ce9d628c;
   --creme: #f5f0e8;

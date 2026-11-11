@@ -25,7 +25,7 @@ function buscarNotasParaGrafico() {
 
 function buscarRecomendadoParaGrafico() {
     var instrucaoSql = `
-      SELECT * FROM vw_filme_recomendaria`;
+      SELECT * FROM vw_filme_recomendado`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

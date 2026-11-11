@@ -60,7 +60,8 @@ INSERT INTO avaliacao (nota, descricao, assistido, favorito, fkPersonagem, fkUsu
 -- SELECT PARA KPI DE FILME RECOMEDADO OU NÃO
 CREATE VIEW vw_filme_recomendado AS
 SELECT 
-    COUNT(*) AS 'Total avaliações',
+	TRUNCATE(
+    (COUNT(*) * 100.0) / (SELECT COUNT(*) FROM avaliacao), 2) AS 'porcentagemTotal',
 
     TRUNCATE(
         SUM(
@@ -68,7 +69,7 @@ SELECT
                 WHEN recomendado = 1 THEN 1
                 ELSE 0
             END) * 100 / COUNT(*), 2
-    ) AS 'Recomendado(%)',
+    ) AS 'recomendado',
 
     TRUNCATE(
         SUM(
@@ -76,11 +77,13 @@ SELECT
                 WHEN recomendado = 1 THEN 0
                 ELSE 1
             END) * 100 / COUNT(*), 2
-    ) AS 'Não recomendado(%)'
+    ) AS 'naoRecomendado'
 
 FROM avaliacao;
 
-SELECT * FROM vw_filme_recomendado;
+DROP VIEW vw_filme_recomendado;
+SELECT * FROM carpe_diem.vw_filme_recomendaria;
+
 
 ALTER TABLE avaliacao ADD COLUMN recomendado BOOLEAN DEFAULT FALSE;
 

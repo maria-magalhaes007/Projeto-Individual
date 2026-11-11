@@ -221,8 +221,12 @@
 
   let proximaAtualizacao;
 
-  window.onload = notaMediaGrafico;
-  window.onload = recomendadoGrafico;
+  // window.onload = notaMediaGrafico; estão sobreescrevendo um ao outro não permitindo a visualização dos gráficos
+  // window.onload = recomendadoGrafico;
+
+window.addEventListener('load', notaMediaGrafico); // prática para não sobreescrever
+window.addEventListener('load', recomendadoGrafico);
+
 
 // function obterDadosGrafico() {
 //   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
@@ -362,6 +366,7 @@ function plotarGraficoRecomendado(resposta) {
           data: [],
           fill: false,
           borderColor: 'rgb(199, 52, 52)',
+          backgroundColor: ['rgb(201, 154, 98)', 'rgb(186, 94, 69)'],
           tension: 0.1
       }]
   };
@@ -373,8 +378,12 @@ function plotarGraficoRecomendado(resposta) {
   // Inserindo valores recebidos em estrutura para plotar o gráfico
   for (let i = resposta.length - 1; i >= 0; i--) {
       var registro = resposta[i];
-      labels.push(registro.recomendado);
-      dados.datasets[0].data.push(registro.quantidade);
+      // labels.push(registro.recomendado); nome da legenda está pasando o valor deles
+      // labels.push(registro.naoRecomendado);
+      labels.push('Recomendado'); 
+      labels.push('Não recomendado');
+      dados.datasets[0].data.push(registro.recomendado);
+      dados.datasets[0].data.push(registro.naoRecomendado);
   }
 
   console.log('----------------------------------------------')
