@@ -1,5 +1,33 @@
 var avaliacaoModel = require("../models/avaliacaoModel");
 
+function buscarComentarioUsuario(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  avaliacaoModel.buscarComentarioUsuario(idUsuario).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as avaliações de Recomendados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function buscarNotaMediaKpi(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  avaliacaoModel.buscarNotaMediaKpi(idUsuario).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as avaliações de Recomendados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
 function buscarRecomendadoParaGrafico(req, res) {
   var idUsuario = req.params.idUsuario;
 
@@ -30,7 +58,7 @@ function buscarNotasParaGrafico(req, res) {
 
 function cadastrar(req, res) {
   var nota = req.body.nota;
-  var descricao = req.body.descricao;
+  var fkComentario = req.body.fkComentario;
   var assistido = req.body.assistido;
   var recomendado = req.body.recomendado;
   var fkPersonagem = req.body.fkPersonagem;
@@ -42,7 +70,7 @@ function cadastrar(req, res) {
     res.status(400).send("fkUsuario está undefined!");
   } else {
 
-    avaliacaoModel.cadastrar(nota, descricao, assistido, recomendado, fkPersonagem, fkUsuario)
+    avaliacaoModel.cadastrar(nota, fkComentario, assistido, recomendado, fkPersonagem, fkUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
@@ -60,5 +88,7 @@ function cadastrar(req, res) {
 module.exports = {
   buscarNotasParaGrafico,
   buscarRecomendadoParaGrafico,
+  buscarNotaMediaKpi,
+  buscarComentarioUsuario,
   cadastrar
 }

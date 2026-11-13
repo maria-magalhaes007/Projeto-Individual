@@ -50,14 +50,14 @@
       <div class="kpis">
         <div class="kpi">
           <p>Nota média</p>
-          <span id="kpiMedia">4.5</span>
+          <span id="kpiMedia">Carregando...</span>
         </div>
 
         <div class="kpi">
           <p>Total de assistidos</p>
-          <span id="kpiAssistidos">1920</span>
+          <span id="kpiAssistidos">xx%</span>
           <!-- Corrigido: Mudado para class ou outro ID para não duplicar -->
-          <span class="kpi-total">/ 2003 usuarios</span> 
+          <span class="kpi-total">de usuarios assistiram à esse filme</span> 
         </div>
       </div>
     </section>
@@ -107,7 +107,8 @@
         <div class="container-avaliar-comentarios">
 
           <!-- FORMULÁRIO -->
-          <div class="avliacao-pessoal">
+          <!-- INÍCIO: correção da nomenclatura da classe do formulário de avaliação -->
+          <div class="avaliacao-pessoal">
 
             <p>REGISTRO DO USUÁRIO</p>
 
@@ -141,10 +142,10 @@
             </div>
 
             <div class="campo">
-              <label for="descricao_input">Descrição:</label>
+              <label for="comentario_input">Descrição:</label>
 
               <input
-                id="descricao_input"
+                id="comentario_input"
                 type="text"
                 placeholder="Sua avaliação"
               />
@@ -175,15 +176,21 @@
             </button>
 
           </div>
+          <!-- FIM: correção da nomenclatura da classe do formulário de avaliação -->
 
 
           <!-- COMENTÁRIOS -->
-          <div class="container-comentarios">
+          <!-- INÍCIO: adição do id para compatibilizar com o seletor CSS #comentarios -->
+          <div class="container-comentarios" id="comentarios">
+          <!-- FIM: adição do id para compatibilizar com o seletor CSS #comentarios -->
 
             <div class="titulo-secao">
               <h2>Comentários</h2>
             </div>
 
+            <div class="comentario-usuario" id="avaliacao">
+              
+            </div>
           </div>
 
         </div>
@@ -226,19 +233,21 @@
 
 window.addEventListener('load', notaMediaGrafico); // prática para não sobreescrever
 window.addEventListener('load', recomendadoGrafico);
+window.addEventListener('load', buscarNotaMedia);
+window.addEventListener('load', buscarComentarioUsuario);
 
 
 // function obterDadosGrafico() {
 //   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
 //   avaliacoes.forEach(item => {
 //       document.getElementById("btnAvaliacao").innerHTML += `
-//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.descricao}</button>
+//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.comentario}</button>
 //       `
 
 //       document.getElementById("graficos").innerHTML += `
 //           <div id="grafico${item.id}" class="display-none">
 //               <h3 class="tituloGraficos">
-//                   <span id="tituloAvaliacao${item.id}">${item.descricao}</span>
+//                   <span id="tituloAvaliacao${item.id}">${item.comentario}</span>
 //               </h3>
 //               <div class="graph">
 //                   <canvas id="graficoNotas${item.id}"></canvas>
@@ -297,6 +306,30 @@ fetch(`/avaliacoes/grafico/recomendacao`, { cache: 'no-store' }).then(function (
     });
 }
 
+function buscarNotaMedia() {
+  fetch(`/avaliacoes/kpi/notaMedia`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+        let nota = resposta[0].notaMedia;
+
+        if (nota == null) {
+          kpiMedia.innerHTML = '-';
+        } else {
+          kpiMedia.innerHTML = Number(nota).toFixed(1);
+        }
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção da nota média: ${error.message}`);
+    });
+}
+
+  
 // INSERINDO OS DADOS NO GRÁFICO DE NOTAS
 function plotarGraficoNota(resposta) {
   console.log('iniciando plotagem do gráfico...');
@@ -411,7 +444,7 @@ function plotarGraficoRecomendado(resposta) {
 function avaliar() {
   var idUsuario = sessionStorage.ID_USUARIO; 
   var notaVar = nota_input.value;
-  var descricaoVar = descricao_input.value;
+  var comentarioVar = comentario_input.value;
   var assistidoVar = assistido_sim.checked;
   var recomendadoVar = recomendado_sim.checked;
   var fkPersonagemVar = personagem_input.value;
@@ -431,7 +464,7 @@ fetch("/avaliacoes/cadastrar", {
   body: JSON.stringify({
     idUsuario: sessionStorage.ID_USUARIO,
     nota: notaVar,
-    descricao: descricaoVar,
+    fkComentario: fkComentarioVar,
     assistido: assistidoVar ? 1 : 0,
     recomendado: recomendadoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
     fkPersonagem: fkPersonagemVar,
@@ -453,6 +486,32 @@ fetch("/avaliacoes/cadastrar", {
 
 return false;
 }
+
+// ADICIONANDO COMENTARIO NA TELA
+function buscarComentarioUsuario(listaDeComentarios) {
+  const comentarioUsuario = document.getElementById("avaliacao")
+  comentarioUsuario.innerHTML = ''
+
+  listaDeComentarios.forEach((avaliacao) => {
+    comentarioUsuario.innerHTML += `
+      <div class="card-avaliacao" id="avaliacao_${avaliacao.idAvaliacao}">
+        <div class="cabecalho-avaliacao">
+          <strong>${avaliacao.nomeUsuario}</strong> 
+          <span>• Personagem favorito: ${avaliacao.fkPersonagem}</span>
+          <span>• Nota: ${avaliacao.nota}/5</span>
+        </div>
+
+        <p class="texto-avaliacao">${avaliacao.fkComentario}</p>
+
+        <div class="rodape-avaliacao">
+          <small>Já assistiu: ${avaliacao.assistido ? "Sim" : "Não"}</small> | 
+          <small>Recomenda: ${avaliacao.recomendado ? "Sim" : "Não"}</small>
+        </div>
+      </div>
+    `;
+  });
+}
+
 
 function sumirMensagem() {
   cardErro.style.display = "none";  

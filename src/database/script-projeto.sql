@@ -26,13 +26,20 @@ CREATE TABLE avaliacao (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nota DECIMAL(2,1) NOT NULL,
 	CONSTRAINT chNota CHECK(nota BETWEEN 0 AND 5),
-  descricao VARCHAR(300),
-  dtAvaliacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+  recomendado TINYINT,
+  fkComentario INT,
+	FOREIGN KEY (fkComentario) REFERENCES comentario(id),
   assistido BOOLEAN NOT NULL,
   fkPersonagem INT,
 	FOREIGN KEY (fkPersonagem) REFERENCES personagem(id),
   fkUsuario INT NOT NULL,
   	FOREIGN KEY (fkUsuario) REFERENCES usuario(id)
+);
+
+CREATE TABLE comentario (
+id INT PRIMARY KEY AUTO_INCREMENT,
+descricao VARCHAR(500),
+publicacao DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO personagem (nome, ator) VALUES 
@@ -50,12 +57,19 @@ INSERT INTO usuario (nome, email, senha) VALUES
 ('Carlos Lima', 'carlos.lima@email.com', '123456'),
 ('Beatriz Silva', 'beatriz.silva@email.com', '123456');
 
-INSERT INTO avaliacao (nota, descricao, assistido, favorito, fkPersonagem, fkUsuario) VALUES 
-(5, 'John Keating é simplesmente inspirador. Oh Captain, my Captain!', TRUE, TRUE, 1, 1),
-(4, 'A atuação do Robert Sean Leonard como Neil Perry é emocionante e dolorosa.', TRUE, FALSE, 2, 2),
-(4, 'A evolução do Todd Anderson ao longo do filme me faz chorar todas as vezes.', FALSE, FALSE, 3, 3),
-(3, 'Gosto do Knox, mas o arco romântico dele às vezes quebra o ritmo para mim.', TRUE, TRUE, 4, 4),
-(5, 'Filme espetacular, marcou a minha juventude. Carpe Diem!', TRUE, TRUE, 3, 1);
+INSERT INTO avaliacao (nota, fkComentario, assistido, recomendado, fkPersonagem, fkUsuario) VALUES 
+(5, 1, TRUE, TRUE, 1, 1),
+(4, 3, TRUE, FALSE, 2, 2),
+(4, 2, FALSE, TRUE, 3, 3),
+(3, 4, TRUE, TRUE, 4, 4),
+(5, 2, TRUE, TRUE, 3, 1);
+
+INSERT INTO comentario (descricao) VALUES 
+('John Keating é simplesmente inspirador. Oh Captain, my Captain!'),
+('A atuação do Robert Sean Leonard como Neil Perry é emocionante e dolorosa.'),
+('A evolução do Todd Anderson ao longo do filme me faz chorar todas as vezes.'),
+('Gosto do Knox, mas o arco romântico dele às vezes quebra o ritmo para mim.'),
+('Filme espetacular, marcou a minha juventude. Carpe Diem!');
 
 -- SELECT PARA KPI DE FILME RECOMEDADO OU NÃO
 CREATE VIEW vw_filme_recomendado AS
@@ -93,4 +107,7 @@ SELECT TRUNCATE(AVG(nota), 1) AS 'Média' FROM avaliacao;
 -- SELECT PARA A KPI DE QUANTOS USUARIOS JÁ ASSISTIRAM AO FILME
 SELECT COUNT(assistido) FROM avaliacao WHERE assistido = TRUE;
 
-ALTER TABLE avaliacao DROP COLUMN favorito;
+SELECT u.nome, c.descricao 'comentario', c.publicacao, p.nome 'favorito' FROM usuario u 
+	LEFT JOIN avaliacao a ON a.fkUsuario = u.id
+    LEFT JOIN personagem p ON a.fkPersonagem = p.id
+	LEFT JOIN comentario c ON a.fkComentario = c.id;
