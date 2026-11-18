@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OhCapitan | Home</title>
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/style.css" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -14,187 +13,165 @@
 
   <!-- nabar -->
 <header class="topo">
-  <a class="marca" href="idx.html" aria-label="Página inicial">
-    <img src="/public/assets/icon/iconLogo.svg" alt="" />
+  <a class="marca" href="index.html" aria-label="Página inicial">
+    <img src="/assets/icon/iconLogo.svg" alt="" />
   </a>
 
   <nav class="menu-principal" aria-label="Navegação principal">
-    <a class="ativo" href="idx.html">Início</a>
+    <a class="ativo" href="index.html">Início</a>
     <a href="#personagens">Personagens</a>
     <a href="#citacoes">Citações</a>
     <a class="botao-entrar" href="login.html">Entrar</a>
   </nav>
 </header>
 
-  <div class="layout-conteudo">
+<div class="layout-conteudo">
+  <div class="card_erro" id="cardErro">
+    <span id="mensagem_erro"></span>
+  </div>
 
-    <!-- MENSAGENS DE ERRO -->
-    <div class="card_erro" id="cardErro">
-      <span id="mensagem_erro"></span>
+    <div class="titulo-secao">
+      <h2>Relatório</h2>
+      <span></span>
     </div>
 
-      <div class="titulo-secao">
-        <h2>Relatório</h2>
-        <span></span>
-      </div>
-
 <main class="coluna-principal">
+<!-- LADO ESQUERDO -->
+<div class="container-lateral-esquerdo">
+  <section class="secao lateral-esquerdo" id="relatorio">
+    <div class="kpis">
+
+      <div class="kpi">
+        <p>Nota média</p>
+        <span id="kpiMedia">Carregando...</span>
+      </div>
+
+      <div class="kpi">
+        <p>Total de assistidos</p>
+        <span id="kpiAssistidos">xx%</span>
+        <span class="kpi-total">de usuarios assistiram à esse filme</span> 
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GRÁFICO -->
+   <div class="graficoNota">
+     <h2 class="titulo-secao">Notas dos usuários</h2>
+     <section class="container-InfoDash" id="infoDash">
+         <canvas id="graficoNotas"></canvas>
+     </section>
+   </div>
+</div>
   
-  <!-- LADO ESQUERDO -->
-  <div class="container-lateral-esquerdo">
-    
-    <!-- INDICADORES -->
-    <section class="secao lateral-esquerdo" id="relatorio">
 
+<!-- LADO DIREITO -->
+<div class="container-lateral-direito">
+  <section class="secao" id="personagens">
 
-      <div class="kpis">
-        <div class="kpi">
-          <p>Nota média</p>
-          <span id="kpiMedia">Carregando...</span>
-        </div>
-
-        <div class="kpi">
-          <p>Total de assistidos</p>
-          <span id="kpiAssistidos">xx%</span>
-          <!-- Corrigido: Mudado para class ou outro ID para não duplicar -->
-          <span class="kpi-total">de usuarios assistiram à esse filme</span> 
-        </div>
+    <div class="kpis lateral-direito">
+      <div class="kpi grafico-recomendado">
+        <p>Total de recomendado</p>
+          <section class="container-InfoDash" id="infoDash">
+              <canvas id="graficoRecomendado"></canvas>
+          </section>
       </div>
-    </section>
-
-    <!-- GRÁFICOS -->
-    <h2 class="titulo-secao">Notas dos usuários</h2>
-    <section class="container-InfoDash" id="infoDash">
-        <canvas id="graficoNotas"></canvas>
-    </section>
     
-
-  </div> <!-- Fim do lateral-esquerdo -->
-    
-
-  <!-- LADO DIREITO -->
-  <div class="container-lateral-direito">
-    <section class="secao" id="personagens">
-
-      <div class="kpis lateral-direito">
-        <div class="kpi grafico-recomendado">
-          <p>Total de recomendado</p>
-            <section class="container-InfoDash" id="infoDash">
-                <canvas id="graficoRecomendado"></canvas>
-            </section>
-        </div>
-      
-        <div class="kpi personagem">
-            <h2 class="titulo-secao">Personagem Favorito</h2>
-            <span id="kpiPersonagem">-</span>
-            <p>Personagem favorito</p>
-        </div>
+      <div class="kpi personagem">
+          <h2 class="titulo-secao">Personagem Favorito</h2>
+          <span id="kpiPersonagem">-</span>
+          <p>Personagem mais votado como favorito pelos os usuários</p>
       </div>
-
-    </section>
-  </div> <!-- Fim do lateral-direito -->
-
+    </div>
+  </section>
+</div> 
 </main>
-    
-      <!-- AVALIAÇÃO DO USUÁRIO -->
-      <section class="sessao sessao-avaliar" id="avaliacao">
 
-        <div class="titulo-secao">
-          <h2>Gostaria de avaliar sua experiência?</h2>
-          <p>Compartilhe sua opinião sobre Sociedade dos Poetas Mortos.</p>
-        </div>
+  <!-- AVALIAÇÃO DO USUÁRIO -->
+<section class="sessao sessao-avaliar" id="avaliacao">
 
-        <div class="container-avaliar-comentarios">
+    <div class="titulo-secao">
+        <h2>Gostaria de avaliar sua experiência?</h2>
+        <p>Compartilhe sua opinião sobre Sociedade dos Poetas Mortos.</p>
+    </div>
 
-          <!-- FORMULÁRIO -->
-          <!-- INÍCIO: correção da nomenclatura da classe do formulário de avaliação -->
-          <div class="avaliacao-pessoal">
+    <div class="container-avaliar-comentarios">
 
+        <!-- FORMULÁRIO -->
+        <div class="avaliacao-pessoal" id="form_avaliacao">
             <p>REGISTRO DO USUÁRIO</p>
 
             <div class="titulo-secao">
-              <h2>Deixe aqui sua avaliação</h2>
+                <h2>Deixe aqui sua avaliação</h2>
             </div>
 
             <h3>
-              Olá, <span id="b_usuario">usuário</span>!
+                Olá, <span id="b_usuario">usuário</span>!
             </h3>
 
             <div class="campo">
-              <label for="personagem_input">Personagem:</label>
+                <label for="personagem_input">Personagem:</label>
 
-              <select id="personagem_input">
-                <option value="1">Personagem A</option>
-                <option value="2">Personagem B</option>
-              </select>
+                <select id="personagem_input">
+                    <option value="1">Personagem A</option>
+                    <option value="2">Personagem B</option>
+                </select>
             </div>
 
             <div class="campo">
-              <label for="nota_input">Nota:</label>
-
-              <input
-                id="nota_input"
-                type="number"
-                min="0"
-                max="5"
-                step="1"
-              />
+                <label for="nota_input">Nota:</label>
+                <input id="nota_input" type="number" min="0" max="5" step="1" />
             </div>
 
             <div class="campo">
-              <label for="comentario_input">Descrição:</label>
-
-              <input
-                id="comentario_input"
-                type="text"
-                placeholder="Sua avaliação"
-              />
+                <label for="descricao_input">Descrição:</label>
+                <input id="descricao_input" type="text" placeholder="Sua avaliação" />
             </div>
 
             <div class="campo">
-              <span>Já assisti:</span>
+                <span>Já assisti:</span>
 
-              <input type="checkbox" id="assistido_sim" />
-              <label for="assistido_sim">Sim</label>
+                <div class="check">
+                    <input type="checkbox" id="assistido_sim" />
+                    <label for="assistido_sim">Sim</label>
 
-              <input type="checkbox" id="assistido_nao" />
-              <label for="assistido_nao">Não</label>
+                    <input type="checkbox" id="assistido_nao" />
+                    <label for="assistido_nao">Não</label>
+                </div>
             </div>
 
             <div class="campo">
-              <span>Recomendaria:</span>
+                <span>Recomendaria:</span>
 
-              <input type="checkbox" id="recomendado_sim" />
-              <label for="recomendado_sim">Sim</label>
+                <div class="check">
+                    <input type="checkbox" id="recomendado_sim" />
+                    <label for="recomendado_sim">Sim</label>
 
-              <input type="checkbox" id="recomendado_nao" />
-              <label for="recomendado_nao">Não</label>
+                    <input type="checkbox" id="recomendado_nao" />
+                    <label for="recomendado_nao">Não</label>
+                </div>
             </div>
 
             <button class="botao" onclick="avaliar()">
-              Enviar avaliação
+                Enviar avaliação
             </button>
-
-          </div>
-          <!-- FIM: correção da nomenclatura da classe do formulário de avaliação -->
-
-
-          <!-- COMENTÁRIOS -->
-          <!-- INÍCIO: adição do id para compatibilizar com o seletor CSS #comentarios -->
-          <div class="container-comentarios" id="comentarios">
-          <!-- FIM: adição do id para compatibilizar com o seletor CSS #comentarios -->
-
-            <div class="titulo-secao">
-              <h2>Comentários</h2>
-            </div>
-
-            <div class="comentario-usuario" id="avaliacao">
-              
-            </div>
-          </div>
-
         </div>
-      </section>
+
+        <!-- COMENTÁRIOS -->
+        <div class="container-comentarios" id="comentarios">
+            <div class="titulo-secao">
+                <h2>Comentários</h2>
+            </div>
+
+            <div class="comentario-usuario" id="lista_avaliacoes">
+
+                <!-- Os cards serão inseridos aqui -->
+            </div>
+        </div>
+
+    </div>
+
+</section>
 
     
   </div>
@@ -214,7 +191,7 @@
   <div class="banner-topo">
     <img
       class="img-logo"
-      src="/public/assets/icon/iconLogo.svg"
+      src="/assets/icon/iconLogo.svg"
       alt="Logo"
     />
   </div>
@@ -331,56 +308,69 @@ function buscarNotaMedia() {
 
   
 // INSERINDO OS DADOS NO GRÁFICO DE NOTAS
+
 function plotarGraficoNota(resposta) {
-  console.log('iniciando plotagem do gráfico...');
+    let labels = [];
+    let valores = [];
 
-  // Criando estrutura para plotar gráfico - labels
-  let labels = [];
+    for (let i = resposta.length - 1; i >= 0; i--) {
+        let registro = resposta[i];
 
-  // Criando estrutura para plotar gráfico - dados
-  let dados = {
-      labels: labels,
-      datasets: [
-      {
-          label: 'Quantidade',
-          data: [],
-          fill: false,
-          borderColor: 'rgb(199, 52, 52)',
-          tension: 0.1
-      }]
-  };
+        labels.push(registro.nota);
+        valores.push(registro.quantidade);
+    }
 
-  console.log('----------------------------------------------')
-  console.log('Estes dados foram recebidos pela funcao "notaMediaGrafico" e passados para "plotarGrafico":')
-  console.log(resposta)
+    const config = {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de avaliações',
+                data: valores,
 
-  // Inserindo valores recebidos em estrutura para plotar o gráfico
-  for (let i = resposta.length - 1; i >= 0; i--) {
-      var registro = resposta[i];
-      labels.push(registro.nota);
-      dados.datasets[0].data.push(registro.quantidade);
-  }
+                backgroundColor: '#c99a62',
+                borderColor: '#765238',
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                },
+                tooltip: {
+                    backgroundColor: '#211812',
+                    titleColor: '#c99a62',
+                    bodyColor: '#f5f0e8',
+                    padding: 12,
+                    cornerRadius: 6
+                }
+            },
 
-  console.log('----------------------------------------------')
-  console.log('O gráfico será plotado com os respectivos valores:')
-  console.log('Labels:')
-  console.log(labels)
-  console.log('Dados:')
-  console.log(dados.datasets)
-  console.log('----------------------------------------------')
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
 
-  // Criando estrutura para plotar gráfico - config
-  const config = {
-      type: 'bar',
-      data: dados,
-  };
-
-  // Adicionando gráfico criado em div na tela
-  let myChart = new Chart(
-      document.getElementById(`graficoNotas`),
-      config
-  );
+                    grid: {
+                        color: 'rgba(245, 240, 232, 0.12)'
+                    }
+                }
+            }
+        }
+    };
+    new Chart(
+        document.getElementById('graficoNotas'),
+        config
+    );
 }
+
 
 
 // INSERINDO OS DADOS NO GRÁFICO DE RECOMENDAÇÃO
@@ -444,7 +434,7 @@ function plotarGraficoRecomendado(resposta) {
 function avaliar() {
   var idUsuario = sessionStorage.ID_USUARIO; 
   var notaVar = nota_input.value;
-  var comentarioVar = comentario_input.value;
+  var descricaoVar = descricao_input.value;
   var assistidoVar = assistido_sim.checked;
   var recomendadoVar = recomendado_sim.checked;
   var fkPersonagemVar = personagem_input.value;
@@ -464,7 +454,7 @@ fetch("/avaliacoes/cadastrar", {
   body: JSON.stringify({
     idUsuario: sessionStorage.ID_USUARIO,
     nota: notaVar,
-    fkComentario: fkComentarioVar,
+    descricao: descricaoVar,
     assistido: assistidoVar ? 1 : 0,
     recomendado: recomendadoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
     fkPersonagem: fkPersonagemVar,
@@ -475,6 +465,11 @@ fetch("/avaliacoes/cadastrar", {
     if (resposta.ok) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
+      buscarComentarioUsuario();
+
+      // Limpa os campos do formulário
+      document.getElementById("form_avaliacao").reset();
+
       setTimeout(sumirMensagem, 5000);
     } else {
       throw "Houve um erro ao enviar a avaliação!";
@@ -487,31 +482,97 @@ fetch("/avaliacoes/cadastrar", {
 return false;
 }
 
-// ADICIONANDO COMENTARIO NA TELA
-function buscarComentarioUsuario(listaDeComentarios) {
-  const comentarioUsuario = document.getElementById("avaliacao")
-  comentarioUsuario.innerHTML = ''
+// BUSCAR COMENTÁRIOS
+function buscarComentarioUsuario() {
 
-  listaDeComentarios.forEach((avaliacao) => {
-    comentarioUsuario.innerHTML += `
-      <div class="card-avaliacao" id="avaliacao_${avaliacao.idAvaliacao}">
-        <div class="cabecalho-avaliacao">
-          <strong>${avaliacao.nomeUsuario}</strong> 
-          <span>• Personagem favorito: ${avaliacao.fkPersonagem}</span>
-          <span>• Nota: ${avaliacao.nota}/5</span>
-        </div>
+    fetch('/avaliacoes/comentarios', {
+        cache: 'no-store'
+    }) .then(function (resposta) {
 
-        <p class="texto-avaliacao">${avaliacao.fkComentario}</p>
+        if (resposta.ok) {
+            return resposta.json();
+        } throw new Error('Erro ao buscar comentários.');
+    }) .then(function (listaDeComentarios) {
 
-        <div class="rodape-avaliacao">
-          <small>Já assistiu: ${avaliacao.assistido ? "Sim" : "Não"}</small> | 
-          <small>Recomenda: ${avaliacao.recomendado ? "Sim" : "Não"}</small>
-        </div>
-      </div>
-    `;
-  });
+        const container = document.getElementById("lista_avaliacoes"); 
+        // id da class em que será inserido, eu estava usando o mesmo id do FORMULÁRIO 
+        // isso faz sobreescrever o formulário e mostrar apenas o comentário
+
+        container.innerHTML = '';
+
+        if (listaDeComentarios.length === 0) {
+            container.innerHTML = `
+                <p class="sem-comentarios">
+                    Ainda não existem avaliações. Seja o primeiro a avaliar!
+                </p>
+            `;
+            return;
+        }
+
+        listaDeComentarios.forEach((avaliacao) => {
+            let estrelas = '';
+
+            for (let i = 1; i <= 5; i++) {
+
+                if (i <= Number(avaliacao.nota)) {
+                    estrelas += '★';
+                } else {
+                    estrelas += '☆';
+                }
+
+            }
+            // Formatar a data
+            let data = new Date(avaliacao.dataPublicacao);
+
+            let dataFormatada = data.toLocaleDateString('pt-BR');
+
+            let assistido = Number(avaliacao.assistido) === 1;
+            let recomendado = Number(avaliacao.recomendado) === 1;
+
+            container.innerHTML += `
+
+                <div class="card-avaliacao">
+
+                    <div class="cabecalho-avaliacao">
+                        <div class="usuario-avaliacao">
+                            <strong>${avaliacao.nomeUsuario}</strong>
+                            <span>${dataFormatada}</span>
+                        </div>
+
+                        <div class="nota-avaliacao">
+                            <span>${estrelas}</span>
+                            <small>${avaliacao.nota}/5</small>
+                        </div>
+
+                    </div>
+
+                    <div class="texto-avaliacao">
+                        <p>${avaliacao.descricao}</p>
+                    </div>
+
+                    <div class="rodape-avaliacao">
+                        <span>
+                            ${assistido ? 'Assistiu ao filme' : 'Não assistiu ao filme'}
+                        </span>
+                        <span>
+                            ${recomendado ? 'Recomenda' : 'Não recomenda'}
+                        </span>
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+    })
+    .catch(function (erro) {
+
+        console.log('Erro ao buscar comentários:', erro);
+
+    });
+
 }
-
 
 function sumirMensagem() {
   cardErro.style.display = "none";  

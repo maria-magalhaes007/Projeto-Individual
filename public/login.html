@@ -9,7 +9,7 @@
 
     <script src="./js/sessao.js"></script>
 
-    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/estilo.css" />
     <link rel="icon" href="./assets/icon/favicon2.ico" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
   </head>
@@ -19,14 +19,13 @@
 
     <header class="topo">
       <a class="marca" href="idx.html" aria-label="Página inicial">
-        <img src="/public/assets/icon/iconLogo.svg" alt="" />
+        <img src="/assets/icon/iconLogo.svg" alt="" />
       </a>
 
       <nav class="menu-principal" aria-label="Navegação principal">
-        <a class="ativo" href="idx.html">Início</a>
-        <a href="#personagens">Personagens</a>
-        <a href="#citacoes">Citações</a>
-        <a class="botao-entrar" href="login.html">Entrar</a>
+        <a href="index.html">Início</a>
+        <a href="#personagens">Sobre o Criador</a>
+        <a class="ativo" class="botao-entrar" href="login.html">Entrar</a>
       </nav>
     </header>
 
@@ -74,7 +73,7 @@
       </div>
       <div class="divisor"></div>
       <div class="banner-topo">
-        <img class="img-logo" src="/public/assets/icon/iconLogo.svg" alt="" />
+        <img class="img-logo" src="/assets/icon/iconLogo.svg" alt="" />
       </div>
     </div>
     <!--footer fim-->
@@ -145,13 +144,16 @@
                             if (tentativas <= 0) {
                                 mensagem_erro.innerHTML = "Acesso bloqueado!"
                             } else {
-                                mensagem_erro.innerHTML = "Email ou Senha Incorretos! Você tem: " + tentativas + " tentativa(s)";
+                                if (emailVar != sessionStorage.EMAIL_USUARIO) {
+                                  mensagem_erro.innerHTML = "Email Incorreto! Você tem: " + tentativas + " tentativa(s)";
+                                } else {
+                                  mensagem_erro.innerHTML = "Senha Incorreta! Você tem: " + tentativas + " tentativa(s)";
+                                }
                             }
                             setTimeout(sumirMensagem, 5000);
                     
                 } else {
                     console.log("Houve um erro ao tentar realizar o login!");
-    
                     resposta.text().then((texto) => {
                         console.error(texto);
                         finalizarAguardar(texto);

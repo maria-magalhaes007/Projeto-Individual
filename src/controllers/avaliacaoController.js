@@ -1,9 +1,8 @@
 var avaliacaoModel = require("../models/avaliacaoModel");
 
 function buscarComentarioUsuario(req, res) {
-  var idUsuario = req.params.idUsuario;
 
-  avaliacaoModel.buscarComentarioUsuario(idUsuario).then((resultado) => {
+  avaliacaoModel.buscarComentarioUsuario().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } 
@@ -58,8 +57,8 @@ function buscarNotasParaGrafico(req, res) {
 
 function cadastrar(req, res) {
   var nota = req.body.nota;
-  var fkComentario = req.body.fkComentario;
   var assistido = req.body.assistido;
+  var descricao = req.body.descricao;
   var recomendado = req.body.recomendado;
   var fkPersonagem = req.body.fkPersonagem;
   var fkUsuario = req.body.fkUsuario;
@@ -70,7 +69,7 @@ function cadastrar(req, res) {
     res.status(400).send("fkUsuario está undefined!");
   } else {
 
-    avaliacaoModel.cadastrar(nota, fkComentario, assistido, recomendado, fkPersonagem, fkUsuario)
+    avaliacaoModel.cadastrar(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }

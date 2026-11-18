@@ -1,81 +1,282 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>AquaTech | Página Inicial</title>
-
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OhCapitan | Home</title>
     <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/estilo.css" />
+  </head>
 
-    <link rel="stylesheet" href="./css/estilo.css">
-    <link rel="icon" href="./assets/icon/favicon2.ico">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-</head>
+  <body>
+    <!-- NAV -->
+    <header class="topo">
+      <a class="marca" href="idx.html" aria-label="Página inicial">
+        <img src="/assets/icon/iconLogo.svg" alt="OhCapitan" />
+      </a>
 
-<body>
-    <div class="header">
-      <div class="container">
-        <h1 class="titulo">AquaTech</h1>
-        <ul class="navbar">
-          <li class="agora">
-            <a href="#">Inicial</a>
-          </li>
-          <li>
-            <a href="simulador.html">Simulador</a>
-          </li>
-          <li>|</li>
-          <li>
-            <a href="login.html">Login</a>
-          </li>
-          <li>
-            <a href="cadastro.html">Cadastro</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  
-    <div class="banner">
-      <div class="container">
-        <p>Preservando <span>hoje</span> para existirem <span>amanhã</span>.</p>
-      </div>
-    </div>
-  
-    <div class="social">
-      <div class="container">
-        <div class="boxes">
-          <div class="box">
-            <img src="assets/imgs/planet-earth_color.png">
-            <h4>Missão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/lightbulb_color.png">
-            <h4>Visão</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
-          <div class="box">
-            <img src="assets/imgs/growth_color.png">
-            <h4>Valores</h4>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Et, quas cupiditate asperiores provident magnam
-              vitae illum iusto fugiat atque deleniti nulla sed iure suscipit, laborum, aliquid accusantium cum dicta
-              minima.</p>
-          </div>
+      <nav class="menu-principal" aria-label="Navegação principal">
+        <a class="ativo" href="index.html">Início</a>
+        <a href="#personagens">Sobre o Criador</a>
+        <a class="botao-entrar" href="login.html">Entrar</a>
+      </nav>
+    </header>
+
+    <div class="container-home">
+      <!-- BANNER -->
+      <section class="banner">
+        <div class="banner-conteudo">
+          <span class="sobretitulo">SOCIEDADE DOS POETAS MORTOS</span>
+          <h1>Mais do que cinema,<br />uma lição para a vida.</h1>
+          <span class="linha-dourada"></span>
+          <p>
+            Reflexões, análises e curiosidades sobre um dos filmes mais
+            inspiradores da história do cinema.
+          </p>
         </div>
-      </div>
-    </div>
-  
-    <div class="footer">
-      <div class="container">
-        <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023-2026</h4>
-      </div>
-    </div>
-  </body>
+      </section>
 
+      <div class="layout-conteudo">
+
+        <main class="coluna-principal">
+
+          <!-- INÍCIO DA MODIFICAÇÃO DE CONTEXTO -->
+          <section class="secao secao-contexto" id="contexto">
+            <div class="titulo-secao">
+              <h2>Contexto</h2>
+              <span></span>
+            </div>
+
+            <div class="texto-contexto">
+              <p>
+                Ambientado em 1959, em uma tradicional escola preparatória
+                chamada Academia Welton, o filme acompanha um grupo de
+                estudantes que tem suas vidas transformadas com a chegada do
+                professor de literatura John Keating.
+              </p>
+              <p>
+                Com métodos de ensino pouco convencionais, Keating incentiva
+                seus alunos a questionarem padrões, valorizarem seus próprios
+                pensamentos e encontrarem suas vozes por meio da poesia e da
+                liberdade de expressão.
+              </p>
+              <p>
+                Entre descobertas, conflitos e escolhas difíceis, a história
+                nos convida a refletir sobre educação, amizade, individualidade
+                e a importância de aproveitar cada momento.
+              </p>
+            </div>
+          </section>
+          <!-- FIM DA MODIFICAÇÃO DE CONTEXTO -->
+
+          <section class="secao" id="destaques">
+            <div class="titulo-secao">
+              <h2>Destaques</h2>
+              <span></span>
+            </div>
+
+            <div class="container-destaques">
+              <article class="noticia noticia-flex">
+                <img
+                  src="./assets/imgs/post1.jpg"
+                  alt="Cena de Sociedade dos Poetas Mortos em sala de aula"
+                />
+                <div class="conteudo-noticia">
+                  <h3>O que aprendemos com o Professor Keating?</h3>
+                  <p>
+                    Em meio a lições de poesia, ele nos ensinou sobre liberdade,
+                    coragem e a importância de sermos nós mesmos.
+                  </p>
+                  <div class="publicado">
+                    <span>18 de Out de 2026</span>
+                    <span>◷ 6 min de leitura</span>
+                  </div>
+                </div>
+              </article>
+
+              <div class="destaques-secundarios">
+                <article class="noticia noticia-column">
+                  <img
+                    src="./assets/imgs/post2.jpg"
+                    alt="Robin Williams como Professor Keating"
+                  />
+                  <div class="conteudo-noticia">
+                    <h3>John Keating: o professor que mudou tudo</h3>
+                    <div class="publicado">
+                      <span>16 de Out de 2026</span>
+                      <span>◷ 4 min</span>
+                    </div>
+                  </div>
+                </article>
+
+                <article class="noticia noticia-column">
+                  <img
+                    src="./assets/imgs/post3.jpg"
+                    alt="Alunos reunidos em uma cena do filme"
+                  />
+                  <div class="conteudo-noticia">
+                    <h3>As frases mais marcantes de Sociedade dos Poetas Mortos</h3>
+                    <div class="publicado">
+                      <span>14 de Out de 2026</span>
+                      <span>◷ 5 min</span>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <!-- INÍCIO DA MODIFICAÇÃO DE MOTIVO DA ESCOLHA DO FILME -->
+          <section class="secao secao-escolha" id="sobre-projeto">
+            <div class="titulo-secao">
+              <h2>A literatura como expressão da vida</h2>
+              <span></span>
+            </div>
+
+            <div class="conteudo-escolha">
+              <div class="imagem-escolha">
+                <img
+                  src="./assets/imgs/post3.jpg"
+                  alt="Estudantes da Academia Welton reunidos"
+                />
+              </div>
+              <div class="texto-escolha">
+                <p>
+                  Retratado pela liberdade de pensar por si mesmo, de sentir intensamente e 
+                  e encontrar uma maneira própria de enxergar a vida, a literatura é muito mais do que meras palavras escritas no papel. Assim como os alunos de Keating descobrem 
+                  na literatura um espaço para expressar suas individualidades,
+                  cada pessoa pode encontrar nas palavras uma forma de romper o silêncio,
+                  questionar expectativas e construir sua própria voz.
+                </p>
+              </div>
+            </div>
+          </section>
+          <!-- FIM DA MODIFICAÇÃO DE MOTIVO DA ESCOLHA DO FILME -->
+
+          <section class="secao secao-personagens" id="personagens">
+            <div class="titulo-secao">
+              <h2>Personagens principais</h2>
+              <span></span>
+            </div>
+
+            <div class="container-personagem">
+              <article class="personagem">
+                <div class="moldura-personagem">
+                  <img src="/assets/imgs/psgKeating.jpg" alt="John Keating" />
+                </div>
+                <h3>John Keating</h3>
+                <p>Robin Williams</p>
+              </article>
+
+              <article class="personagem">
+                <div class="moldura-personagem">
+                  <img src="/assets/imgs/psgTodd.jpg" alt="Todd Anderson" />
+                </div>
+                <h3>Todd Anderson</h3>
+                <p>Ethan Hawke</p>
+              </article>
+
+              <article class="personagem">
+                <div class="moldura-personagem">
+                  <img src="/assets/imgs/psgNeil.jpg" alt="Neil Perry" />
+                </div>
+                <h3>Neil Perry</h3>
+                <p>Robert Sean Leonard</p>
+              </article>
+
+              <article class="personagem">
+                <div class="moldura-personagem">
+                  <img src="/assets/imgs/psgKnox.jpg" alt="Knox Overstreet" />
+                </div>
+                <h3>Knox Overstreet</h3>
+                <p>Josh Charles</p>
+              </article>
+
+              <article class="personagem">
+                <div class="moldura-personagem">
+                  <img src="/assets/imgs/psgGale.jpg" alt="Charlie Dalton" />
+                </div>
+                <h3>Charlie Dalton</h3>
+                <p>Gale Hansen</p>
+              </article>
+            </div>
+          </section>
+        </main>
+
+        <aside class="barra-lateral">
+          <section class="cartao-lateral" id="sobre">
+          <aside class="citacao-lateral" id="citacoes">
+            <section class="cartao-citacao">
+              <span class="citacao-aspas">“</span>
+              <p>
+                Nós não lemos e escrevemos poesia porque é bonito, nós lemos e
+                escrevemos poesia porque pertencemos à raça humana e a raça
+                humana está cheia de paixão.
+              </p>
+              <span class="autor-citacao">— John Keating</span>
+              <span class="linha-citacao"></span>
+              <span class="origem-citacao">Sociedade dos Poetas Mortos</span>
+            </section>
+          </aside><br>
+
+            <h2>Sobre o blog</h2>
+            <p>
+              Um espaço dedicado a todos que acreditam no poder transformador
+              da educação, da arte e do cinema. Aqui, compartilhamos diferentes
+              pontos de vista e reflexões sobre a jornada dos jovens da
+              Academia Welton.
+            </p>
+
+            <div class="divisor"></div>
+
+            <dl class="especificacoes">
+              <div><dt>Título original</dt><dd>Dead Poets Society</dd></div>
+              <div><dt>Lançamento</dt><dd>1989</dd></div>
+              <div><dt>Idioma original</dt><dd>Inglês</dd></div>
+              <div><dt>Diretor</dt><dd>Peter Weir</dd></div>
+              <div><dt>Orçamento</dt><dd>US$ 16,4 milhões</dd></div>
+              <div><dt>Receita</dt><dd>US$ 235,9 milhões</dd></div>
+            </dl>
+
+            <div class="divisor"></div>
+
+            <h3>Temas em destaque</h3>
+            <div class="palavras-chaves">
+              <span>Carpe Diem</span>
+              <span>Autonomia</span>
+              <span>Expressão artística</span>
+              <span>Anos 1950</span>
+              <span>Superação</span>
+              <span>Poesia</span>
+            </div>
+          </section>
+        </aside>
+      </div>
+    </div>
+
+    <!-- INÍCIO DA MODIFICAÇÃO DE PRÉ-FOOTER -->
+    <section class="pre-footer">
+      <div class="conteudo-pre-footer">
+        <span class="sobretitulo-pre-footer">SUA VOZ TAMBÉM FAZ PARTE DESSA HISTÓRIA</span>
+        <h2>O que Sociedade dos Poetas Mortos despertou em você?</h2>
+        <p>
+          Compartilhe sua opinião, conte o que mais marcou você e participe
+          dessa conversa sobre um filme que continua inspirando gerações.
+        </p>
+        <a class="botao-avaliar" href="cadastro.html">Deixe sua avaliação</a>
+      </div>
+    </section>
+    <!-- FIM DA MODIFICAÇÃO DE PRÉ-FOOTER -->
+
+    <footer class="container-footer">
+      <div class="footer-desc">
+        <p>“CARPE DIEM, APROVEITE O DIA”</p>
+        <span>- John Keating -</span>
+      </div>
+      <div class="divisor"></div>
+      <div class="banner-topo">
+        <img class="img-logo" src="/assets/icon/iconLogo.svg" alt="OhCapitan" />
+      </div>
+    </footer>
+  </body>
 </html>

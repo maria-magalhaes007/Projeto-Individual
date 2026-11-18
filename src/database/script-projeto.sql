@@ -26,9 +26,9 @@ CREATE TABLE avaliacao (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nota DECIMAL(2,1) NOT NULL,
 	CONSTRAINT chNota CHECK(nota BETWEEN 0 AND 5),
+  descricao VARCHAR(300),
+  dataPublicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   recomendado TINYINT,
-  fkComentario INT,
-	FOREIGN KEY (fkComentario) REFERENCES comentario(id),
   assistido BOOLEAN NOT NULL,
   fkPersonagem INT,
 	FOREIGN KEY (fkPersonagem) REFERENCES personagem(id),
@@ -95,19 +95,25 @@ SELECT
 
 FROM avaliacao;
 
-DROP VIEW vw_filme_recomendado;
 SELECT * FROM carpe_diem.vw_filme_recomendaria;
-
-
-ALTER TABLE avaliacao ADD COLUMN recomendado BOOLEAN DEFAULT FALSE;
 
 -- SELECT PARA A KPI DE NOTA MÉDIA
 SELECT TRUNCATE(AVG(nota), 1) AS 'Média' FROM avaliacao; 
 
 -- SELECT PARA A KPI DE QUANTOS USUARIOS JÁ ASSISTIRAM AO FILME
 SELECT COUNT(assistido) FROM avaliacao WHERE assistido = TRUE;
+    
+-- VIZUALIZAR COMENTARIOS
+SELECT
+	a.id AS idAvaliacao,
+	a.nota,
+	a.descricao,
+	a.assistido,
+	a.recomendado,
+	a.dataPublicacao,
+	u.nome AS nomeUsuario
+FROM avaliacao a
+JOIN usuario u ON a.fkUsuario = u.id
+ORDER BY a.dataPublicacao DESC;
 
-SELECT u.nome, c.descricao 'comentario', c.publicacao, p.nome 'favorito' FROM usuario u 
-	LEFT JOIN avaliacao a ON a.fkUsuario = u.id
-    LEFT JOIN personagem p ON a.fkPersonagem = p.id
-	LEFT JOIN comentario c ON a.fkComentario = c.id;
+drop table avaliacao;

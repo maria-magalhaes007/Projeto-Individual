@@ -1,18 +1,19 @@
 var database = require("../database/config");
 
-// usada no login
-function buscarNotasParaGrafico(usuarioId) {
-
-  var instrucaoSql = `SELECT * FROM avaliacao a WHERE fkUsuario = ${usuarioId}`;
-
-  console.log("Executando a instrução SQL: \n" + instrucaoSql);
-  return database.executar(instrucaoSql);
-}
-
 function buscarComentarioUsuario() {
 
   var instrucaoSql = `
-    SELECT c.descricao FROM avaliacao a JOIN comentario c ON a.fkComentario = c.id;`;
+            SELECT
+            a.id AS idAvaliacao,
+            a.nota,
+            a.descricao,
+            a.assistido,
+            a.recomendado,
+            a.dataPublicacao,
+            u.nome AS nomeUsuario
+        FROM avaliacao a
+        JOIN usuario u ON a.fkUsuario = u.id
+        ORDER BY a.dataPublicacao DESC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -51,10 +52,15 @@ function buscarNotaMediaKpi() {
 }
 
 // usada no cadastro
-function cadastrar(nota, fkComentario, assistido, recomendado, fkPersonagem, fkUsuario) {
+function cadastrar(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario) {
 
-  var instrucaoSql = `INSERT INTO avaliacao (nota, fkComentario, assistido, recomendado, fkPersonagem, fkUsuario) VALUES (${nota}, '${fkComentario}', ${assistido}, ${recomendado},${fkPersonagem}, ${fkUsuario})`;
-
+  
+    var instrucaoSql = `
+        INSERT INTO avaliacao
+        (nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario)
+        VALUES
+        (${nota}, ${assistido}, '${descricao}', ${recomendado}, ${fkPersonagem}, ${fkUsuario});
+    `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
