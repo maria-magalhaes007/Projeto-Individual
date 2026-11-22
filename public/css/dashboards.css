@@ -239,17 +239,27 @@ h3 {
 }
 
 .kpi.personagem {
-    background-color: var(--marrom);
+    background-color: var(--texto);
     border: 1px solid var(--dourado);
     color: var(--texto);
     min-height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.kpi.personagem p {
-    color: #d8c5ad;
+#imgFavorito{
+    width: 120px;
+    height: 120px;
 }
 
-#kpiMedia {
+#kpiFavorito{
+    color: #eee3d9;
+    font-weight: 600;
+}
+
+#kpiMedia, #kpiAssistidos{
     font-size: 38px;
     font-weight: 700;
     color: var(--dourado);
@@ -264,6 +274,15 @@ h3 {
 .graficoNota {
     background-color: var(--creme);
     padding: 10px;
+    height: 500px;
+    position: relative;  
+}
+
+#graficoNotas {
+    background-color: var(--creme);
+    padding: 10px;
+    height: 100%; 
+    width: 100%;
 }
 
 .graficoNota > .titulo-secao {
@@ -314,6 +333,7 @@ h3 {
     align-items: flex-start;
     gap: 30px;
     width: 100%;
+    max-height: 700px;
 }
 
 .avaliacao-pessoal {
@@ -383,11 +403,22 @@ h3 {
     width: 65%;
     padding: 30px;
     border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: 650px; 
+    min-height: 0;
 }
 
 .container-comentarios .titulo-secao h2 {
     font-size: 25px;
     color: var(--texto);
+}
+
+.comentario-usuario#lista_avaliacoes {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto; /* Use 'scroll' temporariamente para ver se a barra aparece */
 }
 
 /* COMENTÁRIOS */

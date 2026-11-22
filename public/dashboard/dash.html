@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OhCapitan | Home</title>
     <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="icon" href="../assets/icon/favicon2.ico" />
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -18,10 +19,7 @@
   </a>
 
   <nav class="menu-principal" aria-label="Navegação principal">
-    <a class="ativo" href="index.html">Início</a>
-    <a href="#personagens">Personagens</a>
-    <a href="#citacoes">Citações</a>
-    <a class="botao-entrar" href="login.html">Entrar</a>
+    <a class="ativo" href="../index.html">Sair</a>
   </nav>
 </header>
 
@@ -47,9 +45,8 @@
       </div>
 
       <div class="kpi">
-        <p>Total de assistidos</p>
+        <p>Total de usuários que assistiram a esse filme</p>
         <span id="kpiAssistidos">xx%</span>
-        <span class="kpi-total">de usuarios assistiram à esse filme</span> 
       </div>
 
     </div>
@@ -79,7 +76,8 @@
     
       <div class="kpi personagem">
           <h2 class="titulo-secao">Personagem Favorito</h2>
-          <span id="kpiPersonagem">-</span>
+            <img id="imgFavorito" src="" alt="Personagem favorito" loading="lazy" style="display: none;">
+            <span id="kpiFavorito">-</span>
           <p>Personagem mais votado como favorito pelos os usuários</p>
       </div>
     </div>
@@ -110,11 +108,19 @@
             </h3>
 
             <div class="campo">
-                <label for="personagem_input">Personagem:</label>
+                <label for="personagem_input">Personagem favorito:</label>
 
                 <select id="personagem_input">
-                    <option value="1">Personagem A</option>
-                    <option value="2">Personagem B</option>
+                    <option value="1">John Keating</option>
+                    <option value="2">Todd Anderson</option>
+                    <option value="3">Neil Perry</option>
+                    <option value="4">Knox Overstreet</option>
+                    <option value="5">Charlie Dalton</option>
+                    <option value="6">Richard Cameron</option>
+                    <option value="7">Stephen Meeks Jr.</option>
+                    <option value="8">Gerard Pitts</option>
+                    <option value="9">Sr. Nolan </option>
+                    <option value="10">Mr. Perry</option>
                 </select>
             </div>
 
@@ -201,89 +207,22 @@
 
     <!-- DASHBOARD -->
 <script>
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-  let proximaAtualizacao;
+let proximaAtualizacao;
 
-  // window.onload = notaMediaGrafico; estão sobreescrevendo um ao outro não permitindo a visualização dos gráficos
-  // window.onload = recomendadoGrafico;
+// window.onload = notaMediaGrafico; estão sobreescrevendo um ao outro não permitindo a visualização dos gráficos
+// window.onload = recomendadoGrafico;
 
-window.addEventListener('load', notaMediaGrafico); // prática para não sobreescrever
+window.addEventListener('load', buscarMediaKpi);
+window.addEventListener('load', assistidosKpi);
+window.addEventListener('load', buscarFavoritoKpi);
+window.addEventListener('load', notaGrafico); // prática para não sobreescrever
 window.addEventListener('load', recomendadoGrafico);
-window.addEventListener('load', buscarNotaMedia);
 window.addEventListener('load', buscarComentarioUsuario);
 
-
-// function obterDadosGrafico() {
-//   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
-//   avaliacoes.forEach(item => {
-//       document.getElementById("btnAvaliacao").innerHTML += `
-//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.comentario}</button>
-//       `
-
-//       document.getElementById("graficos").innerHTML += `
-//           <div id="grafico${item.id}" class="display-none">
-//               <h3 class="tituloGraficos">
-//                   <span id="tituloAvaliacao${item.id}">${item.comentario}</span>
-//               </h3>
-//               <div class="graph">
-//                   <canvas id="graficoNotas${item.id}"></canvas>
-//               </div>
-//               <div class="label-captura">
-//                   <p id="avisoCaptura${item.id}" style="color: white"></p>
-//               </div>
-//           </div>
-//       `
-
-//       obterDadosGrafico(item.id)
-//   });
-
-//   if (avaliacoes.length > 0) {
-//       exibirAvaliacao(avaliacoes[0].id)
-//   }
-// }
-
-function notaMediaGrafico() {
-
-fetch(`/avaliacoes/grafico/notas`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            plotarGraficoNota(resposta)
-
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-function recomendadoGrafico() {
-
-fetch(`/avaliacoes/grafico/recomendacao`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            plotarGraficoRecomendado(resposta)
-
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-function buscarNotaMedia() {
+// KPI - NOTA MÉDIA
+function buscarMediaKpi() {
   fetch(`/avaliacoes/kpi/notaMedia`, { cache: 'no-store' }).then(function (response) {
     if (response.ok) {
       response.json().then(function (resposta) {
@@ -306,9 +245,114 @@ function buscarNotaMedia() {
     });
 }
 
-  
-// INSERINDO OS DADOS NO GRÁFICO DE NOTAS
+// KPI - ASSISTIDOS
+function assistidosKpi() {
+  fetch(`/avaliacoes/kpi/totalAssistidos`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
+        let assistidos = resposta[0].totalAssistidos;
+
+        if (assistidos == null) {
+          kpiAssistidos.innerHTML = '-';
+        } else {
+          kpiAssistidos.innerHTML = Number(assistidos);
+        }
+      });
+    } else {
+      console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+      console.error(`Erro na obtenção da nota média: ${error.message}`);
+    });
+}
+
+// JSON DOS PERSONAGENS E SUAS DEVIDAS FOTOS
+let fotosPersonagens = {
+  'John Keating': 'assets/img/personagens/john-keating.jpg',
+  'Todd Anderson': '/assets/imgs/personagens/psgTodd.jpg',
+  'Neil Perry': 'assets/img/personagens/neil-perry.jpg',
+  'Knox Overstreet': 'assets/img/personagens/knox-overstreet.jpg',
+  'Charlie Dalton': 'assets/img/personagens/charlie-dalton.jpg',
+  'Richard Cameron': 'assets/img/personagens/richard-cameron.jpg',
+  'Stephen Meeks Jr.': 'assets/img/personagens/stephen-meeks.jpg',
+  'Gerard Pitts': 'assets/img/personagens/gerard-pitts.jpg',
+  'Sr. Nolan': 'assets/img/personagens/sr-nolan.jpg',
+  'Mr. Perry': 'assets/img/personagens/mr-perry.jpg'
+};
+
+// KPI - FAVORITO
+function buscarFavoritoKpi() {
+fetch(`/avaliacoes/kpi/favorito`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+    response.json().then(function (resposta) {
+        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+        let favorito = resposta[0].nome;
+
+        if (favorito == null) {
+            imgFavorito.style.display = 'none';
+        } else {
+            imgFavorito.src = fotosPersonagens[favorito]
+            imgFavorito.style.display = 'block';
+            kpiFavorito.innerHTML = favorito;
+        }
+    });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+    })
+    .catch(function (error) {
+        console.error(`Erro na obtenção do personagem favorito: ${error.message}`);
+    });
+}
+
+
+// GRAFICO BARRAS - NOTAS
+function notaGrafico() {
+
+fetch(`/avaliacoes/grafico/notas`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGraficoNota(resposta)
+
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+// GRAFICO PIZZA - RECOMENDADOS
+function recomendadoGrafico() {
+
+fetch(`/avaliacoes/grafico/recomendacao`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGraficoRecomendado(resposta)
+
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+  })
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+// INSERINDO OS DADOS NO GRÁFICO DE NOTAS
 function plotarGraficoNota(resposta) {
     let labels = [];
     let valores = [];
@@ -336,6 +380,7 @@ function plotarGraficoNota(resposta) {
         },
         options: {
             responsive: true,
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
                     display: false
@@ -370,8 +415,6 @@ function plotarGraficoNota(resposta) {
         config
     );
 }
-
-
 
 // INSERINDO OS DADOS NO GRÁFICO DE RECOMENDAÇÃO
 function plotarGraficoRecomendado(resposta) {
@@ -500,15 +543,6 @@ function buscarComentarioUsuario() {
 
         container.innerHTML = '';
 
-        if (listaDeComentarios.length === 0) {
-            container.innerHTML = `
-                <p class="sem-comentarios">
-                    Ainda não existem avaliações. Seja o primeiro a avaliar!
-                </p>
-            `;
-            return;
-        }
-
         listaDeComentarios.forEach((avaliacao) => {
             let estrelas = '';
 
@@ -577,6 +611,38 @@ function buscarComentarioUsuario() {
 function sumirMensagem() {
   cardErro.style.display = "none";  
 }
+
+
+// function obterDadosGrafico() {
+//   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
+//   avaliacoes.forEach(item => {
+//       document.getElementById("btnAvaliacao").innerHTML += `
+//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.comentario}</button>
+//       `
+
+//       document.getElementById("graficos").innerHTML += `
+//           <div id="grafico${item.id}" class="display-none">
+//               <h3 class="tituloGraficos">
+//                   <span id="tituloAvaliacao${item.id}">${item.comentario}</span>
+//               </h3>
+//               <div class="graph">
+//                   <canvas id="graficoNotas${item.id}"></canvas>
+//               </div>
+//               <div class="label-captura">
+//                   <p id="avisoCaptura${item.id}" style="color: white"></p>
+//               </div>
+//           </div>
+//       `
+
+//       obterDadosGrafico(item.id)
+//   });
+
+//   if (avaliacoes.length > 0) {
+//       exibirAvaliacao(avaliacoes[0].id)
+//   }
+// }
+
+
 </script>
-  </body>
+</body>
 </html>

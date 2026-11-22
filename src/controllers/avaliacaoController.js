@@ -1,8 +1,21 @@
 var avaliacaoModel = require("../models/avaliacaoModel");
 
-function buscarComentarioUsuario(req, res) {
+function buscarFavoritoKpi(req, res) {
 
-  avaliacaoModel.buscarComentarioUsuario().then((resultado) => {
+  avaliacaoModel.buscarFavoritoKpi().then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as avaliações de Recomendados: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function buscarTotalAssitidosKpi(req, res) {
+
+  avaliacaoModel.buscarTotalAssitidosKpi().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } 
@@ -17,6 +30,19 @@ function buscarNotaMediaKpi(req, res) {
   var idUsuario = req.params.idUsuario;
 
   avaliacaoModel.buscarNotaMediaKpi(idUsuario).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } 
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao buscar as avaliações de Nota Média: ", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage);
+  });
+}
+
+function buscarComentarioUsuario(req, res) {
+
+  avaliacaoModel.buscarComentarioUsuario().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } 
@@ -87,7 +113,9 @@ function cadastrar(req, res) {
 module.exports = {
   buscarNotasParaGrafico,
   buscarRecomendadoParaGrafico,
-  buscarNotaMediaKpi,
   buscarComentarioUsuario,
+  buscarNotaMediaKpi,
+  buscarTotalAssitidosKpi,
+  buscarFavoritoKpi,
   cadastrar
 }

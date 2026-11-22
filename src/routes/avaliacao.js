@@ -3,6 +3,14 @@ var router = express.Router();
 
 var avaliacaoController = require("../controllers/avaliacaoController");
 
+router.get("/kpi/favorito", function (req, res) {
+  avaliacaoController.buscarFavoritoKpi(req, res);
+});
+
+router.get("/kpi/totalAssistidos", function (req, res) {
+  avaliacaoController.buscarTotalAssitidosKpi(req, res);
+});
+
 router.get("/kpi/notaMedia", function (req, res) {
   avaliacaoController.buscarNotaMediaKpi(req, res);
 });
