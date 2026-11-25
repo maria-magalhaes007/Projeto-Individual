@@ -84,7 +84,10 @@ SELECT
 	a.assistido,
 	a.recomendado,
 	a.dataPublicacao,
-	u.nome AS nomeUsuario
+	u.nome AS nomeUsuario,
+    CASE 
+		WHEN a.descricao IS NULL THEN ''
+	END
 FROM avaliacao a
 JOIN usuario u ON a.fkUsuario = u.id
 ORDER BY a.dataPublicacao DESC;

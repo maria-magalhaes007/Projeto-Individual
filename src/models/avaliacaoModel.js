@@ -37,17 +37,20 @@ function buscarNotaMediaKpi() {
 function buscarComentarioUsuario() {
 
   var instrucaoSql = `
-        SELECT
-        a.id AS idAvaliacao,
-        a.nota,
-        a.descricao,
-        a.assistido,
-        a.recomendado,
-        a.dataPublicacao,
-        u.nome AS nomeUsuario
-    FROM avaliacao a
-    JOIN usuario u ON a.fkUsuario = u.id
-    ORDER BY a.dataPublicacao DESC;`;
+  SELECT
+    a.id AS idAvaliacao,
+    a.nota,
+    CASE 
+      WHEN a.descricao IS NULL THEN ''
+          else a.descricao
+    END descricao,
+    a.assistido,
+    a.recomendado,
+    a.dataPublicacao,
+    u.nome AS nomeUsuario
+  FROM avaliacao a
+  JOIN usuario u ON a.fkUsuario = u.id
+  ORDER BY a.dataPublicacao DESC;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);

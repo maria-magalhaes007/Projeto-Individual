@@ -125,13 +125,14 @@
             </div>
 
             <div class="campo">
-                <label for="nota_input">Nota:</label>
+                <label for="nota_input">Nota para o filme (1 - 5):</label>
                 <input id="nota_input" type="number" min="0" max="5" step="1" />
             </div>
 
             <div class="campo">
                 <label for="descricao_input">Descrição:</label>
-                <input id="descricao_input" type="text" placeholder="Sua avaliação" />
+                <input id="descricao_input" type="text" placeholder="Sua avaliação" onkeyup="count_descricao()"/>
+                <div id="msg">0 / 300</div>
             </div>
 
             <div class="campo">
@@ -308,7 +309,6 @@ fetch(`/avaliacoes/kpi/favorito`, { cache: 'no-store' }).then(function (response
         console.error(`Erro na obtenção do personagem favorito: ${error.message}`);
     });
 }
-
 
 // GRAFICO BARRAS - NOTAS
 function notaGrafico() {
@@ -508,10 +508,7 @@ fetch("/avaliacoes/cadastrar", {
     if (resposta.ok) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
-      buscarComentarioUsuario();
-
-      // Limpa os campos do formulário
-      document.getElementById("form_avaliacao").reset();
+      buscarComentarioUsuario()
 
       setTimeout(sumirMensagem, 5000);
     } else {
@@ -594,7 +591,7 @@ function buscarComentarioUsuario() {
                     </div>
 
                 </div>
-
+                <br>
             `;
 
         });
@@ -612,6 +609,18 @@ function sumirMensagem() {
   cardErro.style.display = "none";  
 }
 
+// CONTANDO CARACTERES
+function count_descricao() {
+  let descricao = descricao_input.value
+
+      if (descricao.length > 5) {
+        msg.innerHTML = `Limite de caracteres atingido!`
+      } else {
+        msg.innerHTML = `${descricao.length} / 300`
+        
+    }
+  
+}
 
 // function obterDadosGrafico() {
 //   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
