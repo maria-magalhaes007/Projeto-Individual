@@ -81,7 +81,7 @@ function buscarNotasParaGrafico(req, res) {
   });
 }
 
-function cadastrar(req, res) {
+function cadastrarAvaliacao(req, res) {
   var nota = req.body.nota;
   var assistido = req.body.assistido;
   var descricao = req.body.descricao;
@@ -95,12 +95,13 @@ function cadastrar(req, res) {
     res.status(400).send("fkUsuario está undefined!");
   } else {
 
-    avaliacaoModel.cadastrar(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario)
+    avaliacaoModel.cadastrarAvaliacao(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
       ).catch((erro) => {
         console.log(erro);
+        console.log(req.body);
         console.log(
           "\nHouve um erro ao realizar o cadastro! Erro: ",
           erro.sqlMessage
@@ -117,5 +118,5 @@ module.exports = {
   buscarNotaMediaKpi,
   buscarTotalAssitidosKpi,
   buscarFavoritoKpi,
-  cadastrar
+  cadastrarAvaliacao
 }

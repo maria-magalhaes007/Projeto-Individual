@@ -1,0 +1,439 @@
+/* RESET E PALETA */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --preto: #17120f;
+  --preto-suave: #211812;
+  --marrom: #593b25;
+  --dourado: #c99a62;
+  --creme: #f5f0e8;
+  --creme-escuro: #e7ddd0;
+  --texto: #211a15;
+  --texto-suave: #74685d;
+  --borda: #ded3c5;
+}
+
+body {
+  background: var(--creme);
+  color: var(--texto);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+a {
+  text-decoration: none;
+  color: beige;
+}
+
+p {
+  font-size: 56px;
+  color: white;
+}
+
+h2 {
+  color: var(--texto);
+  font-size: 20px;
+}
+
+/* NAV */
+.topo {
+  background-color: #110a01;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 12px 4.5%;
+  border-bottom: 1px solid rgba(189, 119, 33, 0.24);
+}
+
+.menu-principal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 28px;
+}
+
+.menu-principal a {
+  font-size: 13px;
+  padding: 10px 0;
+  color: #e6ddd2;
+  border-bottom: 2px solid transparent;
+}
+
+.menu-principal a:hover,
+.menu-principal a.ativo {
+  color: #e7c18e;
+  border-bottom-color: var(--dourado);
+}
+
+.menu-principal .botao-entrar {
+  border: 1px solid var(--dourado);
+  border-radius: 3px;
+  padding: 9px 17px;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  color: #e7c18e;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  line-height: 1.4;
+}
+
+.marca img {
+  width: 100%;
+  height: 50px;
+  object-fit: contain;
+}
+
+/* CONTAINER PRINCIPAL */
+.container-home {
+  width: 100%;
+}
+
+/* BANNER */
+
+.banner {
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  padding: 48px 4.5%;
+  color: #fff;
+  background-image:
+    linear-gradient(90deg, rgba(18,13,10,.96) 0%, rgba(18,13,10,.77) 42%, rgba(18,13,10,.08) 100%),
+    url('/assets/imgs/bannerPSG.jpg');
+  background-size: cover;
+  background-position: center 35%;
+}
+
+.banner-conteudo {
+  max-width: 590px;
+}
+
+.sobretitulo {
+  font-size: 11px;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  color: #e4c69d;
+}
+
+.banner h1 {
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: 2px;
+  max-width: 600px;
+}
+
+.linha-dourada {
+  display: block;
+  width: 40px;
+  height: 2px;
+  background: var(--dourado);
+  margin: 20px 0 14px;
+}
+
+.banner p {
+  color: #e5ddd5;
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 400px;
+}
+
+/* ESTRUTURA DO CONTEÚDO */
+.layout-conteudo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 4.5%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.coluna-principal {
+  flex: 1;
+  min-width: 0;
+}
+
+.secao {
+  margin-bottom: 34px;
+}
+
+.titulo-secao {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.titulo-secao h2 {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.titulo-secao > span {
+  height: 1px;
+  flex: 1;
+  background: #cfc2b2;
+}
+
+.caixaPesquisa {
+    border-radius: 10px;
+    height: 25px;
+    width: 100%;
+    border: #74685d solid 2px;
+
+    background-color: #f5f0e8;
+    color: #211812;
+    font-family: inherit;
+    font-size: 14px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.caixaPesquisa::placeholder {
+    color: #8a7d6f;
+    font-style: italic;
+}
+
+.caixaPesquisa:focus {
+    outline: none;
+    border-color: #c99a62;
+}
+/* INÍCIO DA MODIFICAÇÃO DE CITAÇÃO LATERAL */
+.citacao-lateral {
+  flex: 0 0 17%;
+  min-width: 150px;
+}
+
+.cartao-citacao {
+  min-height: 360px;
+  padding: 24px 17px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 5px;
+  background:
+    linear-gradient(rgba(25, 16, 10, .78), rgba(25, 16, 10, 0.486)),
+    url('/assets/imgs/citacao.jpg') center/cover;
+  color: #f5f0e8;
+  text-align: left;
+}
+
+.citacao-aspas {
+  color: var(--dourado);
+  font-size: 48px;
+  line-height: .8;
+}
+
+.cartao-citacao p {
+  color: #f5f0e8;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 1.7;
+  margin-top: 12px;
+}
+
+.autor-citacao {
+  color: #e7c18e;
+  font-size: 13px;
+  margin-top: 17px;
+}
+
+.linha-citacao {
+  width: 35px;
+  height: 1px;
+  background: var(--dourado);
+  margin: 16px 0 10px;
+}
+
+.origem-citacao {
+  color: #d6c7b7;
+  font-size: 12px;
+  line-height: 1.5;
+}
+/* FIM DA MODIFICAÇÃO DE CITAÇÃO LATERAL */
+
+/* INFORMAÇÕES LATERAIS */
+.barra-lateral {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 24%;
+  gap: 18px;
+}
+
+.cartao-lateral {
+  padding: 16px;
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, .25);
+}
+
+.cartao-lateral h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.cartao-lateral > p {
+  color: #554b42;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.divisor {
+  height: 1px;
+  background: var(--borda);
+  margin: 15px 0;
+}
+
+.especificacoes {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.especificacoes div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 11px;
+}
+
+.especificacoes dt {
+  font-weight: 700;
+}
+
+.especificacoes dd {
+  color: var(--texto-suave);
+}
+
+.cartao-lateral h3 {
+  font: 600 14px Georgia, 'Times New Roman', serif;
+  margin-bottom: 10px;
+}
+
+.palavras-chaves {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.palavras-chaves span {
+  background: #92704e;
+  color: #fff6eb;
+  border-radius: 20px;
+  padding: 5px 9px;
+  font-size: 10px;
+}
+
+/* PERSONAGENS */
+
+.secao-personagens {
+  margin-top: 6px;
+}
+
+.container-personagem {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto; /* faz o que passa da largura ficar escondido e rolável na horizontal. */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth; /* deixa a rolagem animada, e não um pulo. */
+  scrollbar-width: none; /*  escondem a barra de rolagem */
+}
+
+.personagem {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+}
+
+.moldura-personagem {
+  width: 220px;
+  height: 300px;
+  margin: 0 auto 9px;
+  overflow: hidden;
+  border-radius: 20px 60px;
+  border: 2px solid #e0d1bd;
+}
+
+.moldura-personagem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.personagem h3 {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.personagem p {
+  color: var(--texto-suave);
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+/* FOOTER */
+.container-footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-image: url('/assets/imgs/BannerFooter.svg');
+  background-size: cover;
+  background-position: center;
+}
+
+.footer-desc {
+  padding: 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.footer-desc p {
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.footer-desc span {
+  color: #c99a62;
+  font-size: 12px;
+  letter-spacing: 1px;
+  margin-top: 7px;
+}
+
+.container-footer .divisor {
+  height: 1px;
+  width: 100%;
+  max-width: 50px;
+  background: var(--dourado);
+  margin: 15px 0;
+}
+
+.container-footer .banner-topo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container-footer .img-logo {
+  padding: 10px 50px;
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+

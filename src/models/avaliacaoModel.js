@@ -73,14 +73,25 @@ function buscarNotasParaGrafico() {
 // Dados dash de % recomendado
 function buscarRecomendadoParaGrafico() {
   var instrucaoSql = `
-    SELECT * FROM vw_filme_recomendado`;
+    SELECT 
+    TRUNCATE(
+        SUM(recomendado) * 100 / COUNT(*), 2
+    ) AS 'recomendado',
+    -- Explicando: sum [1, 1, 0, 1] = 3 logo: 3 * 100 / 4 = 75
+
+    TRUNCATE(
+        SUM(1 - recomendado) * 100 / COUNT(*), 2
+    ) AS 'naoRecomendado'
+    -- Explicando: sum [1 - 1, 1 - 1, 1 - 0, 1 - 1] =  logo: 1 * 100 / 4 = 25
+
+    FROM avaliacao;`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 // usada no cadastro
-function cadastrar(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario) {
+function cadastrarAvaliacao(nota, assistido, descricao, recomendado, fkPersonagem, fkUsuario) {
   
   var instrucaoSql = `
       INSERT INTO avaliacao
@@ -100,5 +111,5 @@ module.exports = {
   buscarComentarioUsuario,
   buscarTotalAssitidosKpi,
   buscarFavoritoKpi,
-  cadastrar
+  cadastrarAvaliacao
 }

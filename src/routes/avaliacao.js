@@ -23,8 +23,8 @@ router.get("/grafico/notas", function (req, res) {
   avaliacaoController.buscarNotasParaGrafico(req, res);
 });
 
-router.post("/cadastrar", function (req, res) {
-  avaliacaoController.cadastrar(req, res);
+router.post("/cadastrarAvaliacao", function (req, res) {
+    avaliacaoController.cadastrarAvaliacao(req, res);
 });
 
 router.get("/comentarios", function (req, res) {

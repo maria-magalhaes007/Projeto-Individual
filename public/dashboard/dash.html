@@ -1,566 +1,679 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OhCapitan | Home</title>
-    <link rel="stylesheet" href="./../css/dashboards.css">
+
+<head>
+    <!-- <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon"> -->
     <link rel="icon" href="../assets/icon/favicon2.ico" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OhCapitan | Home</title>
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <!-- <link rel="stylesheet" href="./../css/estilo.css" /> -->
     <script src="../js/sessao.js"></script>
     <script src="./../js/alerta.js"></script>
+
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
+    <!-- <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet"> -->
+
+    <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  </head>
-  <body class="pagina-dashboard">
 
-  <!-- nabar -->
-<header class="topo">
-  <a class="marca" href="index.html" aria-label="Página inicial">
-    <img src="/assets/icon/iconLogo.svg" alt="" />
-  </a>
+    <!--FONT AWESOME-->
+    <!-- <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script> -->
+</head>
 
-  <nav class="menu-principal" aria-label="Navegação principal">
-    <a class="ativo" href="../index.html">Sair</a>
-  </nav>
-</header>
+<!-- <body onload=" atualizarFeed()"> -->
 
-<div class="layout-conteudo">
-  <div class="card_erro" id="cardErro">
-    <span id="mensagem_erro"></span>
-  </div>
+<body class="pagina-dashboard">
 
-    <div class="titulo-secao">
-      <h2>Relatório</h2>
-      <span></span>
-    </div>
+    <!-- ESTRUTURA ORIGINAL (não utilizada nesta página)
 
-<main class="coluna-principal">
-<!-- LADO ESQUERDO -->
-<div class="container-lateral-esquerdo">
-  <section class="secao lateral-esquerdo" id="relatorio">
-    <div class="kpis">
+    <div class="janela">
+        <div class="header-left">
+            <h1>AquaTech</h1>
 
-      <div class="kpi">
-        <p>Nota média</p>
-        <span id="kpiMedia">Carregando...</span>
-      </div>
-
-      <div class="kpi">
-        <p>Total de usuários que assistiram a esse filme</p>
-        <span id="kpiAssistidos">xx%</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- GRÁFICO -->
-   <div class="graficoNota">
-     <h2 class="titulo-secao">Notas dos usuários</h2>
-     <section class="container-InfoDash" id="infoDash">
-         <canvas id="graficoNotas"></canvas>
-     </section>
-   </div>
-</div>
-  
-
-<!-- LADO DIREITO -->
-<div class="container-lateral-direito">
-  <section class="secao" id="personagens">
-
-    <div class="kpis lateral-direito">
-      <div class="kpi grafico-recomendado">
-        <p>Total de recomendado</p>
-          <section class="container-InfoDash" id="infoDash">
-              <canvas id="graficoRecomendado"></canvas>
-          </section>
-      </div>
-    
-      <div class="kpi personagem">
-          <h2 class="titulo-secao">Personagem Favorito</h2>
-            <img id="imgFavorito" src="" alt="Personagem favorito" loading="lazy" style="display: none;">
-            <span id="kpiFavorito">-</span>
-          <p>Personagem mais votado como favorito pelos os usuários</p>
-      </div>
-    </div>
-  </section>
-</div> 
-</main>
-
-  <!-- AVALIAÇÃO DO USUÁRIO -->
-<section class="sessao sessao-avaliar" id="avaliacao">
-
-    <div class="titulo-secao">
-        <h2>Gostaria de avaliar sua experiência?</h2>
-        <p>Compartilhe sua opinião sobre Sociedade dos Poetas Mortos.</p>
-    </div>
-
-    <div class="container-avaliar-comentarios">
-
-        <!-- FORMULÁRIO -->
-        <div class="avaliacao-pessoal" id="form_avaliacao">
-            <p>REGISTRO DO USUÁRIO</p>
-
-            <div class="titulo-secao">
-                <h2>Deixe aqui sua avaliação</h2>
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <h3>
-                Olá, <span id="b_usuario">usuário</span>!
-            </h3>
-
-            <div class="campo">
-                <label for="personagem_input">Personagem favorito:</label>
-
-                <select id="personagem_input">
-                    <option value="1">John Keating</option>
-                    <option value="2">Todd Anderson</option>
-                    <option value="3">Neil Perry</option>
-                    <option value="4">Knox Overstreet</option>
-                    <option value="5">Charlie Dalton</option>
-                    <option value="6">Richard Cameron</option>
-                    <option value="7">Stephen Meeks Jr.</option>
-                    <option value="8">Gerard Pitts</option>
-                    <option value="9">Sr. Nolan </option>
-                    <option value="10">Mr. Perry</option>
-                </select>
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Aquários e Terrários</h3>
+                </a>
             </div>
 
-            <div class="campo">
-                <label for="nota_input">Nota para o filme (1 - 5):</label>
-                <input id="nota_input" type="number" min="0" max="5" step="1" />
+            <div class="btn-nav">
+                <h3>Gráficos</h3>
             </div>
 
-            <div class="campo">
-                <label for="descricao_input">Descrição:</label>
-                <input id="descricao_input" type="text" placeholder="Sua avaliação" onkeyup="count_descricao()"/>
-                <div id="msg">0 / 300</div>
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Mural de Avisos</h3>
+                </a>
             </div>
 
-            <div class="campo">
-                <span>Já assisti:</span>
-
-                <div class="check">
-                    <input type="checkbox" id="assistido_sim" />
-                    <label for="assistido_sim">Sim</label>
-
-                    <input type="checkbox" id="assistido_nao" />
-                    <label for="assistido_nao">Não</label>
-                </div>
-            </div>
-
-            <div class="campo">
-                <span>Recomendaria:</span>
-
-                <div class="check">
-                    <input type="checkbox" id="recomendado_sim" />
-                    <label for="recomendado_sim">Sim</label>
-
-                    <input type="checkbox" id="recomendado_nao" />
-                    <label for="recomendado_nao">Não</label>
-                </div>
-            </div>
-
-            <button class="botao" onclick="avaliar()">
-                Enviar avaliação
-            </button>
-        </div>
-
-        <!-- COMENTÁRIOS -->
-        <div class="container-comentarios" id="comentarios">
-            <div class="titulo-secao">
-                <h2>Comentários</h2>
-            </div>
-
-            <div class="comentario-usuario" id="lista_avaliacoes">
-
-                <!-- Os cards serão inseridos aqui -->
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
             </div>
         </div>
 
+        <div class="dash">
+            <div id="alerta">
+            </div>
+
+            <div class="btns-dash" id="btnAquario">
+            </div>
+            <div id="graficos">
+            </div>
+        </div>
     </div>
 
-</section>
+    -->
 
-    
-  </div>
+    <!-- navbar -->
+    <header class="topo">
+        <a class="marca" href="index.html" aria-label="Página inicial">
+            <img src="/assets/icon/iconLogo.svg" alt="" />
+        </a>
 
+        <nav class="menu-principal" aria-label="Navegação principal">
+            <a class="ativo" href="../index.html">Sair</a>
+        </nav>
+    </header>
 
+    <div class="layout-conteudo">
+        <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro"></span>
+        </div>
 
-<!-- RODAPÉ -->
-<footer class="container-footer">
+        <div class="titulo-secao">
+            <h2>Relatório</h2>
+            <span></span>
+        </div>
 
-  <div class="footer-desc">
-    <p>“CARPE DIEM, APROVEITE O DIA”</p>
-    <span>- John Keating -</span>
-  </div>
+        <main class="coluna-principal">
+            <!-- LADO ESQUERDO -->
+            <div class="container-lateral-esquerdo">
+                <section class="secao lateral-esquerdo" id="relatorio">
+                    <div class="kpis">
 
-  <div class="divisor"></div>
+                        <div class="kpi">
+                            <p>Nota média</p>
+                            <span id="kpiMedia">Carregando...</span>
+                        </div>
 
-  <div class="banner-topo">
-    <img
-      class="img-logo"
-      src="/assets/icon/iconLogo.svg"
-      alt="Logo"
-    />
-  </div>
+                        <div class="kpi">
+                            <p>Total de usuários que assistiram a esse filme</p>
+                            <span id="kpiAssistidos">xx%</span>
+                        </div>
 
-</footer>
+                    </div>
+                </section>
 
+                <!-- GRÁFICO -->
+                <div class="graficoNota">
+                    <h2 class="titulo-secao">Notas dos usuários</h2>
+                    <section class="container-InfoDash" id="infoDash">
+                        <canvas id="graficoNotas"></canvas>
+                    </section>
+                </div>
+            </div>
 
-    <!-- DASHBOARD -->
+            <!-- LADO DIREITO -->
+            <div class="container-lateral-direito">
+                <section class="secao" id="personagens">
+
+                    <div class="kpis lateral-direito">
+                        <div class="kpi grafico-recomendado">
+                            <p>Total de recomendado</p>
+                            <section class="container-InfoDash" id="infoDash">
+                                <canvas id="graficoRecomendado"></canvas>
+                            </section>
+                        </div>
+
+                        <div class="kpi personagem">
+                            <h2 class="titulo-secao">Personagem Favorito</h2>
+                            <img id="imgFavorito" src="" alt="Personagem favorito" loading="lazy" style="display: none;">
+                            <span id="kpiFavorito">-</span>
+                            <p>Personagem mais votado como favorito pelos os usuários</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- AVALIAÇÃO DO USUÁRIO -->
+        <section class="sessao sessao-avaliar" id="avaliacao">
+
+            <div class="titulo-secao">
+                <h2>Gostaria de avaliar sua experiência?</h2>
+                <p>Compartilhe sua opinião sobre Sociedade dos Poetas Mortos.</p>
+            </div>
+
+            <div class="container-avaliar-comentarios">
+
+                <!-- FORMULÁRIO -->
+                <div class="avaliacao-pessoal" id="form_avaliacao">
+                    <p>REGISTRO DO USUÁRIO</p>
+
+                    <div class="titulo-secao">
+                        <h2>Deixe aqui sua avaliação</h2>
+                    </div>
+
+                    <h3>
+                        Olá, <span id="b_usuario">usuário</span>!
+                    </h3>
+
+                    <div class="campo">
+                        <label for="personagem_input">Personagem favorito:</label>
+
+                        <select id="personagem_input">
+                            <option value="1">John Keating</option>
+                            <option value="2">Todd Anderson</option>
+                            <option value="3">Neil Perry</option>
+                            <option value="4">Knox Overstreet</option>
+                            <option value="5">Charlie Dalton</option>
+                            <option value="6">Richard Cameron</option>
+                            <option value="7">Stephen Meeks Jr.</option>
+                            <option value="8">Gerard Pitts</option>
+                            <option value="9">Sr. Nolan </option>
+                            <option value="10">Mr. Perry</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="nota_input">Nota para o filme (1 - 5):</label>
+                        <input id="nota_input" type="number" min="0" max="5" step="1" />
+                    </div>
+
+                    <div class="campo">
+                        <label for="descricao_input">Descrição:</label>
+                        <input id="descricao_input" type="text" placeholder="Sua avaliação" onkeyup="count_descricao()" />
+                        <div id="msg">0 / 300</div>
+                    </div>
+
+                    <div class="campo">
+                        <span>Já assisti:</span>
+
+                        <div class="check">
+                            <input type="checkbox" id="assistido_sim" />
+                            <label for="assistido_sim">Sim</label>
+
+                            <input type="checkbox" id="assistido_nao" />
+                            <label for="assistido_nao">Não</label>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <span>Recomendaria:</span>
+
+                        <div class="check">
+                            <input type="checkbox" id="recomendado_sim" />
+                            <label for="recomendado_sim">Sim</label>
+
+                            <input type="checkbox" id="recomendado_nao" />
+                            <label for="recomendado_nao">Não</label>
+                        </div>
+                    </div>
+
+                    <button class="botao" onclick="avaliar()">
+                        Enviar avaliação
+                    </button>
+                </div>
+
+                <!-- COMENTÁRIOS -->
+                <div class="container-comentarios" id="comentarios">
+                    <div class="titulo-secao">
+                        <h2>Comentários</h2>
+                    </div>
+
+                    <div class="comentario-usuario" id="lista_avaliacoes">
+                        <!-- Os cards serão inseridos aqui -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- RODAPÉ -->
+    <footer class="container-footer">
+
+        <div class="footer-desc">
+            <p>“CARPE DIEM, APROVEITE O DIA”</p>
+            <span>- John Keating -</span>
+        </div>
+
+        <div class="divisor"></div>
+
+        <div class="banner-topo">
+            <img class="img-logo" src="/assets/icon/iconLogo.svg" alt="Logo" />
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
+
 <script>
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-let proximaAtualizacao;
+    let proximaAtualizacao;
 
-// window.onload = notaMediaGrafico; estão sobreescrevendo um ao outro não permitindo a visualização dos gráficos
-// window.onload = recomendadoGrafico;
+    // window.onload = exibirAquariosDoUsuario();
 
-window.addEventListener('load', buscarMediaKpi);
-window.addEventListener('load', assistidosKpi);
-window.addEventListener('load', buscarFavoritoKpi);
-window.addEventListener('load', notaGrafico); // prática para não sobreescrever
-window.addEventListener('load', recomendadoGrafico);
-window.addEventListener('load', buscarComentarioUsuario);
+    // window.onload = notaMediaGrafico; estão sobreescrevendo um ao outro não permitindo a visualização dos gráficos
+    // window.onload = recomendadoGrafico;
 
-// KPI - NOTA MÉDIA
-function buscarMediaKpi() {
-  fetch(`/avaliacoes/kpi/notaMedia`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (resposta) {
-        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    window.addEventListener('load', buscarMediaKpi);
+    window.addEventListener('load', assistidosKpi);
+    window.addEventListener('load', buscarFavoritoKpi);
+    window.addEventListener('load', obterDadosGraficoNota); // prática para não sobreescrever
+    window.addEventListener('load', obterDadosGraficoRecomendado);
+    window.addEventListener('load', buscarComentarioUsuario);
 
-        let nota = resposta[0].notaMedia;
+    // ---------------------------------------------------------------
+    // KPIs
+    // ---------------------------------------------------------------
 
-        if (nota == null) {
-          kpiMedia.innerHTML = '-';
-        } else {
-          kpiMedia.innerHTML = Number(nota).toFixed(1);
-        }
-      });
-    } else {
-      console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-      console.error(`Erro na obtenção da nota média: ${error.message}`);
-    });
-}
+    // KPI - NOTA MÉDIA
+    function buscarMediaKpi() {
+        fetch(`/avaliacao/kpi/notaMedia`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-// KPI - ASSISTIDOS
-function assistidosKpi() {
-  fetch(`/avaliacoes/kpi/totalAssistidos`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (resposta) {
-        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    let nota = resposta[0].notaMedia;
 
-        let assistidos = resposta[0].totalAssistidos;
-
-        if (assistidos == null) {
-          kpiAssistidos.innerHTML = '-';
-        } else {
-          kpiAssistidos.innerHTML = Number(assistidos);
-        }
-      });
-    } else {
-      console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-      console.error(`Erro na obtenção da nota média: ${error.message}`);
-    });
-}
-
-// JSON DOS PERSONAGENS E SUAS DEVIDAS FOTOS
-let fotosPersonagens = {
-  'John Keating': 'assets/img/personagens/john-keating.jpg',
-  'Todd Anderson': '/assets/imgs/personagens/psgTodd.jpg',
-  'Neil Perry': 'assets/img/personagens/neil-perry.jpg',
-  'Knox Overstreet': 'assets/img/personagens/knox-overstreet.jpg',
-  'Charlie Dalton': 'assets/img/personagens/charlie-dalton.jpg',
-  'Richard Cameron': 'assets/img/personagens/richard-cameron.jpg',
-  'Stephen Meeks Jr.': 'assets/img/personagens/stephen-meeks.jpg',
-  'Gerard Pitts': 'assets/img/personagens/gerard-pitts.jpg',
-  'Sr. Nolan': 'assets/img/personagens/sr-nolan.jpg',
-  'Mr. Perry': 'assets/img/personagens/mr-perry.jpg'
-};
-
-// KPI - FAVORITO
-function buscarFavoritoKpi() {
-fetch(`/avaliacoes/kpi/favorito`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-    response.json().then(function (resposta) {
-        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-        let favorito = resposta[0].nome;
-
-        if (favorito == null) {
-            imgFavorito.style.display = 'none';
-        } else {
-            imgFavorito.src = fotosPersonagens[favorito]
-            imgFavorito.style.display = 'block';
-            kpiFavorito.innerHTML = favorito;
-        }
-    });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-    })
-    .catch(function (error) {
-        console.error(`Erro na obtenção do personagem favorito: ${error.message}`);
-    });
-}
-
-// GRAFICO BARRAS - NOTAS
-function notaGrafico() {
-
-fetch(`/avaliacoes/grafico/notas`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            plotarGraficoNota(resposta)
-
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-// GRAFICO PIZZA - RECOMENDADOS
-function recomendadoGrafico() {
-
-fetch(`/avaliacoes/grafico/recomendacao`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            plotarGraficoRecomendado(resposta)
-
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
-    }
-  })
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
-
-// INSERINDO OS DADOS NO GRÁFICO DE NOTAS
-function plotarGraficoNota(resposta) {
-    let labels = [];
-    let valores = [];
-
-    for (let i = resposta.length - 1; i >= 0; i--) {
-        let registro = resposta[i];
-
-        labels.push(registro.nota);
-        valores.push(registro.quantidade);
-    }
-
-    const config = {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Quantidade de avaliações',
-                data: valores,
-
-                backgroundColor: '#c99a62',
-                borderColor: '#765238',
-                borderWidth: 1,
-                borderRadius: 6
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    backgroundColor: '#211812',
-                    titleColor: '#c99a62',
-                    bodyColor: '#f5f0e8',
-                    padding: 12,
-                    cornerRadius: 6
-                }
-            },
-
-            scales: {
-                x: {
-                    grid: {
-                        display: false
+                    if (nota == null) {
+                        kpiMedia.innerHTML = '-';
+                    } else {
+                        kpiMedia.innerHTML = Number(nota).toFixed(1);
                     }
-                },
-                y: {
-                    beginAtZero: true,
-
-                    grid: {
-                        color: 'rgba(245, 240, 232, 0.12)'
-                    }
-                }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-        }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção da nota média: ${error.message}`);
+            });
+    }
+
+    // KPI - ASSISTIDOS
+    function assistidosKpi() {
+        fetch(`/avaliacao/kpi/totalAssistidos`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                    let assistidos = resposta[0].totalAssistidos;
+
+                    if (assistidos == null) {
+                        kpiAssistidos.innerHTML = '-';
+                    } else {
+                        kpiAssistidos.innerHTML = Number(assistidos);
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção da nota média: ${error.message}`);
+            });
+    }
+
+    // JSON DOS PERSONAGENS E SUAS DEVIDAS FOTOS
+    let fotosPersonagens = {
+        'John Keating': '/assets/imgs/personagens/psgKeating.jpg',
+        'Todd Anderson': '/assets/imgs/personagens/psgTodd.jpg',
+        'Neil Perry': '/assets/img/personagens/neil-perry.jpg',
+        'Knox Overstreet': '/assets/img/personagens/knox-overstreet.jpg',
+        'Charlie Dalton': '/assets/img/personagens/charlie-dalton.jpg',
+        'Richard Cameron': '/assets/img/personagens/richard-cameron.jpg',
+        'Stephen Meeks Jr.': '/assets/img/personagens/stephen-meeks.jpg',
+        'Gerard Pitts': '/assets/img/personagens/gerard-pitts.jpg',
+        'Sr. Nolan': '/assets/img/personagens/sr-nolan.jpg',
+        'Mr. Perry': '/assets/img/personagens/mr-perry.jpg'
     };
-    new Chart(
-        document.getElementById('graficoNotas'),
-        config
-    );
-}
 
-// INSERINDO OS DADOS NO GRÁFICO DE RECOMENDAÇÃO
-function plotarGraficoRecomendado(resposta) {
-  console.log('iniciando plotagem do gráfico...');
+    // KPI - FAVORITO
+    function buscarFavoritoKpi() {
+        fetch(`/avaliacao/kpi/favorito`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-  // Criando estrutura para plotar gráfico - labels
-  let labels = [];
+                    let favorito = resposta[0].nome;
 
-  // Criando estrutura para plotar gráfico - dados
-  let dados = {
-      labels: labels,
-      datasets: [
-      {
-          label: 'Recomendado',
-          data: [],
-          fill: false,
-          borderColor: 'rgb(199, 52, 52)',
-          backgroundColor: ['rgb(201, 154, 98)', 'rgb(186, 94, 69)'],
-          tension: 0.1
-      }]
-  };
-
-  console.log('----------------------------------------------')
-  console.log('Estes dados foram recebidos pela funcao "recomendadoMediaGrafico" e passados para "plotarGrafico":')
-  console.log(resposta)
-
-  // Inserindo valores recebidos em estrutura para plotar o gráfico
-  for (let i = resposta.length - 1; i >= 0; i--) {
-      var registro = resposta[i];
-      // labels.push(registro.recomendado); nome da legenda está pasando o valor deles
-      // labels.push(registro.naoRecomendado);
-      labels.push('Recomendado'); 
-      labels.push('Não recomendado');
-      dados.datasets[0].data.push(registro.recomendado);
-      dados.datasets[0].data.push(registro.naoRecomendado);
-  }
-
-  console.log('----------------------------------------------')
-  console.log('O gráfico será plotado com os respectivos valores:')
-  console.log('Labels:')
-  console.log(labels)
-  console.log('Dados:')
-  console.log(dados.datasets)
-  console.log('----------------------------------------------')
-
-  // Criando estrutura para plotar gráfico - config
-  const config = {
-      type: 'pie',
-      data: dados,
-  };
-
-  // Adicionando gráfico criado em div na tela
-  let myChart = new Chart(
-      document.getElementById(`graficoRecomendado`),
-      config
-  );
-}
-
-//  AVALIANDO FILME
-function avaliar() {
-  var idUsuario = sessionStorage.ID_USUARIO; 
-  var notaVar = nota_input.value;
-  var descricaoVar = descricao_input.value;
-  var assistidoVar = assistido_sim.checked;
-  var recomendadoVar = recomendado_sim.checked;
-  var fkPersonagemVar = personagem_input.value;
-  var fkUsuario = idUsuario;
-
-  if (notaVar == "" || fkPersonagemVar == "") {
-    cardErro.style.display = "block";
-    mensagem_erro.innerHTML = "Preencha a nota e o personagem.";
-    return false;
-}
-
-fetch("/avaliacoes/cadastrar", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    idUsuario: sessionStorage.ID_USUARIO,
-    nota: notaVar,
-    descricao: descricaoVar,
-    assistido: assistidoVar ? 1 : 0,
-    recomendado: recomendadoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
-    fkPersonagem: fkPersonagemVar,
-    fkUsuario: idUsuario
-  }),
-})
-  .then(function (resposta) {
-    if (resposta.ok) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
-      buscarComentarioUsuario()
-
-      setTimeout(sumirMensagem, 5000);
-    } else {
-      throw "Houve um erro ao enviar a avaliação!";
-    }
-  })
-  .catch(function (erro) {
-    console.log(`#ERRO: ${erro}`);
-  });
-
-return false;
-}
-
-// BUSCAR COMENTÁRIOS
-function buscarComentarioUsuario() {
-
-    fetch('/avaliacoes/comentarios', {
-        cache: 'no-store'
-    }) .then(function (resposta) {
-
-        if (resposta.ok) {
-            return resposta.json();
-        } throw new Error('Erro ao buscar comentários.');
-    }) .then(function (listaDeComentarios) {
-
-        const container = document.getElementById("lista_avaliacoes"); 
-        // id da class em que será inserido, eu estava usando o mesmo id do FORMULÁRIO 
-        // isso faz sobreescrever o formulário e mostrar apenas o comentário
-
-        container.innerHTML = '';
-
-        listaDeComentarios.forEach((avaliacao) => {
-            let estrelas = '';
-
-            for (let i = 1; i <= 5; i++) {
-
-                if (i <= Number(avaliacao.nota)) {
-                    estrelas += '★';
-                } else {
-                    estrelas += '☆';
-                }
-
+                    if (favorito == null) {
+                        imgFavorito.style.display = 'none';
+                    } else {
+                        imgFavorito.src = fotosPersonagens[favorito]
+                        imgFavorito.style.display = 'block';
+                        kpiFavorito.innerHTML = favorito;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-            // Formatar a data
-            let data = new Date(avaliacao.dataPublicacao);
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção do personagem favorito: ${error.message}`);
+            });
+    }
 
-            let dataFormatada = data.toLocaleDateString('pt-BR');
+    // ---------------------------------------------------------------
+    // GRÁFICOS
+    // ---------------------------------------------------------------
 
-            let assistido = Number(avaliacao.assistido) === 1;
-            let recomendado = Number(avaliacao.recomendado) === 1;
+    // O gráfico é construído com três funções:
+    // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
+    // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
+    // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco (NÃO utilizada nesta página)
 
-            container.innerHTML += `
+    // Nesta página, as funções 1 e 2 existem uma vez para cada gráfico:
+    //     Notas -> obterDadosGraficoNota / plotarGraficoNota
+    //     Recomendação -> obterDadosGraficoRecomendado / plotarGraficoRecomendado
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+
+    // GRAFICO BARRAS - NOTAS
+    function obterDadosGraficoNota() {
+
+        fetch(`/avaliacao/grafico/notas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoNota(resposta)
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // GRAFICO PIZZA - RECOMENDADOS
+    function obterDadosGraficoRecomendado() {
+
+        fetch(`/avaliacao/grafico/recomendacao`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoRecomendado(resposta)
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // INSERINDO OS DADOS NO GRÁFICO DE NOTAS
+    function plotarGraficoNota(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Quantidade de avaliações',
+                    data: [],
+                    backgroundColor: '#c99a62',
+                    borderColor: '#765238',
+                    borderWidth: 1,
+                    borderRadius: 6
+                }
+            ]
+        };
+
+        console.log('----------------------------------------------');
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGraficoNota" e passados para "plotarGraficoNota":');
+        console.log(resposta);
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        // (Mantido o loop decrescente do seu código original)
+        for (let i = resposta.length - 1; i >= 0; i--) {
+            var registro = resposta[i];
+            labels.push(registro.nota);
+            dados.datasets[0].data.push(registro.quantidade);
+        }
+
+        console.log('----------------------------------------------');
+        console.log('O gráfico será plotado com os respectivos valores:');
+        console.log('Labels:');
+        console.log(labels);
+        console.log('Dados:');
+        console.log(dados.datasets);
+        console.log('----------------------------------------------');
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#211812',
+                        titleColor: '#c99a62',
+                        bodyColor: '#f5f0e8',
+                        padding: 12,
+                        cornerRadius: 6
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(245, 240, 232, 0.12)'
+                        }
+                    }
+                }
+            }
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`graficoNotas`),
+            config
+        );
+
+        // setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+    // INSERINDO OS DADOS NO GRÁFICO DE RECOMENDAÇÃO
+    function plotarGraficoRecomendado(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Recomendado',
+                    data: [],
+                    fill: false,
+                    borderColor: 'rgb(199, 52, 52)',
+                    backgroundColor: ['rgb(201, 154, 98)', 'rgb(186, 94, 69)'],
+                    tension: 0.1
+                }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGraficoRecomendado" e passados para "plotarGraficoRecomendado":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (let i = resposta.length - 1; i >= 0; i--) {
+            var registro = resposta[i];
+            // labels.push(registro.recomendado); nome da legenda está pasando o valor deles
+            // labels.push(registro.naoRecomendado);
+            labels.push('Recomendado');
+            labels.push('Não recomendado');
+            dados.datasets[0].data.push(registro.recomendado);
+            dados.datasets[0].data.push(registro.naoRecomendado);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'pie',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`graficoRecomendado`),
+            config
+        );
+    }
+
+    // ---------------------------------------------------------------
+    // AVALIAÇÃO E COMENTÁRIOS
+    // ---------------------------------------------------------------
+
+    //  AVALIANDO FILME
+    function avaliar() {
+        var idUsuario = sessionStorage.ID_USUARIO;
+        var notaVar = nota_input.value;
+        var descricaoVar = descricao_input.value;
+        var assistidoVar = assistido_sim.checked;
+        var recomendadoVar = recomendado_sim.checked;
+        var fkPersonagemVar = personagem_input.value;
+        var fkUsuario = idUsuario;
+
+        var assistidoRespondido = assistido_sim.checked || assistido_nao.checked;
+        var recomendadoRespondido = recomendado_sim.checked || recomendado_nao.checked;
+
+        if (notaVar == "" || 
+            descricaoVar == "" || 
+            !assistidoRespondido || 
+            !recomendadoRespondido || 
+            fkPersonagemVar == "") {
+            cardErro.style.display = "block";
+            mensagem_erro.innerHTML = "Preencha a todos os campos.";
+            return false;
+        }
+
+        fetch("/avaliacao/cadastrarAvaliacao", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idUsuario: sessionStorage.ID_USUARIO,
+                nota: notaVar,
+                descricao: descricaoVar,
+                assistido: assistidoVar ? 1 : 0,
+                recomendado: recomendadoVar ? 1 : 0, // retorna TRUE ou FALSE para o banco
+                fkPersonagem: fkPersonagemVar,
+                fkUsuario: idUsuario
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = "Avaliação enviada com sucesso!";
+                    buscarComentarioUsuario()
+
+                    setTimeout(sumirMensagem, 5000);
+                } else {
+                    resposta.text().then(texto => {
+                      console.log("Erro do servidor:", texto);
+                    });
+                    throw "Houve um erro ao enviar a avaliação!";
+                }
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
+
+        return false;
+    }
+
+    // BUSCAR COMENTÁRIOS
+    function buscarComentarioUsuario() {
+
+        fetch('/avaliacao/comentarios', {
+            cache: 'no-store'
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                return resposta.json();
+            } throw new Error('Erro ao buscar comentários.');
+        }).then(function (listaDeComentarios) {
+
+            const container = document.getElementById("lista_avaliacoes");
+            // id da class em que será inserido, eu estava usando o mesmo id do FORMULÁRIO 
+            // isso faz sobreescrever o formulário e mostrar apenas o comentário
+
+            container.innerHTML = '';
+
+            listaDeComentarios.forEach((avaliacao) => {
+                let estrelas = '';
+
+                for (let i = 1; i <= 5; i++) {
+
+                    if (i <= Number(avaliacao.nota)) {
+                        estrelas += '★';
+                    } else {
+                        estrelas += '☆';
+                    }
+
+                }
+                // Formatar a data
+                let data = new Date(avaliacao.dataPublicacao);
+
+                let dataFormatada = data.toLocaleDateString('pt-BR');
+
+                let assistido = Number(avaliacao.assistido) === 1;
+                let recomendado = Number(avaliacao.recomendado) === 1;
+
+                container.innerHTML += `
 
                 <div class="card-avaliacao">
 
@@ -594,64 +707,272 @@ function buscarComentarioUsuario() {
                 <br>
             `;
 
+            });
+
+        })
+            .catch(function (erro) {
+                console.log('Erro ao buscar comentários:', erro);
+            });
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
+
+    // CONTANDO CARACTERES
+    function count_descricao() {
+        let descricao = descricao_input.value
+
+        if (descricao.length > 10) {
+            msg.innerHTML = `Limite de caracteres atingido!`
+        } else {
+            msg.innerHTML = `${descricao.length} / 300`
+
+        }
+
+    }
+
+
+    // ---------------------------------------------------------------
+    // FUNÇÕES ORIGINAIS NÃO UTILIZADAS 
+    // ---------------------------------------------------------------
+
+        /*
+    function exibirAquariosDoUsuario() {
+        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
+        aquarios.forEach(item => {
+            document.getElementById("btnAquario").innerHTML += `
+            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
+            `
+
+            document.getElementById("graficos").innerHTML += `
+                <div id="grafico${item.id}" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario${item.id}">${item.descricao}</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas${item.id}"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura${item.id}" style="color: white"></p>
+                    </div>
+                </div>
+            `
+
+            obterDadosGrafico(item.id)
         });
 
-    })
-    .catch(function (erro) {
-
-        console.log('Erro ao buscar comentários:', erro);
-
-    });
-
-}
-
-function sumirMensagem() {
-  cardErro.style.display = "none";  
-}
-
-// CONTANDO CARACTERES
-function count_descricao() {
-  let descricao = descricao_input.value
-
-      if (descricao.length > 5) {
-        msg.innerHTML = `Limite de caracteres atingido!`
-      } else {
-        msg.innerHTML = `${descricao.length} / 300`
-        
+        if (aquarios.length > 0) {
+            exibirAquario(aquarios[0].id)
+        }
     }
-  
-}
 
-// function obterDadosGrafico() {
-//   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
-//   avaliacoes.forEach(item => {
-//       document.getElementById("btnAvaliacao").innerHTML += `
-//       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.comentario}</button>
-//       `
+    function alterarTitulo(idAquario) {
+        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
+        tituloAquario.innerHTML = "Últimas medidas do <span style='color: #e6005a'>" + descricao + "</span>"
+    }
 
-//       document.getElementById("graficos").innerHTML += `
-//           <div id="grafico${item.id}" class="display-none">
-//               <h3 class="tituloGraficos">
-//                   <span id="tituloAvaliacao${item.id}">${item.comentario}</span>
-//               </h3>
-//               <div class="graph">
-//                   <canvas id="graficoNotas${item.id}"></canvas>
-//               </div>
-//               <div class="label-captura">
-//                   <p id="avisoCaptura${item.id}" style="color: white"></p>
-//               </div>
-//           </div>
-//       `
+    function exibirAquario(idAquario) {
+        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
 
-//       obterDadosGrafico(item.id)
-//   });
+        for (i = 0; i < todosOsGraficos.length; i++) {
+            // exibindo - ou não - o gráfico
+            if (todosOsGraficos[i].id != idAquario) {
+                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
+                if (elementoAtual.classList.contains("display-block")) {
+                    elementoAtual.classList.remove("display-block")
+                }
+                elementoAtual.classList.add("display-none")
 
-//   if (avaliacoes.length > 0) {
-//       exibirAvaliacao(avaliacoes[0].id)
-//   }
-// }
+                // alterando estilo do botão
+                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
+                if (btnAtual.classList.contains("btn-pink")) {
+                    btnAtual.classList.remove("btn-pink")
+                }
+                btnAtual.classList.add("btn-white")
+            }
+        }
 
+        // exibindo - ou não - o gráfico
+        let graficoExibir = document.getElementById(`grafico${idAquario}`)
+        graficoExibir.classList.remove("display-none")
+        graficoExibir.classList.add("display-block")
+
+        // alterando estilo do botão
+        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
+        btnExibir.classList.remove("btn-white")
+        btnExibir.classList.add("btn-pink")
+    }
+    */
+
+    /*
+    function obterDadosGrafico(idAquario) {
+
+        alterarTitulo(idAquario)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta, idAquario);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+    // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
+    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+    function plotarGrafico(resposta, idAquario) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [
+            {
+                label: 'Temperatura',
+                data: [],
+                fill: false,
+                borderColor: 'rgb(199, 52, 52)',
+                tension: 0.1
+            }]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.momento_grafico);
+            dados.datasets[0].data.push(registro.temperatura);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChartCanvas${idAquario}`),
+            config
+        );
+
+        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
+    // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+    // buscando a última medida inserida em tabela contendo as capturas, 
+
+    //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+    //     Para ajustar o "select", ajuste o comando sql em src/models
+    function atualizarGrafico(idAquario, dados, myChart) {
+
+        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    obterdados(idAquario);
+                    // alertar(novoRegistro, idAquario);
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`);
+                    console.log(dados);
+
+                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+                    avisoCaptura.innerHTML = ""
+
+                    if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].momento_grafico)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                        dados.datasets[0].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+    */
+
+    // function obterDadosGrafico() {
+    //   var avaliacoes = JSON.parse(sessionStorage.AVALIACOES);
+    //   avaliacoes.forEach(item => {
+    //       document.getElementById("btnAvaliacao").innerHTML += `
+    //       <button class="btn-chart" onclick="exibirAvaliacao(${item.id})" id="btnAvaliacao${item.id}">${item.comentario}</button>
+    //       `
+
+    //       document.getElementById("graficos").innerHTML += `
+    //           <div id="grafico${item.id}" class="display-none">
+    //               <h3 class="tituloGraficos">
+    //                   <span id="tituloAvaliacao${item.id}">${item.comentario}</span>
+    //               </h3>
+    //               <div class="graph">
+    //                   <canvas id="graficoNotas${item.id}"></canvas>
+    //               </div>
+    //               <div class="label-captura">
+    //                   <p id="avisoCaptura${item.id}" style="color: white"></p>
+    //               </div>
+    //           </div>
+    //       `
+
+    //       obterDadosGrafico(item.id)
+    //   });
+
+    //   if (avaliacoes.length > 0) {
+    //       exibirAvaliacao(avaliacoes[0].id)
+    //   }
+    // }
 
 </script>
-</body>
-</html>
